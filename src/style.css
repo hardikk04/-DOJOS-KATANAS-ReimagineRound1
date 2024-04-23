@@ -220,10 +220,62 @@ nav {
 
 /* Page4 starts */
 #page4 {
-  position: relative;
   height: 100vh;
   width: 100%;
   background-color: #fff;
+  position: relative;
+  padding: 1vw 2vw;
+}
+
+#page4 .heading {
+  height: 12vw;
+  display: flex;
+  align-items: center;
+  gap: 4vw; 
+ }
+ 
+ #page4 .heading h1 {
+  font-size: 5vw;
+  line-height: 5vw;
+  font-weight: 600;
+  letter-spacing: -0.2vw;
+  color: #D91921;
+ }
+ 
+ #page4 .heading .arrow {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #D91921;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+ }
+ 
+ #page4 .heading .arrow i {
+  font-size: 2vw;
+ }
+ 
+
+#page4 .section {
+  width: 100%;
+  height: 18vh;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+
+#page4 .section h3 {
+  font-size: 2vw;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+#page4 .section i {
+  font-size: 2.5vw;
+  color: #D91921;
 }
 /* Page4 ends */
 
