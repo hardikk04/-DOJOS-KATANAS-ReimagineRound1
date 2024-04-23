@@ -231,32 +231,31 @@ nav {
   height: 12vw;
   display: flex;
   align-items: center;
-  gap: 4vw; 
- }
- 
- #page4 .heading h1 {
+  gap: 4vw;
+}
+
+#page4 .heading h1 {
   font-size: 5vw;
   line-height: 5vw;
   font-weight: 600;
   letter-spacing: -0.2vw;
-  color: #D91921;
- }
- 
- #page4 .heading .arrow {
+  color: #d91921;
+}
+
+#page4 .heading .arrow {
   width: 5vw;
   height: 5vw;
   border-radius: 50%;
   color: #fff;
-  background-color: #D91921;
+  background-color: #d91921;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
- }
- 
- #page4 .heading .arrow i {
+}
+
+#page4 .heading .arrow i {
   font-size: 2vw;
- }
- 
+}
 
 #page4 .section {
   width: 100%;
@@ -275,7 +274,7 @@ nav {
 
 #page4 .section i {
   font-size: 2.5vw;
-  color: #D91921;
+  color: #d91921;
 }
 /* Page4 ends */
 
@@ -415,6 +414,13 @@ nav {
 }
 
 /* Page7 ends */
+
+#page8 {
+  height: 100vh;
+  width: 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
 
 /* Footer starts */
 #footer-fixed {
