@@ -414,14 +414,12 @@ nav {
 }
 
 /* Page7 ends */
-
 #page8 {
   height: 100vh;
   width: 100%;
   background-color: transparent;
   pointer-events: none;
 }
-
 /* Footer starts */
 #footer-fixed {
   position: fixed;
