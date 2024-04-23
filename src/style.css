@@ -248,19 +248,123 @@ nav {
 /* Page7 starts */
 #page7 {
   position: relative;
-  height: 100vh;
+  height: 120vh;
   width: 100%;
   background-color: #fff;
+  padding: 2vw 4vw;
+  color: #d91921;
 }
+
+.page7-top {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10vw;
+}
+
+.page7-top-left {
+  position: relative;
+  height: 100%;
+  width: 50%;
+}
+
+.page7-top-left > h1 {
+  font-size: 5vw;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.page7-top-left > p {
+  font-size: 1.5vw;
+  font-weight: 500;
+  margin-top: 1.5vw;
+}
+
+.page7-top-left > button {
+  padding: 0.6vw 1vw;
+  background-color: #d91921;
+  color: #fff;
+  font-size: 1.3vw;
+  border: none;
+  box-shadow: 5px 6px 0px 2px rgba(0, 0, 0, 1);
+  margin-top: 1.5vw;
+}
+
+.page7-top-right {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+.page7-top-right > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.page7-bottom {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10vw;
+}
+
+.page7-bottom-left {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  /* justify-content: end; */
+}
+
+.page7-bottom-left > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.page7-bottom-right {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  margin-top: 3vw;
+}
+
+.page7-bottom-right > h1 {
+  font-size: 5vw;
+  width: 80%;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.page7-bottom-right > p {
+  font-size: 1.5vw;
+  width: 80%;
+  font-weight: 500;
+  margin-top: 1.5vw;
+}
+
+.page7-bottom-right > button {
+  padding: 0.6vw 1vw;
+  background-color: #d91921;
+  color: #fff;
+  font-size: 1.3vw;
+  border: none;
+  box-shadow: 5px 6px 0px 2px rgba(0, 0, 0, 1);
+  margin-top: 1.5vw;
+}
+
 /* Page7 ends */
 
-/* Page8 starts */
-#page8 {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  pointer-events: none !important;
-}
+/* Footer starts */
 #footer-fixed {
   position: fixed;
   bottom: 0;
@@ -383,3 +487,5 @@ nav {
   left: 50%;
   transform: translateX(-50%);
 }
+
+/* Footer ends */
