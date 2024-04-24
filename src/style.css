@@ -1,9 +1,14 @@
+/*fonts */
+@font-face {
+  font-family: sequel sans;
+  src: url(/fonts/sequelSansTTF/Sequel\ Sans\ Medium\ Disp.ttf);
+}
 /* Boiler Plate */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: gilroy;
+  font-family: sequel sans;
 }
 
 body,
@@ -113,14 +118,14 @@ nav {
   font-size: 3.2vw;
   color: #d91921;
   text-transform: capitalize;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
 }
 #page2 p {
   font-size: 1.32vw;
   width: 52%;
   margin: 0 auto;
-  font-weight: 500;
+  font-weight: 100;
   color: #656565;
   text-transform: capitalize;
   margin-top: 1.2vw;
@@ -429,7 +434,8 @@ nav {
   width: 100%;
   background-color: #d91921;
   color: #fff;
-  padding: 2vw 3.5vw;
+  padding: 0 3.5vw;
+  font-family:fantasy;
 }
 #foot-pt1 {
   width: 100%;
@@ -450,10 +456,13 @@ nav {
   background-color: #fffffffb;
   margin-left: 2vw;
 }
+#foot-pt1 svg{
+  width: 100vw;
+}
 #foot-pt2 {
   display: flex;
   gap: 7vw;
-  margin-top: 6vw;
+  margin-top: 2vw;
 }
 .wrp {
   display: flex;
@@ -503,13 +512,13 @@ nav {
   transform: translateY(-100%);
 }
 #foot-pt2 h2 {
-  font-weight: 500;
+  font-weight: 100;
   line-height: 1;
   font-size: 1.8vw;
   cursor: pointer;
 }
 #foot-pt2 h4 {
-  font-weight: 400;
+  font-weight: 100;
   font-size: 1.2vw;
   line-height: 1;
   transition: all ease 0.3s;
@@ -520,9 +529,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5vw;
+  margin-top: 3vw;
   padding-bottom: 1vw;
-  border-bottom: 0.15vw solid #fff;
 }
 
 #foot-pt3 #social {
@@ -537,9 +545,22 @@ nav {
   font-weight: 400;
   cursor: pointer;
 }
+#line{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  bottom: 18%;
+}
+#line  svg{
+  width: 92vw;
+}
 #foot-logo2 {
   position: absolute;
-  bottom: -13%;
+  bottom: -15%;
   left: 50%;
   transform: translateX(-50%);
 }
