@@ -1,14 +1,9 @@
-/*fonts */
-@font-face {
-  font-family: sequel sans;
-  src: url(/fonts/sequelSansTTF/Sequel\ Sans\ Medium\ Disp.ttf);
-}
 /* Boiler Plate */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sequel sans;
+  font-family: gilroy;
 }
 
 body,
@@ -115,17 +110,17 @@ nav {
   padding: 2.5vw 0;
 }
 #page2 h1 {
-  font-size: 3.2vw;
+  font-size: 4vw;
   color: #d91921;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
 }
 #page2 p {
   font-size: 1.32vw;
   width: 52%;
   margin: 0 auto;
-  font-weight: 100;
+  font-weight: 500;
   color: #656565;
   text-transform: capitalize;
   margin-top: 1.2vw;
@@ -512,13 +507,13 @@ nav {
   transform: translateY(-100%);
 }
 #foot-pt2 h2 {
-  font-weight: 100;
+  font-weight: 600;
   line-height: 1;
   font-size: 1.8vw;
   cursor: pointer;
 }
 #foot-pt2 h4 {
-  font-weight: 100;
+  font-weight: 500;
   font-size: 1.2vw;
   line-height: 1;
   transition: all ease 0.3s;
@@ -545,7 +540,7 @@ nav {
   font-weight: 400;
   cursor: pointer;
 }
-#line{
+#footer-fixed #line{
   position: absolute;
   left: 50%;
   transform: translate(-50%,0);
@@ -555,7 +550,7 @@ nav {
   z-index: 9;
   bottom: 18%;
 }
-#line  svg{
+#footer-fixed #line  svg{
   width: 92vw;
 }
 #foot-logo2 {
