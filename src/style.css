@@ -33,11 +33,12 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
 }
 
 .nav-left {
   position: relative;
-  background-color: #fff;
+  background-color: #d91921;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,11 +54,11 @@ nav {
 }
 
 .nav-left > i:nth-child(1) {
-  color: #fff;
+  color: #d91921;
 }
 
 .nav-left > i:nth-child(2) {
-  color: #d91921;
+  color: #fff;
 }
 
 .nav-left-circle {
@@ -65,7 +66,7 @@ nav {
   height: 3.5vh;
   width: 3.5vh;
   border-radius: 50%;
-  background-color: #d91921;
+  background-color: #ffffff;
   left: 5%;
 }
 
@@ -87,6 +88,10 @@ nav {
   color: #fff;
   font-size: 1.2vw;
   align-items: center;
+}
+
+.nav-right i {
+  color: #d91921;
 }
 
 .nav-right-menu {
