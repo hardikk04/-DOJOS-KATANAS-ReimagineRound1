@@ -292,8 +292,15 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: #000000;
 }
+
+#page6 > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 /* Page6 ends */
 
 /* Page7 starts */
@@ -430,7 +437,7 @@ nav {
   background-color: #d91921;
   color: #fff;
   padding: 0 3.5vw;
-  font-family:fantasy;
+  font-family: fantasy;
 }
 #foot-pt1 {
   width: 100%;
@@ -451,7 +458,7 @@ nav {
   background-color: #fffffffb;
   margin-left: 2vw;
 }
-#foot-pt1 svg{
+#foot-pt1 svg {
   width: 100vw;
 }
 #foot-pt2 {
@@ -540,17 +547,17 @@ nav {
   font-weight: 400;
   cursor: pointer;
 }
-#footer-fixed #line{
+#footer-fixed #line {
   position: absolute;
   left: 50%;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9;
   bottom: 18%;
 }
-#footer-fixed #line  svg{
+#footer-fixed #line svg {
   width: 92vw;
 }
 #foot-logo2 {
