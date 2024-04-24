@@ -28,3 +28,10 @@ const lenisJs = () => {
   gsap.ticker.lagSmoothing(0);
 };
 lenisJs();
+
+
+Totty.animateSvg("#curve", {
+  ease: "elastic.out(1,0.3)",
+  offsetLeft: 10,
+  offsetRight: 10,
+});
