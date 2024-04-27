@@ -2,9 +2,6 @@
  * Importing the libraries
  */
 import "remixicon/fonts/remixicon.css";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
