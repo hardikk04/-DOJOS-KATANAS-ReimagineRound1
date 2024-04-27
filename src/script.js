@@ -35,3 +35,4 @@ Totty.animateSvg("#curve", {
   offsetLeft: 10,
   offsetRight: 10,
 });
+
