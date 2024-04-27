@@ -262,13 +262,16 @@ nav {
   height: 100vh;
   width: 100%;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#page3 > img {
-  object-fit: cover;
-  height: 100%;
+#page3 canvas{
+  min-height: 100vh;
   width: 100%;
 }
+
 /* Page3 ends */
 
 /* Page4 starts */
