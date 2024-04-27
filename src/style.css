@@ -113,11 +113,11 @@ nav {
   text-align: center;
   overflow: hidden;
   padding: 2.5vw 0;
+  padding-bottom: 0;
 }
 #page2 #slide1{
   width: 100%;
   display: flex;
-  margin: 5vw 0;
   margin-bottom: 8vw;
   
 }
@@ -126,8 +126,8 @@ nav {
   display: flex;
   font-size: 4vw;
   text-transform: capitalize;
-  color: transparent;
-  -webkit-text-stroke: 2px #d91921;
+  color: #d91921;
+  /* -webkit-text-stroke: 2px #d91921; */
   font-weight: 600;
   animation-name: slider;
   animation-timing-function: linear;
@@ -151,11 +151,11 @@ nav {
 }
 
 #page2 h1 {
-  font-size: 3.2vw;
+  font-size: 4vw;
   color: #d91921;
   text-transform: capitalize;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.1;
   display: flex; 
   align-items: center;
   justify-content: center;
@@ -167,6 +167,7 @@ nav {
   overflow: hidden;
   border-radius: 50px;
   margin: 0 1vw;
+  display: none;
 }
 #page2 h1 #textgif img{
   width: 10vw;
@@ -180,79 +181,101 @@ nav {
   font-weight: 500;
   color: #656565;
   text-transform: capitalize;
-  margin-top: 1.2vw;
+  margin: 1.5vw auto;
+  line-height: 1.3;
 }
-#container-pg2 {
+#swiper{
+  position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
-  width: 100%;
-  margin-top: 2vw;
-  padding: 0 4vw;
 }
-#container-pg2 .card-pg2 {
-  position: relative;
-  flex-shrink: 0;
-  width: 22%;
-  height: 28vw;
-  color: #fff;
-  text-align: left;
-  transform-origin: top left;
-  transition: all ease 0.5s;
-  border-radius: 20px;
-  overflow: hidden;
-}
-#container-pg2 .card-pg2 img {
+#swiper #swiper-btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 9;
   height: 100%;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
+}
+#swiper-btn #next{
+  color: #fff;
+  font-weight: 800;
+}
+#swiper-btn #pre{
+  color: #fff;
+  font-weight: 800;
+}
+.swiper {
+  position: relative;
+  width: 100%;
+  height: 30%;
+  transform: scale(3.3);
 }
 
-#container-pg2 .card-pg2 .over-card {
+.swiper-slide {
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.over-card {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(transparent 15%, #d9191fd1);
-  padding: 1vw;
+  background: linear-gradient(transparent 45%, #d9191f);
+  padding: 1vw 2vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  opacity: 0;
-  transition: all ease 0.5s;
-}
-#container-pg2 .card-pg2:hover .over-card {
   opacity: 1;
+  transition: all ease 0.5s;
+  color: #fff;
 }
-#container-pg2 .card-pg2 .over-card h4 {
+.over-card h4 {
   text-transform: capitalize;
   font-size: 2vw;
   font-weight: 500;
 }
-#container-pg2 .card-pg2 .over-card h6 {
-  font-size: 0.9vw;
+.over-card h6 {
+  font-size: 0.7vw;
+  width: 73%;
   line-height: 1.1;
   font-weight: 500;
   opacity: 0.9;
+  text-align: left;
 }
-
-#container-pg2 .card-pg2 .over-card .cir-arrow {
+.over-card .cir-arrow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 5vw;
-  height: 5vw;
+  width: 2vw;
+  height: 2vw;
   background-color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #d91921;
-  font-size: 2.2vw;
+  font-size: 1vw;
 }
 /* Page2 ends */
 
