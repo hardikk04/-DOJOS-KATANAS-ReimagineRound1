@@ -2,6 +2,9 @@
  * Importing the libraries
  */
 import "remixicon/fonts/remixicon.css";
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lenis from "@studio-freight/lenis";
 // import gsap from "gsap";
 // import ScrollTrigger from "gsap/ScrollTrigger";
@@ -14,34 +17,72 @@ import Lenis from "@studio-freight/lenis";
 const lenisJs = () => {
   const lenis = new Lenis();
 
-  lenis.on("scroll", (e) => {});
+  lenis.on("scroll", (e) => { });
 
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
-    lenis.raf(time * 700);
+    lenis.raf(time * 1000);
   });
 
   gsap.ticker.lagSmoothing(0);
 };
 lenisJs();
 
-
-function canva1() {
+function page2Animation(){
   
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+var tls = gsap.timeline({
+  scrollTrigger:{
+    trigger:"#swiper",
+    scroller:"body",
+    start:"top top",
+    end:"top -150%",
+    // markers:true,
+    scrub:2,
+    pin:true
+  }
+})
+tls
+.to(".swiper",{
+  transform: "scale(1)",
+  delay:.1
+},"a")
+.to("#swiper-btn",{
+  scale:0.3,
+  delay:.1
+},"a")
+.to(".over-card",{
+  opacity:0,
+  delay:.1
+},"a")
+
+}
+page2Animation()
+function canva1() {
+
   const canvas = document.querySelector("#page3 canvas");
   const context = canvas.getContext("2d");
-  
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  
-  
+
+
   window.addEventListener("resize", function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     render();
   });
-  
+
   function files(index) {
     var data = `
     canvas/canvas00064.png
@@ -76,60 +117,23 @@ function canva1() {
     canvas/canvas00093.png
     canvas/canvas00094.png
     canvas/canvas00095.png
-    canvas/canvas00096.png
-    canvas/canvas00097.png
-    canvas/canvas00098.png
-    canvas/canvas00099.png
-    canvas/canvas00100.png
-    canvas/canvas00101.png
-    canvas/canvas00102.png
-    canvas/canvas00103.png
-    canvas/canvas00104.png
-    canvas/canvas00105.png
-    canvas/canvas00106.png
-    canvas/canvas00107.png
-    canvas/canvas00108.png
-    canvas/canvas00109.png
-    canvas/canvas00110.png
-    canvas/canvas00111.png
-    canvas/canvas00112.png
-    canvas/canvas00113.png
-    canvas/canvas00114.png
-    canvas/canvas00115.png
-    canvas/canvas00116.png
-    canvas/canvas00117.png
-    canvas/canvas00118.png
-    canvas/canvas00119.png
-    canvas/canvas00120.png
-    canvas/canvas00121.png
-    canvas/canvas00122.png
-    canvas/canvas00123.png
-    canvas/canvas00124.png
-    canvas/canvas00125.png
-    canvas/canvas00126.png
-    canvas/canvas00127.png
-    canvas/canvas00128.png
-    canvas/canvas00129.png
-    canvas/canvas00130.png
-    canvas/canvas00131.png
-  
    `;
     return data.split("\n")[index];
   }
-  
-  const frameCount = 68;
-  
+
+  const frameCount = 32;
+
   const images = [];
   const imageSeq = {
     frame: 1,
   };
-  
+
   for (let i = 0; i < frameCount; i++) {
     const img = new Image();
     img.src = files(i);
     images.push(img);
   }
-  
+
   gsap.to(imageSeq, {
     frame: frameCount - 1,
     snap: "frame",
@@ -139,18 +143,18 @@ function canva1() {
       trigger: `#page3>canvas`,
       //   set start end according to preference
       start: `top top`,
-      end: `600% top`,
+      end: `200% top`,
       scroller: `body`,
     },
     onUpdate: render,
   });
-  
+
   images[1].onload = render;
-  
+
   function render() {
     scaleImage(images[imageSeq.frame], context);
   }
-  
+
   function scaleImage(img, ctx) {
     var canvas = ctx.canvas;
     var hRatio = canvas.width / img.width;
@@ -172,21 +176,20 @@ function canva1() {
     );
   }
   ScrollTrigger.create({
-  
+
     trigger: "#page3",
     pin: true,
     scroller: `body`,
     start: `top top`,
-    end: `600% top`,
+    end: `200% top`,
   });
-  
-  
-  }
-  canva1()
+
+
+}
+canva1()
 
 Totty.animateSvg("#curve", {
   ease: "elastic.out(1,0.3)",
   offsetLeft: 10,
   offsetRight: 10,
 });
-
