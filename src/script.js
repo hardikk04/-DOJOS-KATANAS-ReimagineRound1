@@ -29,6 +29,11 @@ const lenisJs = () => {
 };
 lenisJs();
 
+<<<<<<< HEAD
+=======
+function page2Animation(){
+  
+>>>>>>> main
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 3,
   spaceBetween: 30,
@@ -45,14 +50,20 @@ var tls = gsap.timeline({
     scroller:"body",
     start:"top top",
     end:"top -150%",
+<<<<<<< HEAD
     markers:true,
     scrub:1,
+=======
+    // markers:true,
+    scrub:2,
+>>>>>>> main
     pin:true
   }
 })
 tls
 .to(".swiper",{
   transform: "scale(1)",
+<<<<<<< HEAD
 },"a")
 .to("#swiper-btn",{
   width:"30%"
@@ -62,6 +73,21 @@ tls
   duration:0.2
 },"a")
 
+=======
+  delay:.1
+},"a")
+.to("#swiper-btn",{
+  scale:0.3,
+  delay:.1
+},"a")
+.to(".over-card",{
+  opacity:0,
+  delay:.1
+},"a")
+
+}
+page2Animation()
+>>>>>>> main
 function canva1() {
 
   const canvas = document.querySelector("#page3 canvas");
@@ -187,4 +213,3 @@ Totty.animateSvg("#curve", {
   offsetLeft: 10,
   offsetRight: 10,
 });
-
