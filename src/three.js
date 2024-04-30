@@ -24,18 +24,36 @@ const gltfLoader = new GLTFLoader();
 let redModel = null;
 let blackModel = null;
 let grayModel = null;
-gltfLoader.load("/models/white_can_final.glb", (gltf) => {
-  redModel = gltf.scene;
-  redModel.scale.set(1, 1, 1);
+gltfLoader.load("/models/cans_animation.glb", (gltf) => {
+  grayModel = gltf.scene.children[0];
+  blackModel = gltf.scene.children[1];
+  redModel = gltf.scene.children[2];
 
-  const boudingBox = new THREE.Box3().setFromObject(redModel);
-  const center = new THREE.Vector3();
-  boudingBox.getCenter(center);
+  // Scales
+  redModel.scale.set(2.5, 2.5, 2.5);
+  blackModel.scale.set(2.5, 2.5, 2.5);
+  grayModel.scale.set(2.5, 2.5, 2.5);
 
-  redModel.position.sub(center);
+  // Red Model bounding box
+  const redModelBoudingBox = new THREE.Box3().setFromObject(redModel);
+  const redModelCenter = new THREE.Vector3();
+  redModelBoudingBox.getCenter(redModelCenter);
 
-  // redModel.position.set(0, -0.8, 0);
-  // redModel.rotation.z = -0.3;
+  // gray Model bounding box
+  const grayModelBoudingBox = new THREE.Box3().setFromObject(grayModel);
+  const grayModelCenter = new THREE.Vector3();
+  grayModelBoudingBox.getCenter(grayModelCenter);
+
+  // Black Model bounding box
+  const blackModelBoudingBox = new THREE.Box3().setFromObject(blackModel);
+  const blackModelCenter = new THREE.Vector3();
+  blackModelBoudingBox.getCenter(blackModelCenter);
+
+  // Positions
+  redModel.position.sub(redModelCenter);
+  grayModel.position.sub(grayModelCenter);
+  blackModel.position.sub(blackModelCenter);
+
   scene.add(redModel);
 });
 
@@ -47,13 +65,41 @@ cursor.y = 0;
 canvas.addEventListener("mousemove", (dets) => {
   cursor.x = dets.clientX / window.innerWidth;
   cursor.y = dets.clientY / window.innerHeight;
-  // gsap.to(camera.position, {
-  //   x: -cursor.x * 0.5,
-  //   y: cursor.y * 0.2,
-  //   duration: 0.2,
-  //   ease: "linear",
-  // });
+  gsap.to(camera.position, {
+    x: -cursor.x * 1,
+    y: cursor.y * 0.5,
+    duration: 0.2,
+    ease: "linear",
+  });
 });
+
+// canvas.addEventListener("click", () => {
+//   gsap.from(redModel.rotation, {
+//     y: -Math.PI * 2,
+//     duration: 0.2,
+//     ease: "linear",
+//     onComplete: () => {
+//       scene.remove(redModel);
+//       gsap.from(
+//         blackModel.rotation,
+//         {
+//           y: -Math.PI * 2,
+//           delay: -0.1,
+//         },
+//         "same"
+//       );
+
+//       gsap.to(
+//         "#page1",
+//         {
+//           backgroundColor: "#000",
+//         },
+//         "same"
+//       );
+//       scene.add(blackModel);
+//     },
+//   });
+// });
 
 /**
  * Lights
@@ -101,8 +147,8 @@ window.addEventListener("resize", () => {
 /**
  * Contrls
  */
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
+// const controls = new OrbitControls(camera, canvas);
+// controls.enableDamping = true;
 
 /**
  * Renderer
@@ -118,11 +164,15 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   if (redModel) {
-    // redModel.rotation.y = -elapsedTime * 0.5;
-    // redModel.rotation.x = elapsedTime * 0.2;
+    redModel.rotation.y = -elapsedTime * 0.3;
+    redModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+    // grayModel.rotation.y = -elapsedTime * 0.5;
+    // grayModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+    // blackModel.rotation.y = -elapsedTime * 0.5;
+    // blackModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
   }
 
-  controls.update();
+  // controls.update();
 
   renderer.render(scene, camera);
   requestAnimationFrame(tick);

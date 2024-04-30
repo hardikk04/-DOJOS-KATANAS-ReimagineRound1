@@ -459,31 +459,30 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-#page5 h1
-{
+#page5 h1 {
   font-size: 6vw;
+  white-space: nowrap;
 }
 
-#page5 #line2
-{
+#page5 #line2 {
   display: flex;
   align-items: center;
 }
 
-#page5 #line2 #video
-{
+#page5 #line2 #video {
   width: 20vw;
   height: 16vh;
   background-color: skyblue;
 }
 
-#page5 #line2 #video video
-{
+#page5 #line2 #video video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  scale: 1.01;
 }
 
 /* Page5 ends */
@@ -601,7 +600,7 @@ nav {
 .page7-part2-left {
   position: relative;
   height: 100%;
-  width: 50%;
+  width: 55%;
 }
 
 .page7-part2-left > img {
@@ -614,6 +613,7 @@ nav {
   position: relative;
   height: 100%;
   width: 45%;
+  padding-left: 4vw;
 }
 
 .page7-part2-right > h1 {
