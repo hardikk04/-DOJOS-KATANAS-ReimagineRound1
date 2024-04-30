@@ -1,3 +1,9 @@
+/* Root variable */
+:root {
+  --primary:#fff;
+  --secondary: #d91921;
+  --black: black;
+}
 /* Boiler Plate */
 * {
   margin: 0;
@@ -325,7 +331,7 @@ nav {
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(transparent 45%, #d9191f);
+  background: linear-gradient(transparent 45%, #d91921);
   padding: 1vw 2vw;
   display: flex;
   flex-direction: column;

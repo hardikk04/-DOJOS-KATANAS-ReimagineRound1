@@ -29,6 +29,7 @@ const lenisJs = () => {
 };
 lenisJs();
 
+
 function page2Animation(){
   
 var swiper = new Swiper(".mySwiper", {
