@@ -17,7 +17,7 @@ import Lenis from "@studio-freight/lenis";
 const lenisJs = () => {
   const lenis = new Lenis();
 
-  lenis.on("scroll", (e) => { });
+  lenis.on("scroll", (e) => {});
 
   lenis.on("scroll", ScrollTrigger.update);
 
@@ -29,53 +29,84 @@ const lenisJs = () => {
 };
 lenisJs();
 
-function page2Animation(){
-  
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  loop: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+/**
+ * Clutter Animation
+ */
+const clutterAnimation = (element) => {
+  const htmlTag = document.querySelector(element);
+  let clutter = "";
 
-var tls = gsap.timeline({
-  scrollTrigger:{
-    trigger:"#swiper",
-    scroller:"body",
-    start:"top top",
-    end:"top -150%",
-    // markers:true,
-    scrub:2,
-    pin:true
-  }
-})
-tls
-.to(".swiper",{
-  transform: "scale(1)",
-  delay:.1
-},"a")
-.to("#swiper-btn",{
-  scale:0.3,
-  delay:.1
-},"a")
-.to(".over-card",{
-  opacity:0,
-  delay:.1
-},"a")
+  // Splitting the text content into individual letters and wrapping each in a span with a class
+  htmlTag.textContent.split("").forEach((word) => {
+    clutter += `<span class="inline-block">${word}</span>`;
+  });
 
+  // Updating the HTML content of the element with the animated spans
+  htmlTag.innerHTML = clutter;
+};
+
+/**
+ * Page 2 Animations
+ */
+function page2Animation() {
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+
+  var tls = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#swiper",
+      scroller: "body",
+      start: "top top",
+      end: "top -150%",
+      // markers:true,
+      scrub: 2,
+      pin: true,
+    },
+  });
+  tls
+    .to(
+      ".swiper",
+      {
+        transform: "scale(1)",
+        delay: 0.1,
+      },
+      "a"
+    )
+    .to(
+      "#swiper-btn",
+      {
+        scale: 0.3,
+        delay: 0.1,
+      },
+      "a"
+    )
+    .to(
+      ".over-card",
+      {
+        opacity: 0,
+        delay: 0.1,
+      },
+      "a"
+    );
 }
-page2Animation()
-function canva1() {
+page2Animation();
 
+/**
+ * Canvas Animations
+ */
+function canva1() {
   const canvas = document.querySelector("#page3 canvas");
   const context = canvas.getContext("2d");
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
 
   window.addEventListener("resize", function () {
     canvas.width = window.innerWidth;
@@ -176,17 +207,70 @@ function canva1() {
     );
   }
   ScrollTrigger.create({
-
     trigger: "#page3",
     pin: true,
     scroller: `body`,
     start: `top top`,
     end: `200% top`,
   });
-
-
 }
-canva1()
+canva1();
+
+/**
+ * Page 6 Animations
+ */
+const page6Animation = () => {
+  clutterAnimation(".page6-wrapper>h1");
+
+  gsap.from(".page6-wrapper>h1>span", {
+    opacity: 0,
+    y: 200,
+    stagger: {
+      each: 0.1,
+      from: "center",
+    },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: "#page6",
+      start: "top 20%",
+      end: "top 0%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      scroller: "body",
+      trigger: "#page6",
+      start: "top 0",
+      end: "top -300%",
+      scrub: 1,
+      pin: true,
+      // markers: true,
+    },
+  });
+  tl.to(".page6-imgs", {
+    top: "-120%",
+    rotate: "-20deg",
+    left: "-25%",
+    opacity: 1,
+    stagger: 0.3,
+  });
+  tl.to("#page6", {
+    backgroundColor: "#fff",
+  });
+
+  tl.to(".page6-wrapper>h1>span", {
+    opacity: 0,
+    y: -250,
+    stagger: {
+      each: 0.1,
+      from: "random",
+    },
+  });
+};
+page6Animation();
 
 Totty.animateSvg("#curve", {
   ease: "elastic.out(1,0.3)",
