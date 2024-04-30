@@ -40,7 +40,7 @@ html {
   z-index: 1;
   height: 100vh;
   width: 100%;
-  background-color: #d91921;
+  background-color: var(--secondary);
   overflow: hidden;
 }
 
@@ -51,6 +51,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
 }
 
 .nav-left {
@@ -60,8 +61,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   border-radius: 2vw;
-  padding: 0.5vw 0.5vw;
+  padding: 0.5vw;
   gap: 1.8vw;
+  cursor: pointer;
 }
 
 .nav-left > i {
@@ -71,11 +73,11 @@ nav {
 }
 
 .nav-left > i:nth-child(1) {
-  color: #ffffff;
+  color: #fff;
 }
 
 .nav-left > i:nth-child(2) {
-  color: #d91921;
+  color: var(--secondary);
 }
 
 .nav-left-circle {
@@ -83,7 +85,7 @@ nav {
   height: 3.5vh;
   width: 3.5vh;
   border-radius: 50%;
-  background-color: #d91921;
+  background-color: var(--secondary);
   left: 5%;
 }
 
@@ -102,7 +104,7 @@ nav {
 .nav-right {
   display: flex;
   gap: 5vw;
-  color: #fff;
+  color: var(--primary);
   font-size: 1.2vw;
   align-items: center;
 }
@@ -188,7 +190,7 @@ nav {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: white;
 }
 
 /* Page1 ends */
@@ -198,7 +200,7 @@ nav {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--primary);
   text-align: center;
   overflow: hidden;
   padding: 2.5vw 0;
@@ -286,24 +288,19 @@ nav {
   transform: translate(-50%, -50%);
   z-index: 9;
   height: 100%;
-  width: 90%;
+  width: 95%;
   opacity: 0;
 }
 #swiper #swiper-btn:hover {
   opacity: 1;
 }
-#swiper-btn #next {
-  color: #fff;
+
+#swiper-btn .btns {
+  color: var(--primary);
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.408);
   padding: 2.5vw;
-  border-radius: 50%;
-}
-#swiper-btn #pre {
-  color: #fff;
-  font-weight: 800;
-  background-color: rgba(0, 0, 0, 0.408);
-  padding: 2.5vw;
+  transform: scale(.7);
   border-radius: 50%;
 }
 .swiper {
@@ -317,7 +314,7 @@ nav {
   position: relative;
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,7 +334,7 @@ nav {
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(transparent 45%, #d91921);
+  background: linear-gradient(transparent 45%, black);
   padding: 1vw 2vw;
   display: flex;
   flex-direction: column;
@@ -359,21 +356,7 @@ nav {
   opacity: 0.9;
   text-align: left;
 }
-.over-card .cir-arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 2vw;
-  height: 2vw;
-  background-color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #d91921;
-  font-size: 1vw;
-}
+
 
 /* Page2 ends */
 
@@ -382,7 +365,7 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -399,7 +382,7 @@ nav {
 #page4 {
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--primary);
   position: relative;
   padding: 1vw 2vw;
 }
@@ -437,7 +420,7 @@ nav {
 #page4 .section {
   width: 100%;
   height: 18vh;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--black);
   display: flex;
   align-items: center;
   gap: 2vw;
@@ -447,6 +430,7 @@ nav {
   font-size: 2vw;
   font-weight: 500;
   text-transform: capitalize;
+  color: var(--black);
 }
 
 #page4 .section i {
@@ -460,7 +444,7 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--primary);
 }
 /* Page5 ends */
 
@@ -469,7 +453,7 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: #000000;
+  background-color:black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -494,7 +478,7 @@ nav {
   top: 110%;
   height: 90vh;
   width: 70vw;
-  background-color: white;
+  background-color: var(--primary);
   /* rotate: -5deg; */
   right: -25%;
   opacity: 0.9;
@@ -545,7 +529,7 @@ nav {
 }
 
 .page7-part1-left > button {
-  background-color: #d9191f;
+  background-color:#d91921;
   color: #fff;
   border: none;
   padding: 0.5vw 1vw;
@@ -604,8 +588,8 @@ nav {
 }
 
 .page7-part2-right > button {
-  background-color: #d9191f;
-  color: #fff;
+  background-color: var(--secondary);
+  color: var(--primary);
   border: none;
   padding: 0.5vw 1vw;
   font-size: 1vw;
@@ -647,7 +631,7 @@ nav {
 #foot-pt1 #line {
   width: 100%;
   height: 0.15vw;
-  background-color: #fffffffb;
+  background-color: var(--primary);
   margin-left: 2vw;
 }
 #foot-pt1 svg {
