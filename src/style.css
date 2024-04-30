@@ -12,6 +12,12 @@ html {
   height: 100%;
 }
 
+/* Fonts Loader*/
+@font-face {
+  font-family: cocaCola;
+  src: url(/fonts/cocacola1.ttf);
+}
+
 #main {
   position: relative;
   width: 100%;
@@ -120,13 +126,14 @@ nav {
   display: flex;
   justify-content: center;
   align-items: end;
-  padding-bottom: 2vw;
 }
 
 .page1-main > h1 {
-  font-size: 12vw;
-  line-height: 1;
+  font-size: 22vw;
+  line-height: 0.6;
   color: #8c0000;
+  font-weight: 400;
+  font-family: cocaCola;
 }
 
 .page1-footer {
@@ -185,14 +192,13 @@ nav {
   overflow: hidden;
   padding: 2.5vw 0;
 }
-#page2 #slide1{
+#page2 #slide1 {
   width: 100%;
   display: flex;
   margin: 5vw 0;
   margin-bottom: 8vw;
-  
 }
-#page2 #slide1 h2{
+#page2 #slide1 h2 {
   flex-shrink: 0;
   display: flex;
   font-size: 4vw;
@@ -204,20 +210,19 @@ nav {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 15s;
-
 }
 @keyframes slider {
-  0%{
+  0% {
     transform: translateX(0%);
   }
-  100%{
+  100% {
     transform: translateX(-100%);
   }
 }
-#page2 #slide1 h2 span{
+#page2 #slide1 h2 span {
   margin-right: 4vw;
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 2vw;
 }
 
@@ -227,7 +232,7 @@ nav {
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.2;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -239,7 +244,7 @@ nav {
   border-radius: 50px;
   margin: 0 1vw;
 }
-#page2 h1 #textgif img{
+#page2 h1 #textgif img {
   width: 10vw;
   height: 4vw;
   object-fit: cover;
@@ -338,7 +343,7 @@ nav {
   justify-content: center;
 }
 
-#page3 canvas{
+#page3 canvas {
   min-height: 100vh;
   width: 100%;
 }
