@@ -203,8 +203,8 @@ nav {
   display: flex;
   font-size: 4vw;
   text-transform: capitalize;
-  color: #d91921;
-  /* -webkit-text-stroke: 2px #d91921; */
+  color: transparent;
+  -webkit-text-stroke: 2px #d91921;
   font-weight: 600;
   animation-name: slider;
   animation-timing-function: linear;
@@ -243,7 +243,6 @@ nav {
   overflow: hidden;
   border-radius: 50px;
   margin: 0 1vw;
-  display: none;
 }
 #page2 h1 #textgif img {
   width: 10vw;
