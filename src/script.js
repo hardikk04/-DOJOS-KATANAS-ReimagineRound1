@@ -83,7 +83,37 @@ darkmode()
 /**
  * Page 2 Animations
  */
+
+
+
+
 function page2Animation() {
+  window.addEventListener("wheel",function(dets){
+    if(dets.deltaY > 0){
+      gsap.to("#slide1 h2",{
+        transform: "translateX(-200%)",
+        duration:10,
+        repeat:-1,
+        ease:"none"
+      })
+      gsap.to("#slide1 h2 img",{
+        rotate:270,
+        duration:1
+      })
+    }else{
+      gsap.to("#slide1 h2",{
+        transform: "translateX(0%)",
+        duration:10,
+        repeat:-1,
+        ease:"none"
+      })
+      gsap.to("#slide1 h2 img",{
+        rotate:0,
+        duration:1
+      })
+    }
+  })
+
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,

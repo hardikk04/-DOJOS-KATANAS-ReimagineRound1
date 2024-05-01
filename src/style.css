@@ -219,19 +219,9 @@ nav {
   color: transparent;
   -webkit-text-stroke: 2px #d91921;
   font-weight: 600;
-  animation-name: slider;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 15s;
+  transform: translateX(-100%);
 }
-@keyframes slider {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+
 #page2 #slide1 h2 span {
   margin-right: 4vw;
   display: flex;
