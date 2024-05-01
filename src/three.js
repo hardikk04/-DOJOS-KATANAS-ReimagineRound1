@@ -90,9 +90,8 @@ canvas.addEventListener("mousemove", (dets) => {
 // Flag for can
 let flag = "red";
 
-// Click animation
-
-canvas.addEventListener("click", () => {
+// Update cans function
+const updateCans = () => {
   // Red to Grey
   if (flag === "red") {
     // Can switch sound
@@ -114,13 +113,9 @@ canvas.addEventListener("click", () => {
         });
 
         // Change page color to white
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#fff",
-          },
-          "same"
-        );
+        gsap.to("#page1", {
+          backgroundColor: "#5d5d5d",
+        });
 
         // Add grey model
         greyModelGroup.add(greyModel);
@@ -152,14 +147,9 @@ canvas.addEventListener("click", () => {
         });
 
         // Change page color to black
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#000",
-            fontColor: "#000",
-          },
-          "same"
-        );
+        gsap.to("#page1", {
+          backgroundColor: "#000",
+        });
 
         // Add black model
         blackModelGroup.add(blackModel);
@@ -189,129 +179,9 @@ canvas.addEventListener("click", () => {
         });
 
         // Change page color to red
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#d91921",
-          },
-          "same"
-        );
-
-        // Add red model
-        redModelGroup.add(redModel);
-
-        // Turn the flag to red
-        flag = "red";
-      },
-    });
-  }
-});
-
-// Update cans function
-const updateCans = () => {
-  if (flag === "red") {
-    // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
-
-    // Rotates red
-    gsap.from(redModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
-      onComplete: () => {
-        // Removes red model
-        redModelGroup.remove(redModel);
-
-        // Rotates grey
-        gsap.from(greyModel.rotation, {
-          y: Math.PI * 2,
-          duration: 0.5,
+        gsap.to("#page1", {
+          backgroundColor: "#d91921",
         });
-
-        // Change page color to white
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#fff",
-          },
-          "same"
-        );
-
-        // Add grey model
-        greyModelGroup.add(greyModel);
-
-        // Turn the flag to grey
-        flag = "grey";
-      },
-    });
-  }
-  // Grey to Black
-  else if (flag === "grey") {
-    // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
-
-    // Rotates grey
-    gsap.from(greyModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
-      onComplete: () => {
-        // Removes grey
-        greyModelGroup.remove(greyModel);
-
-        // Rotates black
-        gsap.from(blackModel.rotation, {
-          y: Math.PI * 2,
-          duration: 0.5,
-        });
-
-        // Change page color to black
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#000",
-            fontColor: "#000",
-          },
-          "same"
-        );
-
-        // Add black model
-        blackModelGroup.add(blackModel);
-
-        // Turn the flag to black
-        flag = "black";
-      },
-    });
-  }
-  // Black to Red
-  else {
-    // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
-
-    // Rotates black
-    gsap.from(blackModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
-      onComplete: () => {
-        // Removes black
-        blackModelGroup.remove(blackModel);
-        gsap.from(redModel.rotation, {
-          y: Math.PI * 2,
-          duration: 0.5,
-        });
-
-        // Change page color to red
-        gsap.to(
-          "#page1",
-          {
-            backgroundColor: "#d91921",
-          },
-          "same"
-        );
 
         // Add red model
         redModelGroup.add(redModel);
@@ -322,6 +192,9 @@ const updateCans = () => {
     });
   }
 };
+
+// Click animation
+canvas.addEventListener("click", updateCans);
 
 const canLoopAnimationTimeline = gsap.timeline();
 const animationProgressLine1 = document.querySelector(".three-loder-line1");
