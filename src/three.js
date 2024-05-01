@@ -10,6 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
  * Scene
  */
 const scene = new THREE.Scene();
+const redModelGroup = new THREE.Group();
+const blackModelGroup = new THREE.Group();
+const grayModelGroup = new THREE.Group();
+scene.add(redModelGroup, blackModelGroup, grayModelGroup);
 
 /**
  * Canvas
@@ -54,7 +58,9 @@ gltfLoader.load("/models/cans_animation.glb", (gltf) => {
   grayModel.position.sub(grayModelCenter);
   blackModel.position.sub(blackModelCenter);
 
-  scene.add(redModel);
+  redModelGroup.add(redModel);
+  // blackModelGroup.add(grayModel);
+  // grayModelGroup.add(blackModel);
 });
 
 // Mousemove (Cursor)
@@ -67,39 +73,87 @@ canvas.addEventListener("mousemove", (dets) => {
   cursor.y = dets.clientY / window.innerHeight;
   gsap.to(camera.position, {
     x: -cursor.x * 1,
-    y: cursor.y * 0.5,
-    duration: 0.2,
+    y: cursor.y * 0.2,
+    duration: 0.5,
     ease: "linear",
   });
 });
 
-// canvas.addEventListener("click", () => {
-//   gsap.from(redModel.rotation, {
-//     y: -Math.PI * 2,
-//     duration: 0.2,
-//     ease: "linear",
-//     onComplete: () => {
-//       scene.remove(redModel);
-//       gsap.from(
-//         blackModel.rotation,
-//         {
-//           y: -Math.PI * 2,
-//           delay: -0.1,
-//         },
-//         "same"
-//       );
+let flag = "red";
 
-//       gsap.to(
-//         "#page1",
-//         {
-//           backgroundColor: "#000",
-//         },
-//         "same"
-//       );
-//       scene.add(blackModel);
-//     },
-//   });
-// });
+canvas.addEventListener("click", () => {
+  if (flag === "red") {
+    gsap.from(redModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        redModelGroup.remove(redModel);
+        gsap.from(grayModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#fff",
+          },
+          "same"
+        );
+        grayModelGroup.add(grayModel);
+        flag = "gray";
+      },
+    });
+  } else if (flag === "gray") {
+    gsap.from(grayModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        grayModelGroup.remove(grayModel);
+        gsap.from(blackModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#000",
+            fontColor: "#000",
+          },
+          "same"
+        );
+        blackModelGroup.add(blackModel);
+        flag = "black";
+      },
+    });
+  } else {
+    gsap.from(blackModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        blackModelGroup.remove(blackModel);
+        gsap.from(redModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#d91921",
+          },
+          "same"
+        );
+        redModelGroup.add(redModel);
+        flag = "red";
+      },
+    });
+  }
+});
 
 /**
  * Lights
@@ -154,6 +208,8 @@ window.addEventListener("resize", () => {
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1;
 renderer.setSize(sizes.width, sizes.height);
 
 /**
@@ -163,13 +219,20 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
-  if (redModel) {
-    redModel.rotation.y = -elapsedTime * 0.3;
-    redModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
-    // grayModel.rotation.y = -elapsedTime * 0.5;
-    // grayModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
-    // blackModel.rotation.y = -elapsedTime * 0.5;
-    // blackModel.rotation.z = Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+  if (redModelGroup) {
+    redModelGroup.rotation.y = elapsedTime * 0.3;
+    redModelGroup.rotation.z =
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+  }
+  if (grayModelGroup) {
+    grayModelGroup.rotation.y = elapsedTime * 0.5;
+    grayModelGroup.rotation.z =
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+  }
+  if (blackModelGroup) {
+    blackModelGroup.rotation.y = elapsedTime * 0.5;
+    blackModelGroup.rotation.z =
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
   }
 
   // controls.update();
