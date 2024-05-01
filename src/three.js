@@ -84,20 +84,15 @@ let flag = "red";
 canvas.addEventListener("click", () => {
   if (flag === "red") {
     gsap.from(redModel.rotation, {
-      y: -Math.PI * 2,
+      y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
         redModelGroup.remove(redModel);
-        gsap.from(
-          grayModel.rotation,
-          {
-            y: -Math.PI * 2,
-            delay: -0.1,
-            duration: 0.5,
-          },
-          "same"
-        );
+        gsap.from(grayModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
 
         gsap.to(
           "#page1",
@@ -112,20 +107,15 @@ canvas.addEventListener("click", () => {
     });
   } else if (flag === "gray") {
     gsap.from(grayModel.rotation, {
-      y: -Math.PI * 2,
+      y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
         grayModelGroup.remove(grayModel);
-        gsap.from(
-          blackModel.rotation,
-          {
-            y: -Math.PI * 2,
-            delay: -0.1,
-            duration: 0.5,
-          },
-          "same"
-        );
+        gsap.from(blackModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
 
         gsap.to(
           "#page1",
@@ -141,20 +131,15 @@ canvas.addEventListener("click", () => {
     });
   } else {
     gsap.from(blackModel.rotation, {
-      y: -Math.PI * 2,
+      y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
         blackModelGroup.remove(blackModel);
-        gsap.from(
-          redModel.rotation,
-          {
-            y: -Math.PI * 2,
-            delay: -0.1,
-            duration: 0.5,
-          },
-          "same"
-        );
+        gsap.from(redModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
 
         gsap.to(
           "#page1",
@@ -223,6 +208,8 @@ window.addEventListener("resize", () => {
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1;
 renderer.setSize(sizes.width, sizes.height);
 
 /**
