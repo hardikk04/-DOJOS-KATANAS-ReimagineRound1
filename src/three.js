@@ -10,10 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
  * Scene
  */
 const scene = new THREE.Scene();
+
+/**
+ * Models groups for animations
+ */
 const redModelGroup = new THREE.Group();
 const blackModelGroup = new THREE.Group();
-const grayModelGroup = new THREE.Group();
-scene.add(redModelGroup, blackModelGroup, grayModelGroup);
+const greyModelGroup = new THREE.Group();
+scene.add(redModelGroup, blackModelGroup, greyModelGroup);
 
 /**
  * Canvas
@@ -27,26 +31,29 @@ const gltfLoader = new GLTFLoader();
 
 let redModel = null;
 let blackModel = null;
-let grayModel = null;
+let greyModel = null;
+
+// Loading the model
 gltfLoader.load("/models/cans_animation.glb", (gltf) => {
-  grayModel = gltf.scene.children[0];
+  // Models
+  greyModel = gltf.scene.children[0];
   blackModel = gltf.scene.children[1];
   redModel = gltf.scene.children[2];
 
   // Scales
   redModel.scale.set(2.5, 2.5, 2.5);
   blackModel.scale.set(2.5, 2.5, 2.5);
-  grayModel.scale.set(2.5, 2.5, 2.5);
+  greyModel.scale.set(2.5, 2.5, 2.5);
 
   // Red Model bounding box
   const redModelBoudingBox = new THREE.Box3().setFromObject(redModel);
   const redModelCenter = new THREE.Vector3();
   redModelBoudingBox.getCenter(redModelCenter);
 
-  // gray Model bounding box
-  const grayModelBoudingBox = new THREE.Box3().setFromObject(grayModel);
-  const grayModelCenter = new THREE.Vector3();
-  grayModelBoudingBox.getCenter(grayModelCenter);
+  // grey Model bounding box
+  const greyModelBoudingBox = new THREE.Box3().setFromObject(greyModel);
+  const greyModelCenter = new THREE.Vector3();
+  greyModelBoudingBox.getCenter(greyModelCenter);
 
   // Black Model bounding box
   const blackModelBoudingBox = new THREE.Box3().setFromObject(blackModel);
@@ -55,12 +62,10 @@ gltfLoader.load("/models/cans_animation.glb", (gltf) => {
 
   // Positions
   redModel.position.sub(redModelCenter);
-  grayModel.position.sub(grayModelCenter);
+  greyModel.position.sub(greyModelCenter);
   blackModel.position.sub(blackModelCenter);
 
   redModelGroup.add(redModel);
-  // blackModelGroup.add(grayModel);
-  // grayModelGroup.add(blackModel);
 });
 
 // Mousemove (Cursor)
@@ -68,32 +73,47 @@ const cursor = {};
 cursor.x = 0;
 cursor.y = 0;
 
+/**
+ * Mouse move animation
+ */
 canvas.addEventListener("mousemove", (dets) => {
   cursor.x = dets.clientX / window.innerWidth;
   cursor.y = dets.clientY / window.innerHeight;
   gsap.to(camera.position, {
-    x: -cursor.x * 1,
+    x: -cursor.x * 0.5,
     y: cursor.y * 0.2,
     duration: 0.5,
     ease: "linear",
   });
 });
 
+// Flag for can
 let flag = "red";
 
+// Click animation
+
 canvas.addEventListener("click", () => {
+  // Red to Grey
   if (flag === "red") {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+    // Rotates red
     gsap.from(redModel.rotation, {
       y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
+        // Removes red model
         redModelGroup.remove(redModel);
-        gsap.from(grayModel.rotation, {
+
+        // Rotates grey
+        gsap.from(greyModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
         });
 
+        // Change page color to white
         gsap.to(
           "#page1",
           {
@@ -101,22 +121,37 @@ canvas.addEventListener("click", () => {
           },
           "same"
         );
-        grayModelGroup.add(grayModel);
-        flag = "gray";
+
+        // Add grey model
+        greyModelGroup.add(greyModel);
+
+        // Turn the flag to grey
+        flag = "grey";
       },
     });
-  } else if (flag === "gray") {
-    gsap.from(grayModel.rotation, {
+  }
+  // Grey to Black
+  else if (flag === "grey") {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+
+    // Rotates grey
+    gsap.from(greyModel.rotation, {
       y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
-        grayModelGroup.remove(grayModel);
+        // Removes grey
+        greyModelGroup.remove(greyModel);
+
+        // Rotates black
         gsap.from(blackModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
         });
 
+        // Change page color to black
         gsap.to(
           "#page1",
           {
@@ -125,22 +160,35 @@ canvas.addEventListener("click", () => {
           },
           "same"
         );
+
+        // Add black model
         blackModelGroup.add(blackModel);
+
+        // Turn the flag to black
         flag = "black";
       },
     });
-  } else {
+  }
+  // Black to Red
+  else {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+
+    // Rotates black
     gsap.from(blackModel.rotation, {
       y: Math.PI * 2,
       duration: 0.5,
       ease: "power3.in",
       onComplete: () => {
+        // Removes black
         blackModelGroup.remove(blackModel);
         gsap.from(redModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
         });
 
+        // Change page color to red
         gsap.to(
           "#page1",
           {
@@ -148,12 +196,163 @@ canvas.addEventListener("click", () => {
           },
           "same"
         );
+
+        // Add red model
         redModelGroup.add(redModel);
+
+        // Turn the flag to red
         flag = "red";
       },
     });
   }
 });
+
+// Update cans function
+const updateCans = () => {
+  if (flag === "red") {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+
+    // Rotates red
+    gsap.from(redModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        // Removes red model
+        redModelGroup.remove(redModel);
+
+        // Rotates grey
+        gsap.from(greyModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        // Change page color to white
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#fff",
+          },
+          "same"
+        );
+
+        // Add grey model
+        greyModelGroup.add(greyModel);
+
+        // Turn the flag to grey
+        flag = "grey";
+      },
+    });
+  }
+  // Grey to Black
+  else if (flag === "grey") {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+
+    // Rotates grey
+    gsap.from(greyModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        // Removes grey
+        greyModelGroup.remove(greyModel);
+
+        // Rotates black
+        gsap.from(blackModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        // Change page color to black
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#000",
+            fontColor: "#000",
+          },
+          "same"
+        );
+
+        // Add black model
+        blackModelGroup.add(blackModel);
+
+        // Turn the flag to black
+        flag = "black";
+      },
+    });
+  }
+  // Black to Red
+  else {
+    // Can switch sound
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.play();
+
+    // Rotates black
+    gsap.from(blackModel.rotation, {
+      y: Math.PI * 2,
+      duration: 0.5,
+      ease: "power3.in",
+      onComplete: () => {
+        // Removes black
+        blackModelGroup.remove(blackModel);
+        gsap.from(redModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+        });
+
+        // Change page color to red
+        gsap.to(
+          "#page1",
+          {
+            backgroundColor: "#d91921",
+          },
+          "same"
+        );
+
+        // Add red model
+        redModelGroup.add(redModel);
+
+        // Turn the flag to red
+        flag = "red";
+      },
+    });
+  }
+};
+
+const canLoopAnimationTimeline = gsap.timeline();
+const animationProgressLine1 = document.querySelector(".three-loder-line1");
+const animationProgressLine2 = document.querySelector(".three-loder-line2");
+const animationProgressLine3 = document.querySelector(".three-loder-line3");
+
+const line1Animation = canLoopAnimationTimeline.to(".three-loder-line1", {
+  width: "100%",
+  duration: 10,
+  onComplete: () => {
+    updateCans();
+  },
+});
+
+const line2Animation = canLoopAnimationTimeline.to(".three-loder-line2", {
+  width: "100%",
+  duration: 10,
+  onComplete: () => {
+    updateCans();
+  },
+});
+
+const line3Animation = canLoopAnimationTimeline.to(".three-loder-line3", {
+  width: "100%",
+  duration: 10,
+  onComplete: () => {
+    updateCans();
+  },
+});
+
+canLoopAnimationTimeline.repeat(-1);
 
 /**
  * Lights
@@ -161,7 +360,7 @@ canvas.addEventListener("click", () => {
 const ambientLight = new THREE.AmbientLight("#ffffff", 1.6);
 // scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight("#ffffff", 2);
+const directionalLight = new THREE.DirectionalLight("#ff00ff", 5);
 directionalLight.position.set(2, 1, 2);
 // scene.add(directionalLight);
 
@@ -196,6 +395,7 @@ window.addEventListener("resize", () => {
   camera.aspect = sizes.width / sizes.height;
   camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio));
 });
 
 /**
@@ -207,10 +407,15 @@ window.addEventListener("resize", () => {
 /**
  * Renderer
  */
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+  antialias: true,
+});
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1;
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 
 /**
  * Clock
@@ -224,9 +429,9 @@ const tick = () => {
     redModelGroup.rotation.z =
       Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
   }
-  if (grayModelGroup) {
-    grayModelGroup.rotation.y = elapsedTime * 0.5;
-    grayModelGroup.rotation.z =
+  if (greyModelGroup) {
+    greyModelGroup.rotation.y = elapsedTime * 0.5;
+    greyModelGroup.rotation.z =
       Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
   }
   if (blackModelGroup) {

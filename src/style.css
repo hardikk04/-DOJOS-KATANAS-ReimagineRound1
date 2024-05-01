@@ -186,9 +186,9 @@ nav {
   background-color: #a0a0a0;
 }
 
-.three-loder-line1 {
+.three-loder-line1,.three-loder-line2,.three-loder-line3 {
   position: relative;
-  width: 100%;
+  width: 0%;
   height: 100%;
   background-color: white;
 }
