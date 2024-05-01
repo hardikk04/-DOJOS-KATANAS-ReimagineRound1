@@ -251,6 +251,64 @@ function canva1() {
 }
 canva1();
 
+// Page5 Animation
+
+function page5Animation() {
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#page5",
+      scroller: "body",
+      // markers: true,
+      start: "top 0%",
+      end: "top -300%",
+      pin: true,
+      scrub: true,
+    },
+  });
+  tl.to(
+    "#page5 #video",
+    {
+      width: "109vw",
+      height: "109vh",
+      ease: "power4",
+    },
+    "a"
+  )
+    .to(
+      "#line1 h1",
+      {
+        marginBottom: "5vw",
+        opacity: 0,
+      },
+      "a"
+    )
+    .to(
+      "#line2 #first h1",
+      {
+        marginRight: "5vw",
+        opacity: 0,
+      },
+      "a"
+    )
+    .to(
+      "#line2 #second h1",
+      {
+        marginLeft: "5vw",
+        opacity: 0,
+      },
+      "a"
+    )
+    .to(
+      "#line3 h1",
+      {
+        marginTop: "5vw",
+        opacity: 0,
+      },
+      "a"
+    );
+}
+page5Animation();
+
 /**
  * Page 6 Animations
  */
@@ -279,7 +337,7 @@ const page6Animation = () => {
       scroller: "body",
       trigger: "#page6",
       start: "top 0",
-      end: "top -300%",
+      end: "top -650%",
       scrub: 1,
       pin: true,
       // markers: true,
@@ -292,18 +350,26 @@ const page6Animation = () => {
     opacity: 1,
     stagger: 0.3,
   });
-  tl.to("#page6", {
-    backgroundColor: "#fff",
-  });
-
-  tl.to(".page6-wrapper>h1>span", {
-    opacity: 0,
-    y: -250,
-    stagger: {
-      each: 0.1,
-      from: "random",
+  tl.to(
+    "#page6",
+    {
+      backgroundColor: "#fff",
     },
-  });
+    "same"
+  );
+
+  tl.to(
+    ".page6-wrapper>h1>span",
+    {
+      opacity: 0,
+      y: -250,
+      stagger: {
+        each: 0.1,
+        from: "random",
+      },
+    },
+    "same"
+  );
 };
 page6Animation();
 
