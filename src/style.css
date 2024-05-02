@@ -391,7 +391,8 @@ nav {
   height: 12vw;
   display: flex;
   align-items: center;
-  gap: 4vw;
+  gap: 2vw;
+  margin-bottom: -2vw;
 }
 
 #page4 .heading h1 {
@@ -411,6 +412,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 99;
 }
 
 #page4 .heading .arrow i {
@@ -424,13 +426,43 @@ nav {
   display: flex;
   align-items: center;
   gap: 2vw;
+  position: relative;
+  padding-left: 1vw;
 }
+
+#page4 .section:hover
+{
+  cursor: pointer;
+}
+
+#page4 .section:hover h3
+{
+  color: white;
+}
+
+#page4 .section::after {
+  content: "";
+  width: 0%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: 1;
+  transition: all ease 0.35s;
+}
+
+#page4 .section:hover::after {
+  width: 100%;
+}
+
 
 #page4 .section h3 {
   font-size: 2vw;
   font-weight: 500;
   text-transform: capitalize;
   color: var(--black);
+  z-index: 99;
 }
 
 #page4 .section i {
