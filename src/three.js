@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -24,26 +25,40 @@ scene.add(redModelGroup, blackModelGroup, greyModelGroup);
  */
 const canvas = document.querySelector(".webgl");
 
+const updateMaterial = () => {
+  scene.traverse((child) => {
+    if (child.isMesh && child.material.isMeshStandardMaterial) {
+      child.material.roughness = 0.4;
+    }
+  });
+};
+
 /**
  * Loaders
  */
 const gltfLoader = new GLTFLoader();
+
+/**
+ * DRACO Loader
+ */
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("/draco/");
+gltfLoader.setDRACOLoader(dracoLoader);
+
+/**
+ * Importing the models
+ */
 
 let redModel = null;
 let blackModel = null;
 let greyModel = null;
 
 // Loading the model
-gltfLoader.load("/models/cans_animation.glb", (gltf) => {
+gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
   // Models
   greyModel = gltf.scene.children[0];
-  blackModel = gltf.scene.children[1];
-  redModel = gltf.scene.children[2];
-
-  // Scales
-  redModel.scale.set(2.5, 2.5, 2.5);
-  blackModel.scale.set(2.5, 2.5, 2.5);
-  greyModel.scale.set(2.5, 2.5, 2.5);
+  redModel = gltf.scene.children[1];
+  blackModel = gltf.scene.children[2];
 
   // Red Model bounding box
   const redModelBoudingBox = new THREE.Box3().setFromObject(redModel);
@@ -65,7 +80,10 @@ gltfLoader.load("/models/cans_animation.glb", (gltf) => {
   greyModel.position.sub(greyModelCenter);
   blackModel.position.sub(blackModelCenter);
 
+  console.log(gltf);
+
   redModelGroup.add(redModel);
+  updateMaterial();
 });
 
 // Mousemove (Cursor)
@@ -111,7 +129,8 @@ const updateCans = (sound) => {
         // Rotates grey
         gsap.from(greyModel.rotation, {
           y: Math.PI * 2,
-          duration: 0.5,
+          duration: 0.4,
+          ease: "power4.out",
         });
 
         // Change page color to white
@@ -148,6 +167,7 @@ const updateCans = (sound) => {
         gsap.from(blackModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
+          ease: "power4.out",
         });
 
         // Change page color to black
@@ -182,6 +202,7 @@ const updateCans = (sound) => {
         gsap.from(redModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
+          ease: "power4.out",
         });
 
         // Change page color to red
@@ -201,42 +222,36 @@ const updateCans = (sound) => {
 
 // Click animation
 canvas.addEventListener("click", () => {
-  updateCans("click");
+  updateCans(true);
 });
 
+// Cans animation loop
 const threeLoaderLine = document.querySelector(".three-loder-line");
 
-const canLoopAnimation = () => {
-  gsap.to(threeLoaderLine, {
-    width: "100%",
-    duration: 10,
-    onComplete: () => {
-      updateCans(false);
-      threeLoaderLine.style.width = 0;
-    },
-  });
-
-  animationLineNumber++;
-};
-
-let animationLineNumber = 0;
-canLoopAnimation(animationLineNumber);
-
-const myInterval = setInterval(() => {
-  canLoopAnimation(animationLineNumber);
-  animationLineNumber = animationLineNumber % 3;
-}, 10000);
+gsap.to(threeLoaderLine, {
+  width: "100%",
+  duration: 20,
+  repeat: -1,
+  onRepeat: () => {
+    updateCans(false);
+    threeLoaderLine.style.width = 0;
+  },
+});
 
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight("#ffffff", 1.6);
-// scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight("#ff00ff", 5);
-directionalLight.position.set(2, 1, 2);
-// scene.add(directionalLight);
+// Ambient Light
+const ambientLight = new THREE.AmbientLight("#ffffff", 2);
+scene.add(ambientLight);
 
+// Directional Light
+const directionalLight = new THREE.DirectionalLight("#ffffff", 4);
+directionalLight.position.set(2, 1.5, 2);
+scene.add(directionalLight);
+
+// Directional Light helper
 const directionLightHelper = new THREE.DirectionalLightHelper(directionalLight);
 // scene.add(directionLightHelper);
 
@@ -300,17 +315,17 @@ const tick = () => {
   if (redModelGroup) {
     redModelGroup.rotation.y = elapsedTime * 0.3;
     redModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
   if (greyModelGroup) {
     greyModelGroup.rotation.y = elapsedTime * 0.5;
     greyModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
   if (blackModelGroup) {
     blackModelGroup.rotation.y = elapsedTime * 0.5;
     blackModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
 
   // controls.update();
