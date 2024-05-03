@@ -88,7 +88,7 @@ gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
 
   redModelGroup.add(redModel);
   updateMaterial();
-  cansAnimationLoop()
+  cansAnimationLoop();
 });
 
 // Mousemove (Cursor)
@@ -116,10 +116,38 @@ let flag = "red";
 let checkUpdatedBlack = false;
 let checkUpdatedGrey = false;
 
+const page1Heading1 = document.querySelector(".page1-heading1");
+const page1Heading2 = document.querySelector(".page1-heading2");
+const page1Heading3 = document.querySelector(".page1-heading3");
+
+const page1Para1 = document.querySelector(".page1-para1");
+const page1Para2 = document.querySelector(".page1-para2");
+const page1Para3 = document.querySelector(".page1-para3");
+
 // Update cans function
 const updateCans = (sound) => {
   // Red to Grey
   if (flag === "red") {
+    // Heading text animation
+    gsap.to(page1Heading1, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Heading2, {
+          top: "0",
+        });
+      },
+    });
+
+    // Heading text animation
+    gsap.to(page1Para1, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Para2, {
+          top: "0",
+        });
+      },
+    });
+
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
@@ -131,7 +159,7 @@ const updateCans = (sound) => {
     // Rotates red
     gsap.from(redModel.rotation, {
       y: -Math.PI * 3,
-      duration: 0.2,
+      duration: 0.4,
       ease: "power1.in",
       onComplete: () => {
         // Removes red model
@@ -163,6 +191,26 @@ const updateCans = (sound) => {
   }
   // Grey to Black
   else if (flag === "grey") {
+    // Heading text animation
+    gsap.to(page1Heading2, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Heading3, {
+          top: "0",
+        });
+      },
+    });
+
+    // Heading text animation
+    gsap.to(page1Para2, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Para3, {
+          top: "0",
+        });
+      },
+    });
+
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
@@ -175,7 +223,7 @@ const updateCans = (sound) => {
     // Rotates grey
     gsap.from(greyModel.rotation, {
       y: -Math.PI * 3,
-      duration: 0.2,
+      duration: 0.4,
       ease: "power1.in",
       onComplete: () => {
         // Removes grey
@@ -207,6 +255,26 @@ const updateCans = (sound) => {
   }
   // Black to Red
   else {
+    // Heading text animation
+    gsap.to(page1Heading3, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Heading1, {
+          top: "0",
+        });
+      },
+    });
+
+    // Heading text animation
+    gsap.to(page1Para3, {
+      top: "100%",
+      onComplete: () => {
+        gsap.to(page1Para1, {
+          top: "0",
+        });
+      },
+    });
+
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
@@ -219,7 +287,7 @@ const updateCans = (sound) => {
     // Rotates black
     gsap.from(blackModel.rotation, {
       y: -Math.PI * 3,
-      duration: 0.2,
+      duration: 0.4,
       ease: "power1.in",
       onComplete: () => {
         // Removes black
@@ -255,6 +323,13 @@ const threeLoaderLine = document.querySelector(".three-loder-line");
 
 let lineAnimation = null;
 const cansAnimationLoop = () => {
+  gsap.to(page1Heading1, {
+    top: "0",
+  });
+
+  gsap.to(page1Para1, {
+    top: "0%",
+  });
   lineAnimation = gsap.to(threeLoaderLine, {
     width: "100%",
     duration: 20,
