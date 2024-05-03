@@ -1,6 +1,6 @@
 /* Root variable */
 :root {
-  --primary:#fff;
+  --primary: #fff;
   --secondary: #d91921;
   --black: black;
 }
@@ -181,16 +181,15 @@ nav {
 
 .three-loder {
   position: relative;
-  width: 3vw;
-  height: 3px;
+  width: 10vw;
+  height: 4px;
   background-color: #a0a0a0;
 }
 
-.three-loder-line1,.three-loder-line2,.three-loder-line3 {
-  position: relative;
+.three-loder-line {
   width: 0%;
   height: 100%;
-  background-color: white;
+  background-color: #fff;
 }
 
 /* Page1 ends */
@@ -263,7 +262,7 @@ nav {
   line-height: 1.3;
 }
 
-#swiper{
+#swiper {
   position: relative;
   height: 100vh;
   width: 100%;
@@ -290,7 +289,7 @@ nav {
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.408);
   padding: 2.5vw;
-  transform: scale(.7);
+  transform: scale(0.7);
   border-radius: 50%;
 }
 .swiper {
@@ -346,7 +345,6 @@ nav {
   opacity: 0.9;
   text-align: left;
 }
-
 
 /* Page2 ends */
 
@@ -473,7 +471,7 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color:black;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -549,7 +547,7 @@ nav {
 }
 
 .page7-part1-left > button {
-  background-color:#d91921;
+  background-color: #d91921;
   color: #fff;
   border: none;
   padding: 0.5vw 1vw;

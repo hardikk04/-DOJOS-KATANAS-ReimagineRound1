@@ -1,7 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import gsap from "gsap";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,26 +25,41 @@ scene.add(redModelGroup, blackModelGroup, greyModelGroup);
  */
 const canvas = document.querySelector(".webgl");
 
+const updateMaterial = () => {
+  console.log("update");
+  scene.traverse((child) => {
+    if (child.isMesh && child.material.isMeshStandardMaterial) {
+      child.material.roughness = 0.4;
+    }
+  });
+};
+
 /**
  * Loaders
  */
 const gltfLoader = new GLTFLoader();
+
+/**
+ * DRACO Loader
+ */
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("/draco/");
+gltfLoader.setDRACOLoader(dracoLoader);
+
+/**
+ * Importing the models
+ */
 
 let redModel = null;
 let blackModel = null;
 let greyModel = null;
 
 // Loading the model
-gltfLoader.load("/models/cans_animation.glb", (gltf) => {
+gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
   // Models
   greyModel = gltf.scene.children[0];
-  blackModel = gltf.scene.children[1];
-  redModel = gltf.scene.children[2];
-
-  // Scales
-  redModel.scale.set(2.5, 2.5, 2.5);
-  blackModel.scale.set(2.5, 2.5, 2.5);
-  greyModel.scale.set(2.5, 2.5, 2.5);
+  redModel = gltf.scene.children[1];
+  blackModel = gltf.scene.children[2];
 
   // Red Model bounding box
   const redModelBoudingBox = new THREE.Box3().setFromObject(redModel);
@@ -66,6 +82,7 @@ gltfLoader.load("/models/cans_animation.glb", (gltf) => {
   blackModel.position.sub(blackModelCenter);
 
   redModelGroup.add(redModel);
+  updateMaterial();
 });
 
 // Mousemove (Cursor)
@@ -90,26 +107,35 @@ canvas.addEventListener("mousemove", (dets) => {
 // Flag for can
 let flag = "red";
 
+let checkUpdatedBlack = false;
+let checkUpdatedGrey = false;
+
 // Update cans function
-const updateCans = () => {
+const updateCans = (sound) => {
   // Red to Grey
   if (flag === "red") {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
+    }
     // Rotates red
     gsap.from(redModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
+      y: -Math.PI * 3,
+      duration: 0.2,
+      ease: "power1.in",
       onComplete: () => {
         // Removes red model
         redModelGroup.remove(redModel);
 
         // Rotates grey
         gsap.from(greyModel.rotation, {
-          y: Math.PI * 2,
+          y: -Math.PI * 2,
           duration: 0.5,
+          ease: "power1.out",
         });
 
         // Change page color to white
@@ -119,6 +145,10 @@ const updateCans = () => {
 
         // Add grey model
         greyModelGroup.add(greyModel);
+        if (!checkUpdatedGrey) {
+          updateMaterial();
+          checkUpdatedGrey = true;
+        }
 
         // Turn the flag to grey
         flag = "grey";
@@ -128,22 +158,28 @@ const updateCans = () => {
   // Grey to Black
   else if (flag === "grey") {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
+    }
 
     // Rotates grey
     gsap.from(greyModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
+      y: -Math.PI * 3,
+      duration: 0.2,
+      ease: "power1.in",
       onComplete: () => {
         // Removes grey
         greyModelGroup.remove(greyModel);
 
         // Rotates black
         gsap.from(blackModel.rotation, {
-          y: Math.PI * 2,
+          y: -Math.PI * 2,
           duration: 0.5,
+          ease: "power1.out",
         });
 
         // Change page color to black
@@ -153,6 +189,10 @@ const updateCans = () => {
 
         // Add black model
         blackModelGroup.add(blackModel);
+        if (!checkUpdatedBlack) {
+          updateMaterial();
+          checkUpdatedBlack = true;
+        }
 
         // Turn the flag to black
         flag = "black";
@@ -162,20 +202,26 @@ const updateCans = () => {
   // Black to Red
   else {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
+    }
 
     // Rotates black
     gsap.from(blackModel.rotation, {
-      y: Math.PI * 2,
-      duration: 0.5,
-      ease: "power3.in",
+      y: -Math.PI * 3,
+      duration: 0.2,
+      ease: "power1.in",
       onComplete: () => {
         // Removes black
         blackModelGroup.remove(blackModel);
         gsap.from(redModel.rotation, {
-          y: Math.PI * 2,
+          y: -Math.PI * 2,
           duration: 0.5,
+          ease: "power1.out",
         });
 
         // Change page color to red
@@ -194,49 +240,37 @@ const updateCans = () => {
 };
 
 // Click animation
-canvas.addEventListener("click", updateCans);
-
-const canLoopAnimationTimeline = gsap.timeline();
-const animationProgressLine1 = document.querySelector(".three-loder-line1");
-const animationProgressLine2 = document.querySelector(".three-loder-line2");
-const animationProgressLine3 = document.querySelector(".three-loder-line3");
-
-const line1Animation = canLoopAnimationTimeline.to(".three-loder-line1", {
-  width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
-  },
+canvas.addEventListener("click", () => {
+  updateCans(true);
 });
 
-const line2Animation = canLoopAnimationTimeline.to(".three-loder-line2", {
+// Cans animation loop
+const threeLoaderLine = document.querySelector(".three-loder-line");
+
+const lineAnimation = gsap.to(threeLoaderLine, {
   width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
+  duration: 20,
+  repeat: -1,
+  onRepeat: () => {
+    updateCans(false);
+    threeLoaderLine.style.width = 0;
   },
 });
-
-const line3Animation = canLoopAnimationTimeline.to(".three-loder-line3", {
-  width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
-  },
-});
-
-canLoopAnimationTimeline.repeat(-1);
 
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight("#ffffff", 1.6);
-// scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight("#ff00ff", 5);
-directionalLight.position.set(2, 1, 2);
-// scene.add(directionalLight);
+// Ambient Light
+const ambientLight = new THREE.AmbientLight("#ffffff", 2);
+scene.add(ambientLight);
 
+// Directional Light
+const directionalLight = new THREE.DirectionalLight("#ffffff", 5);
+directionalLight.position.set(2, 1.5, 2);
+scene.add(directionalLight);
+
+// Directional Light helper
 const directionLightHelper = new THREE.DirectionalLightHelper(directionalLight);
 // scene.add(directionLightHelper);
 
@@ -298,19 +332,19 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   if (redModelGroup) {
-    redModelGroup.rotation.y = elapsedTime * 0.3;
+    redModelGroup.rotation.y = elapsedTime * 0.5;
     redModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
   if (greyModelGroup) {
     greyModelGroup.rotation.y = elapsedTime * 0.5;
     greyModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
   if (blackModelGroup) {
     blackModelGroup.rotation.y = elapsedTime * 0.5;
     blackModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 0.8;
+      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
 
   // controls.update();
