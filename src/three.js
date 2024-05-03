@@ -61,6 +61,11 @@ gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
   redModel = gltf.scene.children[1];
   blackModel = gltf.scene.children[2];
 
+  // Scale
+  redModel.scale.set(1.1, 2, 1.1);
+  greyModel.scale.set(1.1, 2, 1.1);
+  blackModel.scale.set(1.1, 2, 1.1);
+
   // Red Model bounding box
   const redModelBoudingBox = new THREE.Box3().setFromObject(redModel);
   const redModelCenter = new THREE.Vector3();
@@ -83,6 +88,7 @@ gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
 
   redModelGroup.add(redModel);
   updateMaterial();
+  cansAnimationLoop()
 });
 
 // Mousemove (Cursor)
@@ -247,16 +253,18 @@ canvas.addEventListener("click", () => {
 // Cans animation loop
 const threeLoaderLine = document.querySelector(".three-loder-line");
 
-const lineAnimation = gsap.to(threeLoaderLine, {
-  width: "100%",
-  duration: 20,
-  repeat: -1,
-  onRepeat: () => {
-    updateCans(false);
-    threeLoaderLine.style.width = 0;
-  },
-});
-
+let lineAnimation = null;
+const cansAnimationLoop = () => {
+  lineAnimation = gsap.to(threeLoaderLine, {
+    width: "100%",
+    duration: 20,
+    repeat: -1,
+    onRepeat: () => {
+      updateCans(false);
+      threeLoaderLine.style.width = 0;
+    },
+  });
+};
 /**
  * Lights
  */
@@ -266,7 +274,7 @@ const ambientLight = new THREE.AmbientLight("#ffffff", 2);
 scene.add(ambientLight);
 
 // Directional Light
-const directionalLight = new THREE.DirectionalLight("#ffffff", 5);
+const directionalLight = new THREE.DirectionalLight("#fffff0", 5);
 directionalLight.position.set(2, 1.5, 2);
 scene.add(directionalLight);
 
