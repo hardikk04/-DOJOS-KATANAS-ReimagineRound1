@@ -124,8 +124,8 @@ const updateCans = (sound) => {
     }
     // Rotates red
     gsap.from(redModel.rotation, {
-      y: Math.PI * 4,
-      duration: 0.5,
+      y: -Math.PI * 3,
+      duration: 0.2,
       ease: "power1.in",
       onComplete: () => {
         // Removes red model
@@ -133,8 +133,8 @@ const updateCans = (sound) => {
 
         // Rotates grey
         gsap.from(greyModel.rotation, {
-          y: Math.PI * 2,
-          duration: 0.4,
+          y: -Math.PI * 2,
+          duration: 0.5,
           ease: "power1.out",
         });
 
@@ -168,8 +168,8 @@ const updateCans = (sound) => {
 
     // Rotates grey
     gsap.from(greyModel.rotation, {
-      y: Math.PI * 4,
-      duration: 0.5,
+      y: -Math.PI * 3,
+      duration: 0.2,
       ease: "power1.in",
       onComplete: () => {
         // Removes grey
@@ -177,7 +177,7 @@ const updateCans = (sound) => {
 
         // Rotates black
         gsap.from(blackModel.rotation, {
-          y: Math.PI * 2,
+          y: -Math.PI * 2,
           duration: 0.5,
           ease: "power1.out",
         });
@@ -212,14 +212,14 @@ const updateCans = (sound) => {
 
     // Rotates black
     gsap.from(blackModel.rotation, {
-      y: Math.PI * 4,
-      duration: 0.5,
+      y: -Math.PI * 3,
+      duration: 0.2,
       ease: "power1.in",
       onComplete: () => {
         // Removes black
         blackModelGroup.remove(blackModel);
         gsap.from(redModel.rotation, {
-          y: Math.PI * 2,
+          y: -Math.PI * 2,
           duration: 0.5,
           ease: "power1.out",
         });
