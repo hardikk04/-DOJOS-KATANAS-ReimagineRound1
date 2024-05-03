@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import gsap from "gsap";
+import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,6 +26,7 @@ scene.add(redModelGroup, blackModelGroup, greyModelGroup);
 const canvas = document.querySelector(".webgl");
 
 const updateMaterial = () => {
+  console.log("update");
   scene.traverse((child) => {
     if (child.isMesh && child.material.isMeshStandardMaterial) {
       child.material.roughness = 0.4;
@@ -80,8 +81,6 @@ gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
   greyModel.position.sub(greyModelCenter);
   blackModel.position.sub(blackModelCenter);
 
-  console.log(gltf);
-
   redModelGroup.add(redModel);
   updateMaterial();
 });
@@ -108,6 +107,9 @@ canvas.addEventListener("mousemove", (dets) => {
 // Flag for can
 let flag = "red";
 
+let checkUpdatedBlack = false;
+let checkUpdatedGrey = false;
+
 // Update cans function
 const updateCans = (sound) => {
   // Red to Grey
@@ -116,12 +118,15 @@ const updateCans = (sound) => {
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
       switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
     }
     // Rotates red
     gsap.from(redModel.rotation, {
-      y: Math.PI * 2,
+      y: Math.PI * 4,
       duration: 0.5,
-      ease: "power3.in",
+      ease: "power1.in",
       onComplete: () => {
         // Removes red model
         redModelGroup.remove(redModel);
@@ -130,7 +135,7 @@ const updateCans = (sound) => {
         gsap.from(greyModel.rotation, {
           y: Math.PI * 2,
           duration: 0.4,
-          ease: "power4.out",
+          ease: "power1.out",
         });
 
         // Change page color to white
@@ -140,6 +145,10 @@ const updateCans = (sound) => {
 
         // Add grey model
         greyModelGroup.add(greyModel);
+        if (!checkUpdatedGrey) {
+          updateMaterial();
+          checkUpdatedGrey = true;
+        }
 
         // Turn the flag to grey
         flag = "grey";
@@ -152,13 +161,16 @@ const updateCans = (sound) => {
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
       switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
     }
 
     // Rotates grey
     gsap.from(greyModel.rotation, {
-      y: Math.PI * 2,
+      y: Math.PI * 4,
       duration: 0.5,
-      ease: "power3.in",
+      ease: "power1.in",
       onComplete: () => {
         // Removes grey
         greyModelGroup.remove(greyModel);
@@ -167,7 +179,7 @@ const updateCans = (sound) => {
         gsap.from(blackModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
-          ease: "power4.out",
+          ease: "power1.out",
         });
 
         // Change page color to black
@@ -177,6 +189,10 @@ const updateCans = (sound) => {
 
         // Add black model
         blackModelGroup.add(blackModel);
+        if (!checkUpdatedBlack) {
+          updateMaterial();
+          checkUpdatedBlack = true;
+        }
 
         // Turn the flag to black
         flag = "black";
@@ -189,20 +205,23 @@ const updateCans = (sound) => {
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
       switchAudio.play();
+
+      // Restart the animation on click
+      lineAnimation.restart();
     }
 
     // Rotates black
     gsap.from(blackModel.rotation, {
-      y: Math.PI * 2,
+      y: Math.PI * 4,
       duration: 0.5,
-      ease: "power3.in",
+      ease: "power1.in",
       onComplete: () => {
         // Removes black
         blackModelGroup.remove(blackModel);
         gsap.from(redModel.rotation, {
           y: Math.PI * 2,
           duration: 0.5,
-          ease: "power4.out",
+          ease: "power1.out",
         });
 
         // Change page color to red
@@ -228,7 +247,7 @@ canvas.addEventListener("click", () => {
 // Cans animation loop
 const threeLoaderLine = document.querySelector(".three-loder-line");
 
-gsap.to(threeLoaderLine, {
+const lineAnimation = gsap.to(threeLoaderLine, {
   width: "100%",
   duration: 20,
   repeat: -1,
@@ -247,7 +266,7 @@ const ambientLight = new THREE.AmbientLight("#ffffff", 2);
 scene.add(ambientLight);
 
 // Directional Light
-const directionalLight = new THREE.DirectionalLight("#ffffff", 4);
+const directionalLight = new THREE.DirectionalLight("#ffffff", 5);
 directionalLight.position.set(2, 1.5, 2);
 scene.add(directionalLight);
 
@@ -313,7 +332,7 @@ const clock = new THREE.Clock();
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
   if (redModelGroup) {
-    redModelGroup.rotation.y = elapsedTime * 0.3;
+    redModelGroup.rotation.y = elapsedTime * 0.5;
     redModelGroup.rotation.z =
       Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
   }
