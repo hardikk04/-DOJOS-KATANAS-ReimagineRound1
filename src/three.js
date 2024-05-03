@@ -92,6 +92,7 @@ let flag = "red";
 
 // Update cans function
 const updateCans = () => {
+ 
   // Red to Grey
   if (flag === "red") {
     // Can switch sound
@@ -194,38 +195,36 @@ const updateCans = () => {
 };
 
 // Click animation
-canvas.addEventListener("click", updateCans);
-
-const canLoopAnimationTimeline = gsap.timeline();
-const animationProgressLine1 = document.querySelector(".three-loder-line1");
-const animationProgressLine2 = document.querySelector(".three-loder-line2");
-const animationProgressLine3 = document.querySelector(".three-loder-line3");
-
-const line1Animation = canLoopAnimationTimeline.to(".three-loder-line1", {
-  width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
-  },
+canvas.addEventListener("click", () => {
+  updateCans("click");
 });
 
-const line2Animation = canLoopAnimationTimeline.to(".three-loder-line2", {
-  width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
-  },
-});
+const threeLoaderLines = document.querySelectorAll(".three-loder-line");
 
-const line3Animation = canLoopAnimationTimeline.to(".three-loder-line3", {
-  width: "100%",
-  duration: 10,
-  onComplete: () => {
-    updateCans();
-  },
-});
+const canLoopAnimation = (number) => {
+  gsap.to(threeLoaderLines[number], {
+    width: "100%",
+    duration: 10,
+    onComplete: () => {
+      updateCans();
+      if (number === 2) {
+        threeLoaderLines[0].style.width = 0;
+        threeLoaderLines[1].style.width = 0;
+        threeLoaderLines[2].style.width = 0;
+      }
+    },
+  });
 
-canLoopAnimationTimeline.repeat(-1);
+  animationLineNumber++;
+};
+
+let animationLineNumber = 0;
+canLoopAnimation(animationLineNumber);
+
+const myInterval = setInterval(() => {
+  canLoopAnimation(animationLineNumber);
+  animationLineNumber = animationLineNumber % 3;
+}, 10000);
 
 /**
  * Lights
