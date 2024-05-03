@@ -154,14 +154,34 @@ nav {
 
 .page1-footer-left {
   position: relative;
+  width: 34vw;
 }
 
-.page1-footer-left > h1 {
+.page1-footer-left-heading {
+  position: relative;
+  height: 10vw;
+  overflow: hidden;
+  padding: 2vw 0;
+}
+
+.page1-footer-left-para {
+  position: relative;
+  height: 3vw;
+  overflow: hidden;
+  padding: 2vw 0;
+}
+
+.page1-footer-left h1 {
+  position: absolute;
+  top: 100%;
   font-size: 6vw;
   line-height: 0.8;
+  white-space: nowrap;
 }
 
-.page1-footer-left > h3 {
+.page1-footer-left h3 {
+  position: absolute;
+  top: 100%;
   font-size: 2vw;
   font-weight: 500;
   margin-top: 1vw;
@@ -175,8 +195,8 @@ nav {
 
 .three-loder {
   position: relative;
-  width: 10vw;
-  height: 4px;
+  width: 12vw;
+  height: 6px;
   background-color: #a0a0a0;
 }
 
@@ -574,7 +594,7 @@ nav {
 .page7-part2-left {
   position: relative;
   height: 100%;
-  width: 49%;
+  width: 50%;
 }
 
 .page7-part2-left > img {
@@ -586,7 +606,8 @@ nav {
 .page7-part2-right {
   position: relative;
   height: 100%;
-  width: 49%;
+  width: 50%;
+  padding-left: 4vw;
 }
 
 .page7-part2-right > h1 {
@@ -633,15 +654,15 @@ nav {
   display: flex;
   align-items: center;
 }
-#foot-company{
+#foot-company {
   display: flex;
   align-items: center;
   margin-right: 1vw;
 }
 #foot-pt1 #foot-logo {
   height: 2.5vw;
-  padding-left: .8vw;
-  padding-right: .2vw;
+  padding-left: 0.8vw;
+  padding-right: 0.2vw;
 }
 #foot-pt1 h2 {
   font-weight: 400;
@@ -737,7 +758,7 @@ nav {
   font-weight: 400;
   cursor: pointer;
 }
-#footer-fixed .line{
+#footer-fixed .line {
   width: 100%;
   /* background-color: yellow; */
   overflow: hidden;
