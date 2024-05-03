@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lenis from "@studio-freight/lenis";
-// import gsap from "gsap";
+// import {gsap} from "gsap";
 // import ScrollTrigger from "gsap/ScrollTrigger";
 
 // gsap.registerPlugin(ScrollTrigger);
