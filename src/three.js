@@ -91,13 +91,14 @@ canvas.addEventListener("mousemove", (dets) => {
 let flag = "red";
 
 // Update cans function
-const updateCans = () => {
- 
+const updateCans = (sound) => {
   // Red to Grey
   if (flag === "red") {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+    }
     // Rotates red
     gsap.from(redModel.rotation, {
       y: Math.PI * 2,
@@ -129,8 +130,10 @@ const updateCans = () => {
   // Grey to Black
   else if (flag === "grey") {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+    }
 
     // Rotates grey
     gsap.from(greyModel.rotation, {
@@ -163,8 +166,10 @@ const updateCans = () => {
   // Black to Red
   else {
     // Can switch sound
-    const switchAudio = new Audio("sounds/canSwitch3.wav");
-    switchAudio.play();
+    if (sound) {
+      const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.play();
+    }
 
     // Rotates black
     gsap.from(blackModel.rotation, {
@@ -199,19 +204,15 @@ canvas.addEventListener("click", () => {
   updateCans("click");
 });
 
-const threeLoaderLines = document.querySelectorAll(".three-loder-line");
+const threeLoaderLine = document.querySelector(".three-loder-line");
 
-const canLoopAnimation = (number) => {
-  gsap.to(threeLoaderLines[number], {
+const canLoopAnimation = () => {
+  gsap.to(threeLoaderLine, {
     width: "100%",
     duration: 10,
     onComplete: () => {
-      updateCans();
-      if (number === 2) {
-        threeLoaderLines[0].style.width = 0;
-        threeLoaderLines[1].style.width = 0;
-        threeLoaderLines[2].style.width = 0;
-      }
+      updateCans(false);
+      threeLoaderLine.style.width = 0;
     },
   });
 
