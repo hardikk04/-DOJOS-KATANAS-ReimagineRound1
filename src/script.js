@@ -2,14 +2,13 @@
  * Importing the libraries
  */
 import "remixicon/fonts/remixicon.css";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lenis from "@studio-freight/lenis";
-// import {gsap} from "gsap";
-// import ScrollTrigger from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Lenis js
@@ -28,7 +27,6 @@ const lenisJs = () => {
   gsap.ticker.lagSmoothing(0);
 };
 lenisJs();
-
 
 /**
  * Clutter Animation
@@ -51,31 +49,31 @@ const clutterAnimation = (element) => {
  */
 
 function page2Animation() {
-  window.addEventListener("wheel",function(dets){
-    if(dets.deltaY > 0){
-      gsap.to("#slide1 h2",{
+  window.addEventListener("wheel", function (dets) {
+    if (dets.deltaY > 0) {
+      gsap.to("#slide1 h2", {
         transform: "translateX(-200%)",
-        duration:10,
-        repeat:-1,
-        ease:"none"
-      })
-      gsap.to("#slide1 h2 img",{
-        rotate:270,
-        duration:1
-      })
-    }else{
-      gsap.to("#slide1 h2",{
+        duration: 10,
+        repeat: -1,
+        ease: "none",
+      });
+      gsap.to("#slide1 h2 img", {
+        rotate: 270,
+        duration: 1,
+      });
+    } else {
+      gsap.to("#slide1 h2", {
         transform: "translateX(0%)",
-        duration:10,
-        repeat:-1,
-        ease:"none"
-      })
-      gsap.to("#slide1 h2 img",{
-        rotate:0,
-        duration:1
-      })
+        duration: 10,
+        repeat: -1,
+        ease: "none",
+      });
+      gsap.to("#slide1 h2 img", {
+        rotate: 0,
+        duration: 1,
+      });
     }
-  })
+  });
 
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
