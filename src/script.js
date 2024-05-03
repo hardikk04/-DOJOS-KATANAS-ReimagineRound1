@@ -46,46 +46,9 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 
-function darkmode(){
-  var switchAudio = new Audio("sounds/modeSwitch.mp3")
-var root = document.documentElement
-document.querySelector("#dark").addEventListener("click",function(){
-  switchAudio.play()
-  switchAudio.muted = false
-  gsap.to(".nav-left-circle",{
-    left:"63%",
-    backgroundColor:"black"
-  })
-  gsap.to("#dark",{ color:"#fff" })
-  gsap.to("#light",{ color:"black"})
-  root.style.setProperty("--primary","black")
-  root.style.setProperty("--black","#fff")
-  root.style.setProperty("--secondary","black")
-  
-})
-
-document.querySelector("#light").addEventListener("click",function(){
-  switchAudio.play()
-  gsap.to(".nav-left-circle",{
-    left:"5%",
-    backgroundColor:"#d91921"
-  })
-  gsap.to("#light",{ color:"#fff" })
-  gsap.to("#dark",{ color:"#d91921"})
-  root.style.setProperty("--primary","#fff")
-  root.style.setProperty("--black","black")
-  root.style.setProperty("--secondary","#d91921")
-})
-}
-darkmode()
-
-
 /**
  * Page 2 Animations
  */
-
-
-
 
 function page2Animation() {
   window.addEventListener("wheel",function(dets){

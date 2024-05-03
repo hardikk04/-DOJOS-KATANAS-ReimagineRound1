@@ -1,9 +1,3 @@
-/* Root variable */
-:root {
-  --primary: #fff;
-  --secondary: #d91921;
-  --black: black;
-}
 /* Boiler Plate */
 * {
   margin: 0;
@@ -40,7 +34,7 @@ html {
   z-index: 1;
   height: 100vh;
   width: 100%;
-  background-color: var(--secondary);
+  background-color: #d91921;
   overflow: hidden;
 }
 
@@ -77,7 +71,7 @@ nav {
 }
 
 .nav-left > i:nth-child(2) {
-  color: var(--secondary);
+  color: #d91921;
 }
 
 .nav-left-circle {
@@ -85,7 +79,7 @@ nav {
   height: 3.5vh;
   width: 3.5vh;
   border-radius: 50%;
-  background-color: var(--secondary);
+  background-color: #d91921;
   left: 5%;
 }
 
@@ -104,7 +98,7 @@ nav {
 .nav-right {
   display: flex;
   gap: 5vw;
-  color: var(--primary);
+  color: #fff;
   font-size: 1.2vw;
   align-items: center;
 }
@@ -199,7 +193,7 @@ nav {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-color: var(--primary);
+  background-color: #fff;
   text-align: center;
   overflow: hidden;
   padding: 2.5vw 0;
@@ -285,7 +279,7 @@ nav {
 }
 
 #swiper-btn .btns {
-  color: var(--primary);
+  color: #fff;
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.408);
   padding: 2.5vw;
@@ -303,7 +297,7 @@ nav {
   position: relative;
   text-align: center;
   font-size: 18px;
-  background: var(--primary);
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -344,6 +338,7 @@ nav {
   font-weight: 500;
   opacity: 0.9;
   text-align: left;
+  text-transform: capitalize;
 }
 
 /* Page2 ends */
@@ -353,7 +348,7 @@ nav {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-color: var(--primary);
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +365,7 @@ nav {
 #page4 {
   height: 100vh;
   width: 100%;
-  background-color: var(--primary);
+  background-color: #fff;
   position: relative;
   padding: 1vw 2vw;
 }
@@ -408,7 +403,7 @@ nav {
 #page4 .section {
   width: 100%;
   height: 18vh;
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   gap: 2vw;
@@ -418,7 +413,7 @@ nav {
   font-size: 2vw;
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--black);
+  color: black;
 }
 
 #page4 .section i {
@@ -496,7 +491,7 @@ nav {
   top: 110%;
   height: 90vh;
   width: 70vw;
-  background-color: var(--primary);
+  background-color: #fff;
   /* rotate: -5deg; */
   right: -25%;
   opacity: 0.9;
@@ -607,8 +602,8 @@ nav {
 }
 
 .page7-part2-right > button {
-  background-color: var(--secondary);
-  color: var(--primary);
+  background-color: #d91921;
+  color: #fff;
   border: none;
   padding: 0.5vw 1vw;
   font-size: 1vw;
@@ -650,7 +645,7 @@ nav {
 #foot-pt1 #line {
   width: 100%;
   height: 0.15vw;
-  background-color: var(--primary);
+  background-color: #fff;
   margin-left: 2vw;
 }
 #foot-pt1 svg {
