@@ -39,6 +39,150 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 
+// Nav Animation
+const navAnimation = () => {
+  // Variable to store the last scroll position
+  let lastScrollTop = 0;
+
+  // Function to handle scroll event
+  function handleScroll() {
+    let currentScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    // Check if user is scrolling up or down
+    if (currentScrollTop > lastScrollTop) {
+      // Scrolling down
+
+      gsap.to("nav", {
+        top: "-10%",
+        duration: 0.5,
+      });
+    } else {
+      // Scrolling up
+      gsap.to("nav", {
+        top: "0%",
+        duration: 0.5,
+      });
+    }
+    if (window.innerHeight < lastScrollTop) {
+      document.querySelector(".nav-center>img").src = "imgs/logo1.png";
+      gsap.to("nav", {
+        backgroundColor: "#ffffff",
+      });
+      gsap.to(".nav-right i", {
+        color: "#000000",
+      });
+    } else {
+      document.querySelector(".nav-center>img").src = "imgs/logo.webp";
+      gsap.to("nav", {
+        backgroundColor: "transparent",
+      });
+      gsap.to(".nav-right i", {
+        color: "#fff",
+      });
+    }
+    // Update last scroll position
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
+  // Add scroll event listener
+  window.addEventListener("scroll", handleScroll);
+};
+
+navAnimation();
+
+// Page 1 Animations
+const page1Animations = () => {
+  // Select the circle element
+  const circleElement = document.querySelector(".page1-circle");
+
+  // Create objects to track mouse position and custom cursor position
+  const mouse = { x: 0, y: 0 }; // Track current mouse position
+  const previousMouse = { x: 0, y: 0 }; // Store the previous mouse position
+  const circle = { x: 0, y: 0 }; // Track the circle position
+
+  // Initialize variables to track scaling and rotation
+  let currentScale = 0; // Track current scale value
+  let currentAngle = 0; // Track current angle value
+
+  // Update mouse position on the 'mousemove' event
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+  });
+
+  // Smoothing factor for cursor movement speed (0 = smoother, 1 = instant)
+  const speed = 0.17;
+
+  // Start animation
+  const tick = () => {
+    // MOVE
+    // Calculate circle movement based on mouse position and smoothing
+    circle.x += (mouse.x - circle.x) * speed;
+    circle.y += (mouse.y - circle.y) * speed;
+    // Create a transformation string for cursor translation
+    const translateTransform = `translate(${circle.x}px, ${circle.y}px)`;
+
+    // SQUEEZE
+    // 1. Calculate the change in mouse position (deltaMouse)
+    const deltaMouseX = mouse.x - previousMouse.x;
+    const deltaMouseY = mouse.y - previousMouse.y;
+    // Update previous mouse position for the next frame
+    previousMouse.x = mouse.x;
+    previousMouse.y = mouse.y;
+    // 2. Calculate mouse velocity using Pythagorean theorem and adjust speed
+    const mouseVelocity = Math.min(
+      Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 4,
+      150
+    );
+    // 3. Convert mouse velocity to a value in the range [0, 0.5]
+    const scaleValue = (mouseVelocity / 150) * 0.5;
+    // 4. Smoothly update the current scale
+    currentScale += (scaleValue - currentScale) * speed;
+    // 5. Create a transformation string for scaling
+    const scaleTransform = `scale(${1 + currentScale}, ${1 - currentScale})`;
+
+    // Apply all transformations to the circle element in a specific order: translate -> rotate -> scale
+    circleElement.style.transform = `${translateTransform}  ${scaleTransform}`;
+
+    // Request the next frame to continue the animation
+    window.requestAnimationFrame(tick);
+  };
+
+  // Start the animation loop
+  tick();
+
+  // Mouse enter and Leave animation
+  const canvas = document.querySelector(".webgl");
+  canvas.addEventListener("mouseenter", () => {
+    gsap.to(circleElement, {
+      scale: 1,
+      opacity: 1,
+    });
+  });
+
+  canvas.addEventListener("mouseleave", () => {
+    gsap.to(circleElement, {
+      scale: 0,
+      opacity: 0,
+    });
+  });
+
+  // Page 1 Footer Text Animation
+  gsap.to(".page1-footer-left", {
+    y: 200,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: "#page1",
+      start: "top -0%",
+      end: "top -100%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+};
+page1Animations();
+
 //  Page 2 Animations
 
 const page2Animation = () => {
@@ -242,7 +386,7 @@ const page5Animation = () => {
       scroller: "body",
       // markers: true,
       start: "top 0%",
-      end: "top -300%",
+      end: "top -200%",
       pin: true,
       scrub: true,
     },
@@ -323,13 +467,16 @@ const page6Animation = () => {
       // markers: true,
     },
   });
-  tl.to(".page6-imgs", {
-    top: "-120%",
-    rotate: "-20deg",
-    left: "-25%",
-    opacity: 1,
-    stagger: 0.2,
-  });
+  tl.to(
+    ".page6-imgs",
+    {
+      top: "-120%",
+      rotate: "-20deg",
+      left: "-25%",
+      stagger: 0.2,
+    },
+    "s"
+  );
 
   tl.to(
     "#page6",
@@ -355,7 +502,7 @@ const page6Animation = () => {
 page6Animation();
 const page7animation = () => {
   gsap.to(".scoll-speed", {
-    transform: "translateY(-15%)",
+    transform: "translateY(-20%)",
     duration: 1.5,
     scrollTrigger: {
       trigger: "#page7",
