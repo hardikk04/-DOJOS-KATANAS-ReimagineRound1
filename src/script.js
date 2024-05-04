@@ -67,7 +67,7 @@ const navAnimation = () => {
     if (window.innerHeight < lastScrollTop) {
       document.querySelector(".nav-center>img").src = "imgs/logo1.png";
       gsap.to("nav", {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#ffffffd7",
       });
       gsap.to(".nav-right i", {
         color: "#000000",
