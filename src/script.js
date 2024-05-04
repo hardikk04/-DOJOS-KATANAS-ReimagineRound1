@@ -1,6 +1,4 @@
-/**
- * Importing the libraries
- */
+// Importing the libraries
 import "remixicon/fonts/remixicon.css";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
@@ -10,9 +8,8 @@ import 'swiper/css/bundle';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * Lenis js
- */
+// Lenis js
+
 const lenisJs = () => {
   const lenis = new Lenis();
 
@@ -28,9 +25,7 @@ const lenisJs = () => {
 };
 lenisJs();
 
-/**
- * Clutter Animation
- */
+// Clutter Animation
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
   let clutter = "";
@@ -44,11 +39,9 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 
-/**
- * Page 2 Animations
- */
+//  Page 2 Animations
 
-function page2Animation() {
+const page2Animation = ()=>{
   window.addEventListener("wheel", function (dets) {
     if (dets.deltaY > 0) {
       gsap.to("#slide1 h2", {
@@ -124,10 +117,8 @@ function page2Animation() {
 }
 page2Animation();
 
-/**
- * Canvas Animations
- */
-function canva1() {
+//  Canvas Animations
+const canvas1= ()=> {
   const canvas = document.querySelector("#page3 canvas");
   const context = canvas.getContext("2d");
 
@@ -240,11 +231,11 @@ function canva1() {
     end: `200% top`,
   });
 }
-canva1();
+canvas1();
 
 // Page5 Animation
 
-function page5Animation() {
+const  page5Animation= () => {
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page5",
@@ -300,9 +291,7 @@ function page5Animation() {
 }
 page5Animation();
 
-/**
- * Page 6 Animations
- */
+//  Page 6 Animations
 const page6Animation = () => {
   clutterAnimation(".page6-wrapper>h1");
 
@@ -363,9 +352,59 @@ const page6Animation = () => {
   );
 };
 page6Animation();
+const page7animation = ()=>{
+  gsap.to(".scoll-speed",{
+    transform:"translateY(-15%)",
+    duration:1.5,
+    scrollTrigger:{
+      trigger:"#page7",
+      scroll:"body",
+      start:"top bottom",
+      end:"bottom -10%",
+      scrub:1,
+    }
+  })
+}
 
-Totty.animateSvg("#curve", {
-  ease: "elastic.out(1,0.3)",
-  offsetLeft: 10,
-  offsetRight: 10,
-});
+//  Page  Animations
+
+page7animation()
+
+//  footer Animations
+
+const lineEffect = ()=>{
+  document.querySelector(".line").addEventListener("mousemove",function(dets){
+    console.log(dets.y)
+    gsap.to(".line svg path",{
+     attr:{d:`M 0,75 Q540, ${dets.y} 1080,75`},
+     duration:0.2,
+     ease: "power3.out",
+    })
+  })
+  document.querySelector(".line").addEventListener("mouseleave",function(dets){
+    gsap.to(".line svg path",{
+     attr:{d:`M 0,75 Q540, 75 1080,75`},
+     duration:2,
+    ease: "elastic.out(1,0.3)",
+    })
+  })
+  document.querySelector(".lineeffect").addEventListener("mousemove",function(dets){
+    let valY = dets.y - document.querySelector(".lineeffect").getBoundingClientRect().top
+    gsap.to(".lineeffect svg path",{
+     attr:{d:`M 0,75 Q725, ${valY} 1450,75`},
+     duration:0.2,
+     ease: "power3.out",
+    })
+  })
+
+  document.querySelector(".lineeffect").addEventListener("mouseleave",function(dets){
+    gsap.to(".lineeffect svg path",{
+      attr:{d:`M 0,75 Q725,75 1450,75`},
+     duration:2,
+    ease: "elastic.out(1,0.3)",
+    })
+  })
+}
+lineEffect()
+
+
