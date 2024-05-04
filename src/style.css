@@ -308,6 +308,22 @@ nav {
   align-items: center;
   justify-content: center;
 }
+#swiper #cursor2{
+  position: absolute;
+  z-index: 3;
+  height: 4.5vw;
+  width: 4.5vw;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d91921;
+  font-size: 2vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 #swiper #swiper-btn {
   position: absolute;
   top: 50%;
@@ -361,7 +377,7 @@ nav {
   left: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(transparent 45%, black);
+  background: linear-gradient(transparent 10%, black);
   padding: 1vw 2vw;
   display: flex;
   flex-direction: column;
@@ -399,10 +415,36 @@ nav {
 }
 
 #page3 canvas {
+  position: relative;
   min-height: 100vh;
   width: 100%;
 }
-
+#page3 #text-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 5vw;
+}
+#page3 #text-container .textc{
+  overflow: hidden;
+  height: 3vw;
+}
+#page3 #text-container h2{
+  font-size: 3vw;
+  line-height: 1;
+  font-weight: 600;
+  color:#fff;
+  text-transform: capitalize;
+  transform: translateY(108%);
+  text-align: center;
+}
 /* Page3 ends */
 
 /* Page4 starts */
