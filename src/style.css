@@ -85,51 +85,18 @@ nav {
   z-index: 100;
 }
 
-.nav-left {
-  position: relative;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 2vw;
-  padding: 0.5vw;
-  gap: 1.8vw;
-  cursor: pointer;
-}
-
-.nav-left > i {
-  position: relative;
-  z-index: 1;
-  font-size: 1.2vw;
-}
-
-.nav-left > i:nth-child(1) {
-  color: #fff;
-}
-
-.nav-left > i:nth-child(2) {
-  color: #d91921;
-}
-
-.nav-left-circle {
-  position: absolute;
-  height: 3.5vh;
-  width: 3.5vh;
-  border-radius: 50%;
-  background-color: #d91921;
-  left: 5%;
-}
-
 .nav-center {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
 }
 
 .nav-center > img {
   object-fit: cover;
   height: 3vw;
+}
+
+.nav-right-elem{
+  display: flex;
+  gap: 1.5vw;
 }
 
 .nav-right {
