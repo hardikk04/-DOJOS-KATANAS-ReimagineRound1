@@ -3,8 +3,8 @@ import "remixicon/fonts/remixicon.css";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper from "swiper/bundle";
+import "swiper/css/bundle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,7 +41,7 @@ const clutterAnimation = (element) => {
 
 //  Page 2 Animations
 
-const page2Animation = ()=>{
+const page2Animation = () => {
   window.addEventListener("wheel", function (dets) {
     if (dets.deltaY > 0) {
       gsap.to("#slide1 h2", {
@@ -114,11 +114,11 @@ const page2Animation = ()=>{
       },
       "a"
     );
-}
+};
 page2Animation();
 
 //  Canvas Animations
-const canvas1= ()=> {
+const canvas1 = () => {
   const canvas = document.querySelector("#page3 canvas");
   const context = canvas.getContext("2d");
 
@@ -230,12 +230,12 @@ const canvas1= ()=> {
     start: `top top`,
     end: `200% top`,
   });
-}
+};
 canvas1();
 
 // Page5 Animation
 
-const  page5Animation= () => {
+const page5Animation = () => {
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page5",
@@ -288,7 +288,7 @@ const  page5Animation= () => {
       },
       "a"
     );
-}
+};
 page5Animation();
 
 //  Page 6 Animations
@@ -328,8 +328,9 @@ const page6Animation = () => {
     rotate: "-20deg",
     left: "-25%",
     opacity: 1,
-    stagger: 0.3,
+    stagger: 0.2,
   });
+
   tl.to(
     "#page6",
     {
@@ -352,59 +353,67 @@ const page6Animation = () => {
   );
 };
 page6Animation();
-const page7animation = ()=>{
-  gsap.to(".scoll-speed",{
-    transform:"translateY(-15%)",
-    duration:1.5,
-    scrollTrigger:{
-      trigger:"#page7",
-      scroll:"body",
-      start:"top bottom",
-      end:"bottom -10%",
-      scrub:1,
-    }
-  })
-}
+const page7animation = () => {
+  gsap.to(".scoll-speed", {
+    transform: "translateY(-15%)",
+    duration: 1.5,
+    scrollTrigger: {
+      trigger: "#page7",
+      scroll: "body",
+      start: "top bottom",
+      end: "bottom -10%",
+      scrub: 1,
+    },
+  });
+};
 
 //  Page  Animations
 
-page7animation()
+page7animation();
 
 //  footer Animations
 
-const lineEffect = ()=>{
-  document.querySelector(".line").addEventListener("mousemove",function(dets){
-    console.log(dets.y)
-    gsap.to(".line svg path",{
-     attr:{d:`M 0,75 Q540, ${dets.y} 1080,75`},
-     duration:0.2,
-     ease: "power3.out",
-    })
-  })
-  document.querySelector(".line").addEventListener("mouseleave",function(dets){
-    gsap.to(".line svg path",{
-     attr:{d:`M 0,75 Q540, 75 1080,75`},
-     duration:2,
-    ease: "elastic.out(1,0.3)",
-    })
-  })
-  document.querySelector(".lineeffect").addEventListener("mousemove",function(dets){
-    let valY = dets.y - document.querySelector(".lineeffect").getBoundingClientRect().top
-    gsap.to(".lineeffect svg path",{
-     attr:{d:`M 0,75 Q725, ${valY} 1450,75`},
-     duration:0.2,
-     ease: "power3.out",
-    })
-  })
+const lineEffect = () => {
+  document
+    .querySelector(".line")
+    .addEventListener("mousemove", function (dets) {
+      console.log(dets.y);
+      gsap.to(".line svg path", {
+        attr: { d: `M 0,75 Q540, ${dets.y} 1080,75` },
+        duration: 0.2,
+        ease: "power3.out",
+      });
+    });
+  document
+    .querySelector(".line")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to(".line svg path", {
+        attr: { d: `M 0,75 Q540, 75 1080,75` },
+        duration: 2,
+        ease: "elastic.out(1,0.3)",
+      });
+    });
+  document
+    .querySelector(".lineeffect")
+    .addEventListener("mousemove", function (dets) {
+      let valY =
+        dets.y -
+        document.querySelector(".lineeffect").getBoundingClientRect().top;
+      gsap.to(".lineeffect svg path", {
+        attr: { d: `M 0,75 Q725, ${valY} 1450,75` },
+        duration: 0.2,
+        ease: "power3.out",
+      });
+    });
 
-  document.querySelector(".lineeffect").addEventListener("mouseleave",function(dets){
-    gsap.to(".lineeffect svg path",{
-      attr:{d:`M 0,75 Q725,75 1450,75`},
-     duration:2,
-    ease: "elastic.out(1,0.3)",
-    })
-  })
-}
-lineEffect()
-
-
+  document
+    .querySelector(".lineeffect")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to(".lineeffect svg path", {
+        attr: { d: `M 0,75 Q725,75 1450,75` },
+        duration: 2,
+        ease: "elastic.out(1,0.3)",
+      });
+    });
+};
+lineEffect();
