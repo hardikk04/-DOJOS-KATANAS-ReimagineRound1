@@ -110,9 +110,12 @@ nav {
   position: relative;
 }
 
-.nav-center > img {
-  object-fit: cover;
-  height: 3vw;
+.nav-center > h1 {
+  font-size: 3.5vw;
+  opacity: .9;
+  color: #ffff;
+  font-family: cocaCola;
+  font-weight: 100;
 }
 
 .nav-right-elem {

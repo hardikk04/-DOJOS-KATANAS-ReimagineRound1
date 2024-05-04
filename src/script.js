@@ -65,9 +65,9 @@ const navAnimation = () => {
       });
     }
     if (window.innerHeight < lastScrollTop) {
-      document.querySelector(".nav-center>img").src = "imgs/logo1.png";
+      document.querySelector(".nav-center>h1").style.color = "#d91921";
       gsap.to("nav", {
-        backgroundColor: "#ffffffd7",
+        backgroundColor: "#ffffff",
       });
       gsap.to(".nav-right i", {
         color: "#000000",
@@ -76,7 +76,7 @@ const navAnimation = () => {
         border: "1px solid #000000",
       });
     } else {
-      document.querySelector(".nav-center>img").src = "imgs/logo.webp";
+      document.querySelector(".nav-center>h1").style.color = "#ffffff";
       gsap.to("nav", {
         backgroundColor: "transparent",
       });
