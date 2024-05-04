@@ -71,10 +71,9 @@ const navAnimation = () => {
       });
       gsap.to(".nav-right i", {
         color: "#000000",
-      
-      })
+      });
       gsap.to(".nav-right-menu", {
-        border:"1px solid #000000",
+        border: "1px solid #000000",
       });
     } else {
       document.querySelector(".nav-center>img").src = "imgs/logo.webp";
@@ -85,7 +84,7 @@ const navAnimation = () => {
         color: "#fff",
       });
       gsap.to(".nav-right-menu", {
-        border:"1px solid #fff",
+        border: "1px solid #fff",
       });
     }
     // Update last scroll position
@@ -192,8 +191,6 @@ page1Animations();
 
 //  Page 2 Animations
 
-
-
 const page2Animation = () => {
   window.addEventListener("wheel", function (dets) {
     if (dets.deltaY > 0) {
@@ -221,18 +218,22 @@ const page2Animation = () => {
     }
   });
 
-  document.querySelector("#swiper").addEventListener("mousemove",function(dets){
-    gsap.to("#cursor2",{
-      top:dets.y,
-      left:dets.x,
-    })
-  })
-  document.querySelector("#swiper").addEventListener("mouseleave",function(dets){
-    gsap.to("#cursor2",{
-      top:"50%",
-      left:"50%",
-    })
-  })
+  document
+    .querySelector("#swiper")
+    .addEventListener("mousemove", function (dets) {
+      gsap.to("#cursor2", {
+        top: dets.y,
+        left: dets.x,
+      });
+    });
+  document
+    .querySelector("#swiper")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to("#cursor2", {
+        top: "50%",
+        left: "50%",
+      });
+    });
 
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
@@ -282,8 +283,8 @@ const page2Animation = () => {
     .to(
       "#cursor2",
       {
-        scale:0,
-        duration:0,
+        scale: 0,
+        duration: 0,
         delay: 0.1,
       },
       "a"
@@ -405,28 +406,26 @@ const canvas1 = () => {
     end: `250% top`,
   });
   var tlc = gsap.timeline({
-    scrollTrigger:{
-      trigger:"#page3 canvas",
-      scroller:"body",
-      start:"top -10%",
-      end:"top -220%",
-      scrub:1,
-      markers:true
-    }
-  })
+    scrollTrigger: {
+      trigger: "#page3 canvas",
+      scroller: "body",
+      start: "top -10%",
+      end: "top -220%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
   tlc
-  .to(".textc h2",{
-    transform:"translateY(0%)",
-    duration:.5,
-    delay:3
-
-  })
-  .to(".textc h2",{
-    transform:"translateY(-106%)",
-    duration:.5,
-    delay:3
-  })
- 
+    .to(".textc h2", {
+      transform: "translateY(0%)",
+      duration: 0.5,
+      delay: 3,
+    })
+    .to(".textc h2", {
+      transform: "translateY(-106%)",
+      duration: 0.5,
+      delay: 3,
+    });
 };
 canvas1();
 
@@ -577,7 +576,6 @@ const lineEffect = () => {
   document
     .querySelector(".line")
     .addEventListener("mousemove", function (dets) {
-      console.log(dets.y);
       gsap.to(".line svg path", {
         attr: { d: `M 0,75 Q540, ${dets.y} 1080,75` },
         duration: 0.2,

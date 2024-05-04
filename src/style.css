@@ -18,6 +18,20 @@ html {
   src: url(/fonts/cocacola1.ttf);
 }
 
+@font-face {
+  font-family: heading;
+  src: url(/fonts/headingFonts/Titania-Regular.ttf);
+}
+
+@font-face {
+  font-family: cocaCola;
+  src: url(/fonts/cocacola1.ttf);
+}
+@font-face {
+  font-family: cocaCola;
+  src: url(/fonts/cocacola1.ttf);
+}
+
 /* For spans */
 .inline-block {
   display: inline-block;
@@ -50,7 +64,7 @@ html {
   align-items: center;
   pointer-events: none;
   z-index: 100;
-  filter: blur(.5px);
+  filter: blur(0.5px);
   scale: 0;
   opacity: 0;
 }
@@ -201,6 +215,8 @@ nav {
   font-size: 6vw;
   line-height: 0.8;
   white-space: nowrap;
+  font-family: heading;
+  font-weight: 400;
 }
 
 .page1-footer-left h3 {
@@ -257,6 +273,8 @@ nav {
   -webkit-text-stroke: 2px #d91921;
   font-weight: 600;
   transform: translateX(-100%);
+  font-family: heading;
+  font-weight: 500;
 }
 
 #page2 #slide1 h2 span {
@@ -264,6 +282,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 2vw;
+  font-family: heading;
+  font-weight: 500;
 }
 
 #page2 h1 {
@@ -275,6 +295,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: heading;
+  font-weight: 500;
 }
 #page2 h1 #textgif {
   display: flex;
@@ -308,7 +330,7 @@ nav {
   align-items: center;
   justify-content: center;
 }
-#swiper #cursor2{
+#swiper #cursor2 {
   position: absolute;
   z-index: 3;
   height: 4.5vw;
@@ -322,7 +344,7 @@ nav {
   font-size: 2vw;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 #swiper #swiper-btn {
   position: absolute;
@@ -419,11 +441,11 @@ nav {
   min-height: 100vh;
   width: 100%;
 }
-#page3 #text-container{
+#page3 #text-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
   z-index: 2;
@@ -432,15 +454,15 @@ nav {
   justify-content: center;
   padding: 5vw;
 }
-#page3 #text-container .textc{
+#page3 #text-container .textc {
   overflow: hidden;
   height: 3vw;
 }
-#page3 #text-container h2{
+#page3 #text-container h2 {
   font-size: 3vw;
   line-height: 1;
   font-weight: 600;
-  color:#fff;
+  color: #fff;
   text-transform: capitalize;
   transform: translateY(108%);
   text-align: center;
@@ -469,6 +491,8 @@ nav {
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.1;
+  font-family: heading;
+  font-weight: 500;
 }
 
 #page4 .heading .arrow {
@@ -570,27 +594,13 @@ nav {
   line-height: 1;
   color: #fff;
   mix-blend-mode: difference;
+  font-family: heading;
+  font-weight: 500;
 }
 
-.page6-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9;
-  height: 11vw;
-  width: 60%;
-  overflow: hidden;
-}
-
-.page6-text > h1 {
-  position: absolute;
-  color: #d91921;
-  white-space: nowrap;
-  top: 100%;
-  font-size: 10vw;
-  font-weight: 600;
-  text-transform: uppercase;
+.page6-wrapper > h1 > span {
+  font-family: heading;
+  font-weight: 500;
 }
 
 .page6-imgs {
@@ -644,6 +654,8 @@ nav {
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.1;
+  font-family: heading;
+  font-weight: 500;
 }
 
 .page7-part1-left > p {
@@ -758,6 +770,8 @@ nav {
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.1;
+  font-family: heading;
+  font-weight: 500;
 }
 
 .page7-part2-right-text p {
