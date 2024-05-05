@@ -54,7 +54,7 @@ const navAnimation = () => {
       // Scrolling down
 
       gsap.to("nav", {
-        top: "-10%",
+        top: "-20%",
         duration: 0.5,
       });
     } else {
@@ -422,7 +422,7 @@ const canvas1 = () => {
       delay: 3,
     })
     .to(".textc h2", {
-      transform: "translateY(-106%)",
+      transform: "translateY(-108%)",
       duration: 0.5,
       delay: 3,
     });
@@ -577,7 +577,7 @@ const lineEffect = () => {
     .querySelector(".line")
     .addEventListener("mousemove", function (dets) {
       gsap.to(".line svg path", {
-        attr: { d: `M 0,75 Q540, ${dets.y} 1080,75` },
+        attr: { d: `M -400,50 Q 0,${dets.y} 500,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -586,7 +586,7 @@ const lineEffect = () => {
     .querySelector(".line")
     .addEventListener("mouseleave", function (dets) {
       gsap.to(".line svg path", {
-        attr: { d: `M 0,75 Q540, 75 1080,75` },
+        attr: { d: `M -400,50 Q 0,50 500,50` },
         duration: 2,
         ease: "elastic.out(1,0.3)",
       });
@@ -594,11 +594,10 @@ const lineEffect = () => {
   document
     .querySelector(".lineeffect")
     .addEventListener("mousemove", function (dets) {
-      let valY =
-        dets.y -
-        document.querySelector(".lineeffect").getBoundingClientRect().top;
+      let valY = dets.y - document.querySelector(".lineeffect").getBoundingClientRect().top;
+      console.log(valY*0.5)
       gsap.to(".lineeffect svg path", {
-        attr: { d: `M 0,75 Q725, ${valY} 1450,75` },
+        attr: { d: `M -500,50 Q 0,${valY} 600,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -608,7 +607,7 @@ const lineEffect = () => {
     .querySelector(".lineeffect")
     .addEventListener("mouseleave", function (dets) {
       gsap.to(".lineeffect svg path", {
-        attr: { d: `M 0,75 Q725,75 1450,75` },
+        attr: {d: `M -500,50 Q 0,50 600,50` },
         duration: 2,
         ease: "elastic.out(1,0.3)",
       });
