@@ -54,7 +54,7 @@ const navAnimation = () => {
       // Scrolling down
 
       gsap.to("nav", {
-        top: "-10%",
+        top: "-15%",
         duration: 0.5,
       });
     } else {

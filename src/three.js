@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GUI from "lil-gui";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
  * Scene
  */
 const scene = new THREE.Scene();
+// const gui = new GUI({ width: 400 });
+
+const debug = {};
+debug.ambientLight = "#ffffff";
+debug.directionalLight = "#ffffff";
 
 /**
  * Models groups for animations
@@ -28,7 +34,8 @@ const canvas = document.querySelector(".webgl");
 const updateMaterial = () => {
   scene.traverse((child) => {
     if (child.isMesh && child.material.isMeshStandardMaterial) {
-      child.material.roughness = 0.4;
+      child.material.roughness = 0.2;
+      // gui.add(child.material, "roughness").min(0).max(1).step(0.01);
     }
   });
 };
@@ -173,7 +180,7 @@ const updateCans = (sound) => {
 
         // Change page color to white
         gsap.to("#page1", {
-          backgroundColor: "#5d5d5d",
+          backgroundColor: "#ffffff",
         });
 
         // Add grey model
@@ -350,11 +357,26 @@ scene.add(ambientLight);
 // Directional Light
 const directionalLight = new THREE.DirectionalLight("#fffff0", 5);
 directionalLight.position.set(2, 1.5, 2);
+
 scene.add(directionalLight);
 
 // Directional Light helper
 const directionLightHelper = new THREE.DirectionalLightHelper(directionalLight);
 // scene.add(directionLightHelper);
+
+// Gui
+// gui.add(ambientLight, "intensity").min(1).max(20).step(0.01);
+// gui.add(directionalLight, "intensity").min(1).max(20).step(0.01);
+// gui.add(directionalLight.position, "x").min(-20).max(20).step(0.01);
+// gui.add(directionalLight.position, "y").min(-20).max(20).step(0.01);
+// gui.add(directionalLight.position, "z").min(-20).max(20).step(0.01);
+
+// gui.addColor(debug, "ambientLight").onChange(() => {
+//   ambientLight.color.set(debug.ambientLight);
+// });
+// gui.addColor(debug, "directionalLight").onChange(() => {
+//   directionalLight.color.set(debug.directionalLight);
+// });
 
 /**
  * Sizes
