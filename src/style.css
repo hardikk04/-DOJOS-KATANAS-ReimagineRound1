@@ -325,16 +325,13 @@ nav {
 }
 
 #swiper {
-  position: relative;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#swiper #cursor2 {
-  position: absolute;
-  z-index: 3;
+#cursor2 {
   height: 4.5vw;
   width: 4.5vw;
   background-color: #fff;
@@ -344,19 +341,22 @@ nav {
   justify-content: center;
   color: #d91921;
   font-size: 2vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed ;
+  top: 0%;
+  left: 0%;
+  z-index: 99;
+  transform:translate(-50%,-50%) scale(0);
+  pointer-events: none;
 }
 #swiper #swiper-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9;
   height: 100%;
   width: 95%;
   opacity: 0;
+  z-index: 9;
 }
 #swiper #swiper-btn:hover {
   opacity: 1;
