@@ -1037,8 +1037,7 @@ nav {
 }
 
 .three-loder {
-  width: 50vw;
-  height: 10px;
+  display: none;
 }
 #page2{
   padding: 6vw 0;
@@ -1088,7 +1087,7 @@ nav {
   font-weight: 400;
   opacity: 0.8;
 }
-#swiper #cursor2{
+#cursor2{
   display: none;
 }
 #swiper #swiper-btn {
@@ -1121,6 +1120,13 @@ nav {
   transform: translateY(110%);
 }
 
+.page6-imgs {
+  top: 110%;
+  height: 60vh;
+  width: 78vw;
+  right: -25%;
+  opacity: 1;
+}
 
 .page7-part1 {
   gap: 4vw;
