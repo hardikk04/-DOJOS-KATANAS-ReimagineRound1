@@ -536,6 +536,22 @@ nav {
   z-index: 99;
 }
 
+#page4 .section img
+{
+  height: 8vw;
+  animation: rotation 15s linear infinite forwards;
+  z-index: 99;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #page4 .section:hover
 {
   cursor: pointer;
@@ -578,7 +594,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
+  gap: 1vw;
   overflow: hidden;
   position: relative;
 }
@@ -592,14 +608,12 @@ nav {
 
 #page5 #line2 {
   height: 16.7vh;
-  margin-bottom: -1vw;
+  margin-top: -1vw;
+  /* margin-bottom: -2vw; */
+  margin-left: 4vw;
   display: flex;
-  background-color: #414141;
-}
-
-#page5 #line2 #first
-{
-  margin-right: 24vw;
+  align-items: center;
+  gap: 22vw;
 }
 
 #page5 #line2 #video {

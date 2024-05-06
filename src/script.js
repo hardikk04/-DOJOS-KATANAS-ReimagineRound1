@@ -478,8 +478,8 @@ const page5Animation = () => {
   tl.to(
     "#page5 #video",
     {
-      width: "109vw",
-      height: "109vh",
+      width: "108vw",
+      height: "108vh",
       ease: "power4",
     },
     "a"
@@ -487,7 +487,7 @@ const page5Animation = () => {
     .to(
       "#line1 h1",
       {
-        y: -400,
+        y: -550,
         opacity: 0,
       },
       "a"
@@ -495,7 +495,7 @@ const page5Animation = () => {
     .to(
       "#line2 #first h1",
       {
-        x: -900,
+        x: -1000,
         opacity: 0,
       },
       "a"
@@ -511,7 +511,7 @@ const page5Animation = () => {
     .to(
       "#line3 h1",
       {
-        y: 400,
+        y: 550,
         opacity: 0,
       },
       "a"
