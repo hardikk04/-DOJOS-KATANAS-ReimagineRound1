@@ -536,24 +536,35 @@ renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 /**
  * Clock
  */
-const clock = new THREE.Clock();
+let time = Date.now();
 
+let speed = 0.5;
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
+  // Time
+  const currentTime = Date.now();
+  const deltaTime = currentTime - time;
+  time = currentTime;
+
+  if (canRotationFlag) {
+    speed -= deltaTime * 0.0005;
+  } else {
+    speed += deltaTime * 0.0005;
+  }
+
   if (redModelGroup) {
-    redModelGroup.rotation.y = elapsedTime * 0.5;
+    redModelGroup.rotation.y = speed;
     redModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
   if (greyModelGroup) {
-    greyModelGroup.rotation.y = elapsedTime * 0.5;
+    greyModelGroup.rotation.y = speed;
     greyModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed* 0.2) * 0.2) * 1.2;
   }
   if (blackModelGroup) {
-    blackModelGroup.rotation.y = elapsedTime * 0.5;
+    blackModelGroup.rotation.y = speed;
     blackModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
 
   // controls.update();
