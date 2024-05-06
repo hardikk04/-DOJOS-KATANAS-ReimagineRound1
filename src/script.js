@@ -192,6 +192,12 @@ page1Animations();
 //  Page 2 Animations
 
 const page2Animation = () => {
+  gsap.to("#slide1 h2", {
+    transform: "translateX(-200%)",
+    duration: 10,
+    repeat: -1,
+    ease: "none",
+  });
   window.addEventListener("wheel", function (dets) {
     if (dets.deltaY > 0) {
       gsap.to("#slide1 h2", {
@@ -218,23 +224,49 @@ const page2Animation = () => {
     }
   });
 
-  document
-    .querySelector("#swiper")
-    .addEventListener("mousemove", function (dets) {
+      document.querySelector("#main").addEventListener("mousemove", function (dets) {
+      console.log(dets.y)
       gsap.to("#cursor2", {
         top: dets.y,
         left: dets.x,
+      });
+    });
+
+  document
+    .querySelector("#swiper")
+    .addEventListener("mouseenter", function (dets) {
+      gsap.to("#cursor2", {
+        scale:1
       });
     });
   document
     .querySelector("#swiper")
     .addEventListener("mouseleave", function (dets) {
       gsap.to("#cursor2", {
-        top: "50%",
-        left: "50%",
+        scale:0
       });
     });
 
+    document
+    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
+   btn.addEventListener("mouseenter", function (dets) {
+      gsap.to("#cursor2", {
+        scale:0
+      });
+    });
+    })
+    
+    document
+    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
+   btn.addEventListener("mouseleave", function (dets) {
+      gsap.to("#cursor2", {
+        scale:1
+      });
+    });
+    })
+    
+
+  
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
