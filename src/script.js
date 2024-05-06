@@ -277,7 +277,7 @@ function page5Animation() {
     .to(
       "#line1 h1",
       {
-        marginBottom: "5vw",
+        y: -400,
         opacity: 0,
       },
       "a"
@@ -285,7 +285,7 @@ function page5Animation() {
     .to(
       "#line2 #first h1",
       {
-        marginRight: "5vw",
+        x: -900,
         opacity: 0,
       },
       "a"
@@ -293,7 +293,7 @@ function page5Animation() {
     .to(
       "#line2 #second h1",
       {
-        marginLeft: "5vw",
+        x: 1000,
         opacity: 0,
       },
       "a"
@@ -301,7 +301,7 @@ function page5Animation() {
     .to(
       "#line3 h1",
       {
-        marginTop: "5vw",
+        y: 400,
         opacity: 0,
       },
       "a"
