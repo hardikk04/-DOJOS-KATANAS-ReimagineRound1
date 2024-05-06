@@ -463,7 +463,7 @@ canvas1();
 
 // Page5 Animation
 
-const page5Animation = () => {
+const page5ScrollAnimation = () => {
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page5",
@@ -517,7 +517,68 @@ const page5Animation = () => {
       "a"
     );
 };
-page5Animation();
+page5ScrollAnimation();
+
+const page5MouseFollower = () => {
+  const videoBox = document.querySelector("#page5 #video");
+  const cursor = document.querySelector("#page5 #cursor");
+
+  const updateCursorPosition = (dets) => {
+    const rect = videoBox.getBoundingClientRect();
+    const x = dets.clientX - rect.left;
+    const y = dets.clientY - rect.top;
+
+    gsap.to(cursor, {
+      left: x + 150,
+      top: y + 150,
+      scale: 1
+    });
+  };
+
+  videoBox.addEventListener("mouseenter", () => {
+    gsap.to(cursor, {
+      scale: 1
+    });
+  });
+
+  videoBox.addEventListener("mousemove", updateCursorPosition);
+
+  videoBox.addEventListener("mouseleave", () => {
+    gsap.to(cursor, {
+      scale: 0
+    });
+  });
+};
+
+page5MouseFollower();
+
+
+
+const page5Click = () => {
+  let flag = 0;
+  const videoBox = document.querySelector("#page5 #video");
+  const video = document.querySelector("#page5 #video video");
+  const cursor = document.querySelector("#page5 #cursor");
+
+  videoBox.addEventListener("click", () => {
+    if (flag === 0) {
+      video.pause()
+      cursor.style.color = "black"; 
+      cursor.style.fontWeight = "700";
+      cursor.innerHTML = "PLAY";
+      flag = 1;
+
+    } else if (flag === 1) {
+      video.play()
+      cursor.style.color = "black";
+      cursor.style.fontWeight = "700"; 
+      cursor.innerHTML = "PAUSE";
+      flag = 0;
+    }
+  });
+};
+page5Click();
+
 
 //  Page 6 Animations
 const page6Animation = () => {

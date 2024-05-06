@@ -599,6 +599,26 @@ nav {
   position: relative;
 }
 
+#page5 #cursor
+{
+  width: 5vw;
+  height: 5vw;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+}
+
+#page5 #cursor h3 {
+  color: black;
+  font-weight: 700;
+}
+
 #page5 h1 {
   font-size: 6vw;
   white-space: nowrap;
