@@ -1,19 +1,15 @@
-/**
- * Importing the libraries
- */
+// Importing the libraries
 import "remixicon/fonts/remixicon.css";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import Lenis from "@studio-freight/lenis";
-// import gsap from "gsap";
-// import ScrollTrigger from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Swiper from "swiper/bundle";
+import "swiper/css/bundle";
 
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-/**
- * Lenis js
- */
+// Lenis js
+
 const lenisJs = () => {
   const lenis = new Lenis();
 
@@ -22,17 +18,14 @@ const lenisJs = () => {
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
+    lenis.raf(time * 500);
   });
 
   gsap.ticker.lagSmoothing(0);
 };
 lenisJs();
 
-
-/**
- * Clutter Animation
- */
+// Clutter Animation
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
   let clutter = "";
@@ -46,44 +39,234 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 
-function darkmode(){
-  var switchAudio = new Audio("sounds/modeSwitch.mp3")
-var root = document.documentElement
-document.querySelector("#dark").addEventListener("click",function(){
-  switchAudio.play()
-  switchAudio.muted = false
-  gsap.to(".nav-left-circle",{
-    left:"63%",
-    backgroundColor:"black"
-  })
-  gsap.to("#dark",{ color:"#fff" })
-  gsap.to("#light",{ color:"black"})
-  root.style.setProperty("--primary","black")
-  root.style.setProperty("--black","#fff")
-  root.style.setProperty("--secondary","black")
+// Nav Animation
+const navAnimation = () => {
+  // Variable to store the last scroll position
+  let lastScrollTop = 0;
+
+  // Function to handle scroll event
+  function handleScroll() {
+    let currentScrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    // Check if user is scrolling up or down
+    if (currentScrollTop > lastScrollTop) {
+      // Scrolling down
+
+      gsap.to("nav", {
+        top: "-20%",
+        duration: 0.5,
+      });
+    } else {
+      // Scrolling up
+      gsap.to("nav", {
+        top: "0%",
+        duration: 0.5,
+      });
+    }
+    if (window.innerHeight < lastScrollTop) {
+      document.querySelector(".nav-center>h1").style.color = "#d91921";
+      gsap.to("nav", {
+        backgroundColor: "#ffffff",
+      });
+      gsap.to(".nav-right i", {
+        color: "#000000",
+      });
+      gsap.to(".nav-right-menu", {
+        border: "1px solid #000000",
+      });
+    } else {
+      document.querySelector(".nav-center>h1").style.color = "#ffffff";
+      gsap.to("nav", {
+        backgroundColor: "transparent",
+      });
+      gsap.to(".nav-right i", {
+        color: "#fff",
+      });
+      gsap.to(".nav-right-menu", {
+        border: "1px solid #fff",
+      });
+    }
+    // Update last scroll position
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
+  // Add scroll event listener
+  window.addEventListener("scroll", handleScroll);
+};
+
+navAnimation();
+
+// Page 1 Animations
+const page1Animations = () => {
+  // Select the circle element
+  const circleElement = document.querySelector(".page1-circle");
+
+  // Create objects to track mouse position and custom cursor position
+  const mouse = { x: 0, y: 0 }; // Track current mouse position
+  const previousMouse = { x: 0, y: 0 }; // Store the previous mouse position
+  const circle = { x: 0, y: 0 }; // Track the circle position
+
+  // Initialize variables to track scaling and rotation
+  let currentScale = 0; // Track current scale value
+  let currentAngle = 0; // Track current angle value
+
+  // Update mouse position on the 'mousemove' event
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+  });
+
+  // Smoothing factor for cursor movement speed (0 = smoother, 1 = instant)
+  const speed = 0.17;
+
+  // Start animation
+  const tick = () => {
+    // MOVE
+    // Calculate circle movement based on mouse position and smoothing
+    circle.x += (mouse.x - circle.x) * speed;
+    circle.y += (mouse.y - circle.y) * speed;
+    // Create a transformation string for cursor translation
+    const translateTransform = `translate(${circle.x}px, ${circle.y}px)`;
+
+    // SQUEEZE
+    // 1. Calculate the change in mouse position (deltaMouse)
+    const deltaMouseX = mouse.x - previousMouse.x;
+    const deltaMouseY = mouse.y - previousMouse.y;
+    // Update previous mouse position for the next frame
+    previousMouse.x = mouse.x;
+    previousMouse.y = mouse.y;
+    // 2. Calculate mouse velocity using Pythagorean theorem and adjust speed
+    const mouseVelocity = Math.min(
+      Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 4,
+      150
+    );
+    // 3. Convert mouse velocity to a value in the range [0, 0.5]
+    const scaleValue = (mouseVelocity / 150) * 0.5;
+    // 4. Smoothly update the current scale
+    currentScale += (scaleValue - currentScale) * speed;
+    // 5. Create a transformation string for scaling
+    const scaleTransform = `scale(${1 + currentScale}, ${1 - currentScale})`;
+
+    // Apply all transformations to the circle element in a specific order: translate -> rotate -> scale
+    circleElement.style.transform = `${translateTransform}  ${scaleTransform}`;
+
+    // Request the next frame to continue the animation
+    window.requestAnimationFrame(tick);
+  };
+
+  // Start the animation loop
+  tick();
+
+  // Mouse enter and Leave animation
+  const canvas = document.querySelector(".webgl");
+  canvas.addEventListener("mouseenter", () => {
+    gsap.to(circleElement, {
+      scale: 1,
+      opacity: 1,
+    });
+  });
+
+  canvas.addEventListener("mouseleave", () => {
+    gsap.to(circleElement, {
+      scale: 0,
+      opacity: 0,
+    });
+  });
+
+  // Page 1 Footer Text Animation
+  gsap.to(".page1-footer-left", {
+    y: 200,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: "#page1",
+      start: "top -0%",
+      end: "top -100%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+};
+page1Animations();
+
+//  Page 2 Animations
+
+const page2Animation = () => {
+  gsap.to("#slide1 h2", {
+    transform: "translateX(-200%)",
+    duration: 10,
+    repeat: -1,
+    ease: "none",
+  });
+  window.addEventListener("wheel", function (dets) {
+    if (dets.deltaY > 0) {
+      gsap.to("#slide1 h2", {
+        transform: "translateX(-200%)",
+        duration: 10,
+        repeat: -1,
+        ease: "none",
+      });
+      gsap.to("#slide1 h2 img", {
+        rotate: 270,
+        duration: 1,
+      });
+    } else {
+      gsap.to("#slide1 h2", {
+        transform: "translateX(0%)",
+        duration: 10,
+        repeat: -1,
+        ease: "none",
+      });
+      gsap.to("#slide1 h2 img", {
+        rotate: 0,
+        duration: 1,
+      });
+    }
+  });
+
+      document.querySelector("#main").addEventListener("mousemove", function (dets) {
+      console.log(dets.y)
+      gsap.to("#cursor2", {
+        top: dets.y,
+        left: dets.x,
+      });
+    });
+
+  document
+    .querySelector("#swiper")
+    .addEventListener("mouseenter", function (dets) {
+      gsap.to("#cursor2", {
+        scale:1
+      });
+    });
+  document
+    .querySelector("#swiper")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to("#cursor2", {
+        scale:0
+      });
+    });
+
+    document
+    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
+   btn.addEventListener("mouseenter", function (dets) {
+      gsap.to("#cursor2", {
+        scale:0
+      });
+    });
+    })
+    
+    document
+    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
+   btn.addEventListener("mouseleave", function (dets) {
+      gsap.to("#cursor2", {
+        scale:1
+      });
+    });
+    })
+    
+
   
-})
-
-document.querySelector("#light").addEventListener("click",function(){
-  switchAudio.play()
-  gsap.to(".nav-left-circle",{
-    left:"5%",
-    backgroundColor:"#d91921"
-  })
-  gsap.to("#light",{ color:"#fff" })
-  gsap.to("#dark",{ color:"#d91921"})
-  root.style.setProperty("--primary","#fff")
-  root.style.setProperty("--black","black")
-  root.style.setProperty("--secondary","#d91921")
-})
-}
-darkmode()
-
-
-/**
- * Page 2 Animations
- */
-function page2Animation() {
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
@@ -100,7 +283,6 @@ function page2Animation() {
       scroller: "body",
       start: "top top",
       end: "top -150%",
-      // markers:true,
       scrub: 2,
       pin: true,
     },
@@ -129,14 +311,21 @@ function page2Animation() {
         delay: 0.1,
       },
       "a"
+    )
+    .to(
+      "#cursor2",
+      {
+        scale: 0,
+        duration: 0,
+        delay: 0.1,
+      },
+      "a"
     );
-}
+};
 page2Animation();
 
-/**
- * Canvas Animations
- */
-function canva1() {
+//  Canvas Animations
+const canvas1 = () => {
   const canvas = document.querySelector("#page3 canvas");
   const context = canvas.getContext("2d");
 
@@ -209,7 +398,7 @@ function canva1() {
       trigger: `#page3>canvas`,
       //   set start end according to preference
       start: `top top`,
-      end: `200% top`,
+      end: `250% top`,
       scroller: `body`,
     },
     onUpdate: render,
@@ -246,21 +435,42 @@ function canva1() {
     pin: true,
     scroller: `body`,
     start: `top top`,
-    end: `200% top`,
+    end: `250% top`,
   });
-}
-canva1();
+  var tlc = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#page3 canvas",
+      scroller: "body",
+      start: "top -10%",
+      end: "top -220%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+  tlc
+    .to(".textc h2", {
+      transform: "translateY(0%)",
+      duration: 0.5,
+      delay: 3,
+    })
+    .to(".textc h2", {
+      transform: "translateY(-108%)",
+      duration: 0.5,
+      delay: 3,
+    });
+};
+canvas1();
 
 // Page5 Animation
 
-function page5Animation() {
+const page5Animation = () => {
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page5",
       scroller: "body",
       // markers: true,
       start: "top 0%",
-      end: "top -300%",
+      end: "top -200%",
       pin: true,
       scrub: true,
     },
@@ -306,12 +516,10 @@ function page5Animation() {
       },
       "a"
     );
-}
+};
 page5Animation();
 
-/**
- * Page 6 Animations
- */
+//  Page 6 Animations
 const page6Animation = () => {
   clutterAnimation(".page6-wrapper>h1");
 
@@ -343,13 +551,17 @@ const page6Animation = () => {
       // markers: true,
     },
   });
-  tl.to(".page6-imgs", {
-    top: "-120%",
-    rotate: "-20deg",
-    left: "-25%",
-    opacity: 1,
-    stagger: 0.3,
-  });
+  tl.to(
+    ".page6-imgs",
+    {
+      top: "-120%",
+      rotate: "-20deg",
+      left: "-25%",
+      stagger: 0.2,
+    },
+    "s"
+  );
+
   tl.to(
     "#page6",
     {
@@ -372,9 +584,65 @@ const page6Animation = () => {
   );
 };
 page6Animation();
+const page7animation = () => {
+  gsap.to(".scoll-speed", {
+    transform: "translateY(-20%)",
+    duration: 1.5,
+    scrollTrigger: {
+      trigger: "#page7",
+      scroll: "body",
+      start: "top bottom",
+      end: "bottom -10%",
+      scrub: 1,
+    },
+  });
+};
 
-Totty.animateSvg("#curve", {
-  ease: "elastic.out(1,0.3)",
-  offsetLeft: 10,
-  offsetRight: 10,
-});
+//  Page  Animations
+
+page7animation();
+
+//  footer Animations
+
+const lineEffect = () => {
+  document
+    .querySelector(".line")
+    .addEventListener("mousemove", function (dets) {
+      gsap.to(".line svg path", {
+        attr: { d: `M -400,50 Q 0,${dets.y} 500,50` },
+        duration: 0.2,
+        ease: "power3.out",
+      });
+    });
+  document
+    .querySelector(".line")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to(".line svg path", {
+        attr: { d: `M -400,50 Q 0,50 500,50` },
+        duration: 2,
+        ease: "elastic.out(1,0.3)",
+      });
+    });
+  document
+    .querySelector(".lineeffect")
+    .addEventListener("mousemove", function (dets) {
+      let valY = dets.y - document.querySelector(".lineeffect").getBoundingClientRect().top;
+      console.log(valY*0.5)
+      gsap.to(".lineeffect svg path", {
+        attr: { d: `M -500,50 Q 0,${valY} 600,50` },
+        duration: 0.2,
+        ease: "power3.out",
+      });
+    });
+
+  document
+    .querySelector(".lineeffect")
+    .addEventListener("mouseleave", function (dets) {
+      gsap.to(".lineeffect svg path", {
+        attr: {d: `M -500,50 Q 0,50 600,50` },
+        duration: 2,
+        ease: "elastic.out(1,0.3)",
+      });
+    });
+};
+lineEffect();
