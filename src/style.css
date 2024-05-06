@@ -12,6 +12,11 @@ html {
   height: 100%;
 }
 
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar width */
+  background: transparent;  /* Make scrollbar transparent */
+}
+
 /* Fonts Loader*/
 @font-face {
   font-family: cocaCola;

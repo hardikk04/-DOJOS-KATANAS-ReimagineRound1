@@ -105,9 +105,18 @@ cursor.y = 0;
 /**
  * Mouse move animation
  */
+
+let canRotationFlag = false;
 canvas.addEventListener("mousemove", (dets) => {
   cursor.x = dets.clientX / window.innerWidth;
   cursor.y = dets.clientY / window.innerHeight;
+
+  if (cursor.x < 0.5) {
+    canRotationFlag = true;
+  } else {
+    canRotationFlag = false;
+  }
+
   gsap.to(camera.position, {
     x: -cursor.x * 0.5,
     y: cursor.y * 0.2,
@@ -163,37 +172,71 @@ const updateCans = (sound) => {
       lineAnimation.restart();
     }
     // Rotates red
-    gsap.from(redModel.rotation, {
-      y: -Math.PI * 3,
-      duration: 0.4,
-      ease: "power1.in",
-      onComplete: () => {
-        // Removes red model
-        redModelGroup.remove(redModel);
+    if (canRotationFlag) {
+      gsap.from(redModel.rotation, {
+        y: -Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes red model
+          redModelGroup.remove(redModel);
 
-        // Rotates grey
-        gsap.from(greyModel.rotation, {
-          y: -Math.PI * 2,
-          duration: 0.5,
-          ease: "power1.out",
-        });
+          // Rotates grey
+          gsap.from(greyModel.rotation, {
+            y: -Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
 
-        // Change page color to white
-        gsap.to("#page1", {
-          backgroundColor: "#ffffff",
-        });
+          // Change page color to white
+          gsap.to("#page1", {
+            backgroundColor: "#ffffff",
+          });
 
-        // Add grey model
-        greyModelGroup.add(greyModel);
-        if (!checkUpdatedGrey) {
-          updateMaterial();
-          checkUpdatedGrey = true;
-        }
+          // Add grey model
+          greyModelGroup.add(greyModel);
+          if (!checkUpdatedGrey) {
+            updateMaterial();
+            checkUpdatedGrey = true;
+          }
 
-        // Turn the flag to grey
-        flag = "grey";
-      },
-    });
+          // Turn the flag to grey
+          flag = "grey";
+        },
+      });
+    } else {
+      gsap.from(redModel.rotation, {
+        y: Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes red model
+          redModelGroup.remove(redModel);
+
+          // Rotates grey
+          gsap.from(greyModel.rotation, {
+            y: Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
+
+          // Change page color to white
+          gsap.to("#page1", {
+            backgroundColor: "#ffffff",
+          });
+
+          // Add grey model
+          greyModelGroup.add(greyModel);
+          if (!checkUpdatedGrey) {
+            updateMaterial();
+            checkUpdatedGrey = true;
+          }
+
+          // Turn the flag to grey
+          flag = "grey";
+        },
+      });
+    }
   }
   // Grey to Black
   else if (flag === "grey") {
@@ -227,37 +270,71 @@ const updateCans = (sound) => {
     }
 
     // Rotates grey
-    gsap.from(greyModel.rotation, {
-      y: -Math.PI * 3,
-      duration: 0.4,
-      ease: "power1.in",
-      onComplete: () => {
-        // Removes grey
-        greyModelGroup.remove(greyModel);
+    if (canRotationFlag) {
+      gsap.from(greyModel.rotation, {
+        y: -Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes grey
+          greyModelGroup.remove(greyModel);
 
-        // Rotates black
-        gsap.from(blackModel.rotation, {
-          y: -Math.PI * 2,
-          duration: 0.5,
-          ease: "power1.out",
-        });
+          // Rotates black
+          gsap.from(blackModel.rotation, {
+            y: -Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
 
-        // Change page color to black
-        gsap.to("#page1", {
-          backgroundColor: "#000",
-        });
+          // Change page color to black
+          gsap.to("#page1", {
+            backgroundColor: "#000",
+          });
 
-        // Add black model
-        blackModelGroup.add(blackModel);
-        if (!checkUpdatedBlack) {
-          updateMaterial();
-          checkUpdatedBlack = true;
-        }
+          // Add black model
+          blackModelGroup.add(blackModel);
+          if (!checkUpdatedBlack) {
+            updateMaterial();
+            checkUpdatedBlack = true;
+          }
 
-        // Turn the flag to black
-        flag = "black";
-      },
-    });
+          // Turn the flag to black
+          flag = "black";
+        },
+      });
+    } else {
+      gsap.from(greyModel.rotation, {
+        y: Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes grey
+          greyModelGroup.remove(greyModel);
+
+          // Rotates black
+          gsap.from(blackModel.rotation, {
+            y: Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
+
+          // Change page color to black
+          gsap.to("#page1", {
+            backgroundColor: "#000",
+          });
+
+          // Add black model
+          blackModelGroup.add(blackModel);
+          if (!checkUpdatedBlack) {
+            updateMaterial();
+            checkUpdatedBlack = true;
+          }
+
+          // Turn the flag to black
+          flag = "black";
+        },
+      });
+    }
   }
   // Black to Red
   else {
@@ -291,31 +368,59 @@ const updateCans = (sound) => {
     }
 
     // Rotates black
-    gsap.from(blackModel.rotation, {
-      y: -Math.PI * 3,
-      duration: 0.4,
-      ease: "power1.in",
-      onComplete: () => {
-        // Removes black
-        blackModelGroup.remove(blackModel);
-        gsap.from(redModel.rotation, {
-          y: -Math.PI * 2,
-          duration: 0.5,
-          ease: "power1.out",
-        });
+    if (canRotationFlag) {
+      gsap.from(blackModel.rotation, {
+        y: -Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes black
+          blackModelGroup.remove(blackModel);
+          gsap.from(redModel.rotation, {
+            y: -Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
 
-        // Change page color to red
-        gsap.to("#page1", {
-          backgroundColor: "#d91921",
-        });
+          // Change page color to red
+          gsap.to("#page1", {
+            backgroundColor: "#d91921",
+          });
 
-        // Add red model
-        redModelGroup.add(redModel);
+          // Add red model
+          redModelGroup.add(redModel);
 
-        // Turn the flag to red
-        flag = "red";
-      },
-    });
+          // Turn the flag to red
+          flag = "red";
+        },
+      });
+    } else {
+      gsap.from(blackModel.rotation, {
+        y: Math.PI * 3,
+        duration: 0.4,
+        ease: "power1.in",
+        onComplete: () => {
+          // Removes black
+          blackModelGroup.remove(blackModel);
+          gsap.from(redModel.rotation, {
+            y: Math.PI * 2,
+            duration: 0.5,
+            ease: "power1.out",
+          });
+
+          // Change page color to red
+          gsap.to("#page1", {
+            backgroundColor: "#d91921",
+          });
+
+          // Add red model
+          redModelGroup.add(redModel);
+
+          // Turn the flag to red
+          flag = "red";
+        },
+      });
+    }
   }
 };
 
@@ -431,24 +536,35 @@ renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 /**
  * Clock
  */
-const clock = new THREE.Clock();
+let time = Date.now();
 
+let speed = 0.5;
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
+  // Time
+  const currentTime = Date.now();
+  const deltaTime = currentTime - time;
+  time = currentTime;
+
+  if (canRotationFlag) {
+    speed -= deltaTime * 0.0005;
+  } else {
+    speed += deltaTime * 0.0005;
+  }
+
   if (redModelGroup) {
-    redModelGroup.rotation.y = elapsedTime * 0.5;
+    redModelGroup.rotation.y = speed;
     redModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
   if (greyModelGroup) {
-    greyModelGroup.rotation.y = elapsedTime * 0.5;
+    greyModelGroup.rotation.y = speed;
     greyModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed* 0.2) * 0.2) * 1.2;
   }
   if (blackModelGroup) {
-    blackModelGroup.rotation.y = elapsedTime * 0.5;
+    blackModelGroup.rotation.y = speed;
     blackModelGroup.rotation.z =
-      Math.sin(Math.cos(elapsedTime * 0.2) * 0.2) * 1.2;
+      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
 
   // controls.update();
