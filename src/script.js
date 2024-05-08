@@ -461,6 +461,40 @@ const canvas1 = () => {
 };
 canvas1();
 
+// Page4HoverAnimation
+
+const page4HoverAnimation = () => {
+  var elems = document.querySelectorAll("#page4 .section")
+
+  elems.forEach((elem) => {
+    var rotate = 0
+    var diffrotate = 0
+
+    elem.addEventListener("mousemove", (dets) => {
+
+      var diff = dets.clientY - elem.getBoundingClientRect().top;
+      diffrotate = dets.clientX - rotate;
+      rotate = dets.clientX;
+
+      gsap.to(elem.querySelector("img"), {
+        opacity: 1,
+        top: diff - 100,
+        left: dets.clientX - 150,
+        ease: "power4",
+        duration: 0.5,
+        rotate: gsap.utils.clamp(-15, 15, diffrotate)
+      });
+    });
+
+    elem.addEventListener("mouseleave", (dets) => {
+      gsap.to(elem.querySelector("img"), {
+        opacity: 0
+      })
+    })
+  })
+}
+page4HoverAnimation()
+
 // Page5 Animation
 
 const page5ScrollAnimation = () => {
@@ -478,8 +512,8 @@ const page5ScrollAnimation = () => {
   tl.to(
     "#page5 #video",
     {
-      width: "108vw",
-      height: "108vh",
+      width: "109vw",
+      height: "109vh",
       ease: "power4",
     },
     "a"
@@ -549,10 +583,7 @@ const page5MouseFollower = () => {
     });
   });
 };
-
 page5MouseFollower();
-
-
 
 const page5Click = () => {
   let flag = 0;

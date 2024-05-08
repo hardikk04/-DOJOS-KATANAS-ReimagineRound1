@@ -481,6 +481,7 @@ nav {
   background-color: #fff;
   position: relative;
   padding: 1vw 2vw;
+  padding-top: 0vw;
 }
 
 #page4 .heading {
@@ -488,7 +489,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 2vw;
-  margin-bottom: -2vw;
 }
 
 #page4 .heading h1 {
@@ -497,7 +497,6 @@ nav {
   line-height: 6vw;
   font-weight: 600;
   letter-spacing: -0.2vw;
-  font-size: 4vw;
   color: #d91921;
 }
 
@@ -519,41 +518,30 @@ nav {
 
 #page4 .section {
   width: 100%;
-  height: 18vh;
+  height: 24vh;
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  gap: 2vw;
   position: relative;
   padding-left: 1vw;
+  transition: all ease 0.7s;
 }
 
+/* #page4 #section1 {
+  border-top: 1px solid black;
+} */
+
 #page4 .section h3 {
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: 600;
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.59);
   z-index: 99;
 }
 
-#page4 .section img
-{
-  height: 8vw;
-  animation: rotation 15s linear infinite forwards;
-  z-index: 99;
-}
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 #page4 .section:hover
 {
+  background-color: black;
   cursor: pointer;
 }
 
@@ -581,6 +569,28 @@ nav {
 #page4 .section i {
   font-size: 2.5vw;
   color: #d91921;
+}
+
+#page4 .section #image
+{
+  width: 30vw;
+  height: 25vw;
+  position: absolute;
+  z-index: 9999;
+  opacity: 0;
+}
+
+#page4 .section img
+{
+  width: 28vw;
+  height: 22vw;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
 }
 /* Page4 ends */
 
