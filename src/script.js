@@ -477,20 +477,22 @@ const page4HoverAnimation = () => {
       rotate = dets.clientX;
 
       gsap.to(elem.querySelector("img"), {
-        opacity: 1,
+        scale: 1,
         top: diff - 100,
         left: dets.clientX - 150,
-        ease: "power4",
+        ease: "sine.inout",
         duration: 0.5,
-        rotate: gsap.utils.clamp(-15, 15, diffrotate)
+        rotate: gsap.utils.clamp(-20, 20, diffrotate)
       });
     });
 
     elem.addEventListener("mouseleave", (dets) => {
+      console.log("Mouse left");
       gsap.to(elem.querySelector("img"), {
-        opacity: 0
+        scale: 0,
       })
     })
+    
   })
 }
 page4HoverAnimation()
@@ -559,12 +561,12 @@ const page5MouseFollower = () => {
 
   const updateCursorPosition = (dets) => {
     const rect = videoBox.getBoundingClientRect();
-    const x = dets.clientX - rect.left;
-    const y = dets.clientY - rect.top;
+    const x = dets.clientX ;
+    const y = dets.clientY - 80;
 
     gsap.to(cursor, {
-      left: x + 150,
-      top: y + 150,
+      left: x,
+      top: y,
       scale: 1
     });
   };
@@ -609,7 +611,6 @@ const page5Click = () => {
   });
 };
 page5Click();
-
 
 //  Page 6 Animations
 const page6Animation = () => {
