@@ -224,8 +224,9 @@ const page2Animation = () => {
     }
   });
 
-      document.querySelector("#main").addEventListener("mousemove", function (dets) {
-      console.log(dets.y)
+  document
+    .querySelector("#main")
+    .addEventListener("mousemove", function (dets) {
       gsap.to("#cursor2", {
         top: dets.y,
         left: dets.x,
@@ -236,37 +237,33 @@ const page2Animation = () => {
     .querySelector("#swiper")
     .addEventListener("mouseenter", function (dets) {
       gsap.to("#cursor2", {
-        scale:1
+        scale: 1,
       });
     });
   document
     .querySelector("#swiper")
     .addEventListener("mouseleave", function (dets) {
       gsap.to("#cursor2", {
-        scale:0
+        scale: 0,
       });
     });
 
-    document
-    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
-   btn.addEventListener("mouseenter", function (dets) {
+  document.querySelectorAll("#swiper-btn .btns").forEach(function (btn) {
+    btn.addEventListener("mouseenter", function (dets) {
       gsap.to("#cursor2", {
-        scale:0
+        scale: 0,
       });
     });
-    })
-    
-    document
-    .querySelectorAll("#swiper-btn .btns").forEach(function(btn){
-   btn.addEventListener("mouseleave", function (dets) {
-      gsap.to("#cursor2", {
-        scale:1
-      });
-    });
-    })
-    
+  });
 
-  
+  document.querySelectorAll("#swiper-btn .btns").forEach(function (btn) {
+    btn.addEventListener("mouseleave", function (dets) {
+      gsap.to("#cursor2", {
+        scale: 1,
+      });
+    });
+  });
+
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
@@ -719,8 +716,10 @@ const lineEffect = () => {
   document
     .querySelector(".lineeffect")
     .addEventListener("mousemove", function (dets) {
-      let valY = dets.y - document.querySelector(".lineeffect").getBoundingClientRect().top;
-      console.log(valY*0.5)
+      let valY =
+        dets.y -
+        document.querySelector(".lineeffect").getBoundingClientRect().top;
+      console.log(valY * 0.5);
       gsap.to(".lineeffect svg path", {
         attr: { d: `M -500,50 Q 0,${valY} 600,50` },
         duration: 0.2,
@@ -732,7 +731,7 @@ const lineEffect = () => {
     .querySelector(".lineeffect")
     .addEventListener("mouseleave", function (dets) {
       gsap.to(".lineeffect svg path", {
-        attr: {d: `M -500,50 Q 0,50 600,50` },
+        attr: { d: `M -500,50 Q 0,50 600,50` },
         duration: 2,
         ease: "elastic.out(1,0.3)",
       });
