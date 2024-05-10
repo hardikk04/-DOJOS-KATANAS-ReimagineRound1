@@ -457,9 +457,45 @@ const canvas1 = () => {
 };
 canvas1();
 
+// Page4HoverAnimation
+
+const page4HoverAnimation = () => {
+  var elems = document.querySelectorAll("#page4 .section")
+
+  elems.forEach((elem) => {
+    var rotate = 0
+    var diffrotate = 0
+
+    elem.addEventListener("mousemove", (dets) => {
+
+      var diff = dets.clientY - elem.getBoundingClientRect().top;
+      diffrotate = dets.clientX - rotate;
+      rotate = dets.clientX;
+
+      gsap.to(elem.querySelector("img"), {
+        scale: 1,
+        top: diff - 100,
+        left: dets.clientX - 150,
+        ease: "sine.inout",
+        duration: 0.5,
+        rotate: gsap.utils.clamp(-20, 20, diffrotate)
+      });
+    });
+
+    elem.addEventListener("mouseleave", (dets) => {
+      console.log("Mouse left");
+      gsap.to(elem.querySelector("img"), {
+        scale: 0,
+      })
+    })
+    
+  })
+}
+page4HoverAnimation()
+
 // Page5 Animation
 
-const page5Animation = () => {
+const page5ScrollAnimation = () => {
   var tl = gsap.timeline({
     scrollTrigger: {
       trigger: "#page5",
@@ -483,7 +519,7 @@ const page5Animation = () => {
     .to(
       "#line1 h1",
       {
-        marginBottom: "5vw",
+        y: -550,
         opacity: 0,
       },
       "a"
@@ -491,7 +527,7 @@ const page5Animation = () => {
     .to(
       "#line2 #first h1",
       {
-        marginRight: "5vw",
+        x: -1000,
         opacity: 0,
       },
       "a"
@@ -499,7 +535,7 @@ const page5Animation = () => {
     .to(
       "#line2 #second h1",
       {
-        marginLeft: "5vw",
+        x: 1000,
         opacity: 0,
       },
       "a"
@@ -507,13 +543,70 @@ const page5Animation = () => {
     .to(
       "#line3 h1",
       {
-        marginTop: "5vw",
+        y: 550,
         opacity: 0,
       },
       "a"
     );
 };
-page5Animation();
+page5ScrollAnimation();
+
+const page5MouseFollower = () => {
+  const videoBox = document.querySelector("#page5 #video");
+  const cursor = document.querySelector("#page5 #cursor");
+
+  const updateCursorPosition = (dets) => {
+    const rect = videoBox.getBoundingClientRect();
+    const x = dets.clientX ;
+    const y = dets.clientY - 80;
+
+    gsap.to(cursor, {
+      left: x,
+      top: y,
+      scale: 1
+    });
+  };
+
+  videoBox.addEventListener("mouseenter", () => {
+    gsap.to(cursor, {
+      scale: 1
+    });
+  });
+
+  videoBox.addEventListener("mousemove", updateCursorPosition);
+
+  videoBox.addEventListener("mouseleave", () => {
+    gsap.to(cursor, {
+      scale: 0
+    });
+  });
+};
+page5MouseFollower();
+
+const page5Click = () => {
+  let flag = 0;
+  const videoBox = document.querySelector("#page5 #video");
+  const video = document.querySelector("#page5 #video video");
+  const cursor = document.querySelector("#page5 #cursor");
+
+  videoBox.addEventListener("click", () => {
+    if (flag === 0) {
+      video.pause()
+      cursor.style.color = "black"; 
+      cursor.style.fontWeight = "700";
+      cursor.innerHTML = "PLAY";
+      flag = 1;
+
+    } else if (flag === 1) {
+      video.play()
+      cursor.style.color = "black";
+      cursor.style.fontWeight = "700"; 
+      cursor.innerHTML = "PAUSE";
+      flag = 0;
+    }
+  });
+};
+page5Click();
 
 //  Page 6 Animations
 const page6Animation = () => {
