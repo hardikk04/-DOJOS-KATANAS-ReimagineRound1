@@ -371,8 +371,8 @@ nav {
   color: #fff;
   font-weight: 800;
   background-color: rgba(0, 0, 0, 0.408);
-  padding: 2.5vw;
-  transform: scale(0.7);
+  padding: 4vw;
+  transform: scale(0.4);
   border-radius: 50%;
 }
 .swiper {
@@ -390,7 +390,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   overflow: hidden;
 }
 
