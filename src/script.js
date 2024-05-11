@@ -461,14 +461,13 @@ canvas1();
 // Page4HoverAnimation
 
 const page4HoverAnimation = () => {
-  var elems = document.querySelectorAll("#page4 .section")
+  var elems = document.querySelectorAll("#page4 .section");
 
   elems.forEach((elem) => {
-    var rotate = 0
-    var diffrotate = 0
+    var rotate = 0;
+    var diffrotate = 0;
 
     elem.addEventListener("mousemove", (dets) => {
-
       var diff = dets.clientY - elem.getBoundingClientRect().top;
       diffrotate = dets.clientX - rotate;
       rotate = dets.clientX;
@@ -479,7 +478,7 @@ const page4HoverAnimation = () => {
         left: dets.clientX - 150,
         ease: "sine.inout",
         duration: 0.5,
-        rotate: gsap.utils.clamp(-20, 20, diffrotate)
+        rotate: gsap.utils.clamp(-20, 20, diffrotate),
       });
     });
 
@@ -487,12 +486,11 @@ const page4HoverAnimation = () => {
       console.log("Mouse left");
       gsap.to(elem.querySelector("img"), {
         scale: 0,
-      })
-    })
-    
-  })
-}
-page4HoverAnimation()
+      });
+    });
+  });
+};
+page4HoverAnimation();
 
 // Page5 Animation
 
@@ -558,19 +556,19 @@ const page5MouseFollower = () => {
 
   const updateCursorPosition = (dets) => {
     const rect = videoBox.getBoundingClientRect();
-    const x = dets.clientX ;
+    const x = dets.clientX;
     const y = dets.clientY - 80;
 
     gsap.to(cursor, {
       left: x,
       top: y,
-      scale: 1
+      scale: 1,
     });
   };
 
   videoBox.addEventListener("mouseenter", () => {
     gsap.to(cursor, {
-      scale: 1
+      scale: 1,
     });
   });
 
@@ -578,7 +576,7 @@ const page5MouseFollower = () => {
 
   videoBox.addEventListener("mouseleave", () => {
     gsap.to(cursor, {
-      scale: 0
+      scale: 0,
     });
   });
 };
@@ -592,16 +590,15 @@ const page5Click = () => {
 
   videoBox.addEventListener("click", () => {
     if (flag === 0) {
-      video.pause()
-      cursor.style.color = "black"; 
+      video.pause();
+      cursor.style.color = "black";
       cursor.style.fontWeight = "700";
       cursor.innerHTML = "PLAY";
       flag = 1;
-
     } else if (flag === 1) {
-      video.play()
+      video.play();
       cursor.style.color = "black";
-      cursor.style.fontWeight = "700"; 
+      cursor.style.fontWeight = "700";
       cursor.innerHTML = "PAUSE";
       flag = 0;
     }
@@ -660,18 +657,145 @@ const page6Animation = () => {
     "same"
   );
 
-  tl.to(
-    ".page6-wrapper>h1>span",
-    {
-      opacity: 0,
-      y: -250,
-      stagger: {
-        each: 0.1,
-        from: "random",
-      },
-    },
-    "same"
-  );
+  const allImgs = document.querySelectorAll(".page6-imgs");
+  clutterAnimation(".page6-text1");
+  clutterAnimation(".page6-text2");
+  clutterAnimation(".page6-text3");
+  clutterAnimation(".page6-text4");
+  clutterAnimation(".page6-text5");
+  allImgs.forEach((img, index) => {
+    img.addEventListener("mouseenter", () => {
+      if (index === 0) {
+        gsap.to(".page6-overlay1", {
+          opacity: 1,
+        });
+        gsap.to(".page6-text1>span", {
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 1) {
+        gsap.to(".page6-overlay2", {
+          opacity: 1,
+        });
+        gsap.to(".page6-text2>span", {
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 2) {
+        gsap.to(".page6-overlay3", {
+          opacity: 1,
+        });
+        gsap.to(".page6-text3>span", {
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 3) {
+        gsap.to(".page6-overlay4", {
+          opacity: 1,
+        });
+        gsap.to(".page6-text4>span", {
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else {
+        gsap.to(".page6-overlay5", {
+          opacity: 1,
+        });
+        gsap.to(".page6-text5>span", {
+          opacity: 1,
+          scale: 1,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      }
+    });
+    img.addEventListener("mouseleave", () => {
+      if (index === 0) {
+        gsap.to(".page6-overlay1", {
+          opacity: 0,
+          delay: 0.5,
+        });
+        gsap.to(".page6-text1>span", {
+          opacity: 0,
+          scale: 0,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 1) {
+        gsap.to(".page6-overlay2", {
+          opacity: 0,
+          delay: 0.5,
+        });
+        gsap.to(".page6-text2>span", {
+          opacity: 0,
+          scale: 0,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 2) {
+        gsap.to(".page6-overlay3", {
+          opacity: 0,
+          delay: 0.5,
+        });
+        gsap.to(".page6-text3>span", {
+          opacity: 0,
+          scale: 0,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else if (index === 3) {
+        gsap.to(".page6-overlay4", {
+          opacity: 0,
+          delay: 0.5,
+        });
+        gsap.to(".page6-text4>span", {
+          opacity: 0,
+          scale: 0,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      } else {
+        gsap.to(".page6-overlay5", {
+          opacity: 0,
+          delay: 0.5,
+        });
+        gsap.to(".page6-text5>span", {
+          opacity: 0,
+          scale: 0,
+          stagger: {
+            amount: 0.6,
+            from: "center",
+          },
+        });
+      }
+    });
+  });
 };
 page6Animation();
 const page7animation = () => {

@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: gilroy;
 }
 
 body,
@@ -24,7 +23,12 @@ body::-webkit-scrollbar-track {
 
 /* Customize scrollbar handle */
 body::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust handle color and transparency */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust handle color and transparency */
   border-radius: 3px; /* Adjust border radius to match the design */
 }
 
@@ -134,7 +138,8 @@ body::-webkit-scrollbar-thumb:active {
 nav {
   cursor: auto;
   position: fixed;
-  padding: 1vw 2vw;
+  padding: 0vw 2vw;
+  padding-top: .5vw;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -718,14 +723,40 @@ nav {
   top: 110%;
   height: 90vh;
   width: 70vw;
-  background-color: #fff;
   /* rotate: -5deg; */
   right: -25%;
   opacity: 1;
   overflow: hidden;
 }
 
-.page6-imgs > img {
+.page6-overlay > h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8.5vw;
+  white-space: nowrap;
+  z-index: 9;
+  color: #fff;
+  font-family: cocaCola;
+  font-weight: 100;
+}
+
+.page6-overlay > h1 > span {
+  scale: 0;
+}
+
+.page6-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0000007e;
+  opacity: 0;
+}
+
+.page6-imgs img {
   height: 100%;
   width: 100%;
   object-fit: cover;
