@@ -506,15 +506,15 @@ nav {
   width: 100%;
   background-color: #fff;
   position: relative;
-  padding: 1vw 2vw;
-  padding-top: 0vw;
 }
 
 #page4 .heading {
-  height: 12vw;
+  height: 20vh;
   display: flex;
   align-items: center;
   gap: 2vw;
+  font-family: heading;
+  padding-left: 1vw;
 }
 
 #page4 .heading h1 {
@@ -522,7 +522,6 @@ nav {
   font-weight: 600;
   line-height: 6vw;
   font-weight: 600;
-  letter-spacing: -0.2vw;
   color: #d91921;
 }
 
@@ -544,13 +543,14 @@ nav {
 
 #page4 .section {
   width: 100%;
-  height: 24vh;
+  height: 20vh;
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   position: relative;
   padding-left: 1vw;
   transition: all ease 0.7s;
+  font-family: lightfont;
 }
 
 #page4 #section1 {
@@ -558,36 +558,22 @@ nav {
 }
 
 #page4 .section h3 {
-  font-size: 5vw;
+  font-size: 4vw;
   font-weight: 600;
   text-transform: capitalize;
-  color: rgba(0, 0, 0, 0.59);
+  color: rgb(80, 80, 80);
   z-index: 99;
+  transition: all ease 0.3s;
 }
 
 #page4 .section:hover {
-  background-color: black;
+  background-color: rgb(49, 49, 49);
   cursor: pointer;
 }
 
 #page4 .section:hover h3 {
+  transform: translateX(5%);
   color: white;
-}
-
-#page4 .section::after {
-  content: "";
-  width: 0%;
-  height: 100%;
-  background-color: #000;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  z-index: 1;
-  transition: all ease 0.35s;
-}
-
-#page4 .section:hover::after {
-  width: 100%;
 }
 
 #page4 .section i {
@@ -610,9 +596,6 @@ nav {
   scale: 0;
   pointer-events: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(0, 0);
 }
 /* Page4 ends */
 
