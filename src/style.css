@@ -111,6 +111,9 @@ body::-webkit-scrollbar-thumb:active {
   width: 100%;
   height: 100%;
   background: radial-gradient(circle, transparent, #000000a7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .page1-circle {
