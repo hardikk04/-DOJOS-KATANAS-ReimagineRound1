@@ -41,68 +41,96 @@ const clutterAnimation = (element) => {
 
 // Nav Animation
 
-const navigationAnimation = () =>{
-  let menubt = document.querySelector(".nav-right-menu")
-let flag = true
-var metl = gsap.timeline({paused:true,duration:.02})
-metl
-.to("#li1 ,#li2",{
-  top:"50%",
- },"b")
- .to("#li1",{
-  rotate:45,
- },"a")
- .to("#li2",{
-  rotate:-45,
- },"a")
-document.querySelector(".nav-right-menu").addEventListener("click",function(){
- if(flag === true){
- gsap.fromTo("#navpage",{
-  clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)"
- },
- {
-  clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
-  ease: "power4.in",
-  duration:1
- })
- gsap.fromTo("#navpage h2",{
-  y:10,
-  opacity:0,
- },{
-  y:0,
-  opacity:1,
-  stagger:{
-    amount:.3
-  },
-  delay:.8
- })
- metl.play()
- flag = false
- }
- else{
-  gsap.fromTo("#navpage",{
-    clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)"
-   },{
-    clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-    ease: "power4.in",
-    duration:1
-   })
-   gsap.fromTo("#navpage h2",{
-    y:0,
-    opacity:1,
-   },{
-    y:-10,
-    opacity:0,
-    stagger:{
-      amount:.3
-    },
-   })
-   metl.reverse()
- flag = true
- }
-})
-}
-navigationAnimation()
+const navigationAnimation = () => {
+  let menubt = document.querySelector(".nav-right-menu");
+  let flag = true;
+  var metl = gsap.timeline({ paused: true, duration: 0.02 });
+  metl
+    .to(
+      "#li1 ,#li2",
+      {
+        top: "50%",
+      },
+      "b"
+    )
+    .to(
+      "#li1",
+      {
+        rotate: 45,
+      },
+      "a"
+    )
+    .to(
+      "#li2",
+      {
+        rotate: -45,
+      },
+      "a"
+    );
+  document
+    .querySelector(".nav-right-menu")
+    .addEventListener("click", function () {
+      if (flag === true) {
+        gsap.fromTo(
+          "#navpage",
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+          },
+          {
+            clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+            ease: "power4.in",
+            duration: 1,
+          }
+        );
+        gsap.fromTo(
+          "#navpage h2",
+          {
+            y: 10,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: {
+              amount: 0.3,
+            },
+            delay: 0.8,
+          }
+        );
+        metl.play();
+        flag = false;
+      } else {
+        gsap.fromTo(
+          "#navpage",
+          {
+            clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+          },
+          {
+            clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+            ease: "power4.in",
+            duration: 1,
+          }
+        );
+        gsap.fromTo(
+          "#navpage h2",
+          {
+            y: 0,
+            opacity: 1,
+          },
+          {
+            y: -10,
+            opacity: 0,
+            stagger: {
+              amount: 0.3,
+            },
+          }
+        );
+        metl.reverse();
+        flag = true;
+      }
+    });
+};
+navigationAnimation();
 
 const navAnimation = () => {
   // Variable to store the last scroll position
@@ -129,9 +157,12 @@ const navAnimation = () => {
       });
     }
     if (window.innerHeight < lastScrollTop) {
-      document.querySelector(".nav-center>h1").style.color = "#d91921";
-      gsap.to("nav", {
-        backgroundColor: "#ffffff",
+      gsap.to(".nav-center>h1", {
+        color: "#d91921",
+      });
+
+      gsap.to(".nav-overlay", {
+        backdropFilter: "blur(5px)",
       });
       gsap.to(".nav-right i", {
         color: "#000000",
@@ -140,12 +171,15 @@ const navAnimation = () => {
         border: "1px solid #000000",
       });
       gsap.to(".nav-right-menu .menu-line", {
-        backgroundColor:"#000",
+        backgroundColor: "#000",
       });
     } else {
-      document.querySelector(".nav-center>h1").style.color = "#ffffff";
-      gsap.to("nav", {
-        backgroundColor: "transparent",
+      gsap.to(".nav-center>h1", {
+        color: "#ffffff",
+      });
+
+      gsap.to(".nav-overlay", {
+        backdropFilter: "blur(0px)",
       });
       gsap.to(".nav-right i", {
         color: "#fff",
@@ -154,7 +188,7 @@ const navAnimation = () => {
         border: "1px solid #fff",
       });
       gsap.to(".nav-right-menu .menu-line", {
-        backgroundColor:"#fff",
+        backgroundColor: "#fff",
       });
     }
     // Update last scroll position
