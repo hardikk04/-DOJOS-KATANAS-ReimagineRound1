@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { gsap } from "gsap";
@@ -43,7 +42,13 @@ const updateMaterial = () => {
 /**
  * Loaders
  */
-const gltfLoader = new GLTFLoader();
+const loadingManager = new THREE.LoadingManager(
+  // Loaded
+  () => {},
+  // Process
+  () => {}
+);
+const gltfLoader = new GLTFLoader(loadingManager);
 
 /**
  * DRACO Loader
@@ -166,6 +171,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.playbackRate = 3.0
       switchAudio.play();
 
       // Restart the animation on click
@@ -263,6 +269,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.playbackRate = 3.0
       switchAudio.play();
 
       // Restart the animation on click
@@ -361,6 +368,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
+      switchAudio.playbackRate = 3.0
       switchAudio.play();
 
       // Restart the animation on click
@@ -515,12 +523,6 @@ window.addEventListener("resize", () => {
 });
 
 /**
- * Contrls
- */
-// const controls = new OrbitControls(camera, canvas);
-// controls.enableDamping = true;
-
-/**
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
@@ -553,21 +555,16 @@ const tick = () => {
 
   if (redModelGroup) {
     redModelGroup.rotation.y = speed;
-    redModelGroup.rotation.z =
-      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
+    redModelGroup.rotation.z = Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
   if (greyModelGroup) {
     greyModelGroup.rotation.y = speed;
-    greyModelGroup.rotation.z =
-      Math.sin(Math.cos(speed* 0.2) * 0.2) * 1.2;
+    greyModelGroup.rotation.z = Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
   if (blackModelGroup) {
     blackModelGroup.rotation.y = speed;
-    blackModelGroup.rotation.z =
-      Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
+    blackModelGroup.rotation.z = Math.sin(Math.cos(speed * 0.2) * 0.2) * 1.2;
   }
-
-  // controls.update();
 
   renderer.render(scene, camera);
   requestAnimationFrame(tick);
