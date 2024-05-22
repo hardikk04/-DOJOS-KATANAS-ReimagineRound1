@@ -421,175 +421,175 @@ const page2Animation = () => {
 page2Animation();
 
 //  Canvas Animations
-// const canvas1 = () => {
-//   const canvas = document.querySelector("#page3 canvas");
-//   const context = canvas.getContext("2d");
+const canvas1 = () => {
+  const canvas = document.querySelector("#page3 canvas");
+  const context = canvas.getContext("2d");
 
-//   canvas.width = window.innerWidth;
-//   canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-//   window.addEventListener("resize", function () {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-//     render();
-//   });
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
 
-//   function files(index) {
-//     var data = `
-//     canvas/canvas00064.png
-//     canvas/canvas00065.png
-//     canvas/canvas00066.png
-//     canvas/canvas00067.png
-//     canvas/canvas00068.png
-//     canvas/canvas00069.png
-//     canvas/canvas00070.png
-//     canvas/canvas00071.png
-//     canvas/canvas00072.png
-//     canvas/canvas00073.png
-//     canvas/canvas00074.png
-//     canvas/canvas00075.png
-//     canvas/canvas00076.png
-//     canvas/canvas00077.png
-//     canvas/canvas00078.png
-//     canvas/canvas00079.png
-//     canvas/canvas00080.png
-//     canvas/canvas00081.png
-//     canvas/canvas00082.png
-//     canvas/canvas00083.png
-//     canvas/canvas00084.png
-//     canvas/canvas00085.png
-//     canvas/canvas00086.png
-//     canvas/canvas00087.png
-//     canvas/canvas00088.png
-//     canvas/canvas00089.png
-//     canvas/canvas00090.png
-//     canvas/canvas00091.png
-//     canvas/canvas00092.png
-//     canvas/canvas00093.png
-//     canvas/canvas00094.png
-//     canvas/canvas00095.png
-//    `;
-//     return data.split("\n")[index];
-//   }
+  function files(index) {
+    var data = `
+    canvas/canvas00064.png
+    canvas/canvas00065.png
+    canvas/canvas00066.png
+    canvas/canvas00067.png
+    canvas/canvas00068.png
+    canvas/canvas00069.png
+    canvas/canvas00070.png
+    canvas/canvas00071.png
+    canvas/canvas00072.png
+    canvas/canvas00073.png
+    canvas/canvas00074.png
+    canvas/canvas00075.png
+    canvas/canvas00076.png
+    canvas/canvas00077.png
+    canvas/canvas00078.png
+    canvas/canvas00079.png
+    canvas/canvas00080.png
+    canvas/canvas00081.png
+    canvas/canvas00082.png
+    canvas/canvas00083.png
+    canvas/canvas00084.png
+    canvas/canvas00085.png
+    canvas/canvas00086.png
+    canvas/canvas00087.png
+    canvas/canvas00088.png
+    canvas/canvas00089.png
+    canvas/canvas00090.png
+    canvas/canvas00091.png
+    canvas/canvas00092.png
+    canvas/canvas00093.png
+    canvas/canvas00094.png
+    canvas/canvas00095.png
+   `;
+    return data.split("\n")[index];
+  }
 
-//   const frameCount = 32;
+  const frameCount = 32;
 
-//   const images = [];
-//   const imageSeq = {
-//     frame: 1,
-//   };
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-//   for (let i = 0; i < frameCount; i++) {
-//     const img = new Image();
-//     img.src = files(i);
-//     images.push(img);
-//   }
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-//   gsap.to(imageSeq, {
-//     frame: frameCount - 1,
-//     snap: "frame",
-//     ease: `none`,
-//     scrollTrigger: {
-//       scrub: 0.15,
-//       trigger: `#page3>canvas`,
-//       //   set start end according to preference
-//       start: `top top`,
-//       end: `250% top`,
-//       scroller: `body`,
-//     },
-//     onUpdate: render,
-//   });
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `#page3>canvas`,
+      //   set start end according to preference
+      start: `top top`,
+      end: `250% top`,
+      scroller: `body`,
+    },
+    onUpdate: render,
+  });
 
-//   images[1].onload = render;
+  images[1].onload = render;
 
-//   function render() {
-//     scaleImage(images[imageSeq.frame], context);
-//   }
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
 
-//   function scaleImage(img, ctx) {
-//     var canvas = ctx.canvas;
-//     var hRatio = canvas.width / img.width;
-//     var vRatio = canvas.height / img.height;
-//     var ratio = Math.max(hRatio, vRatio);
-//     var centerShift_x = (canvas.width - img.width * ratio) / 2;
-//     var centerShift_y = (canvas.height - img.height * ratio) / 2;
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.drawImage(
-//       img,
-//       0,
-//       0,
-//       img.width,
-//       img.height,
-//       centerShift_x,
-//       centerShift_y,
-//       img.width * ratio,
-//       img.height * ratio
-//     );
-//   }
-//   ScrollTrigger.create({
-//     trigger: "#page3",
-//     pin: true,
-//     scroller: `body`,
-//     start: `top top`,
-//     end: `250% top`,
-//   });
-//   var tlc = gsap.timeline({
-//     scrollTrigger: {
-//       trigger: "#page3 canvas",
-//       scroller: "body",
-//       start: "top -10%",
-//       end: "top -220%",
-//       scrub: 1,
-//       // markers: true,
-//     },
-//   });
-//   tlc
-//     .to(".textc h2", {
-//       transform: "translateY(0%)",
-//       duration: 0.5,
-//       delay: 3,
-//     })
-//     .to(".textc h2", {
-//       transform: "translateY(-108%)",
-//       duration: 0.5,
-//       delay: 3,
-//     });
-// };
-// canvas1();
+  function scaleImage(img, ctx) {
+    var canvas = ctx.canvas;
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio = Math.max(hRatio, vRatio);
+    var centerShift_x = (canvas.width - img.width * ratio) / 2;
+    var centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page3",
+    pin: true,
+    scroller: `body`,
+    start: `top top`,
+    end: `250% top`,
+  });
+  var tlc = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#page3 canvas",
+      scroller: "body",
+      start: "top -10%",
+      end: "top -220%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+  tlc
+    .to(".textc h2", {
+      transform: "translateY(0%)",
+      duration: 0.5,
+      delay: 3,
+    })
+    .to(".textc h2", {
+      transform: "translateY(-108%)",
+      duration: 0.5,
+      delay: 3,
+    });
+};
+canvas1();
 
 // Page 4 HoverAnimation
 
-// const page4HoverAnimation = () => {
-//   var elems = document.querySelectorAll("#page4 .section");
+const page4HoverAnimation = () => {
+  var elems = document.querySelectorAll("#page4 .section");
 
-//   elems.forEach((elem) => {
-//     var rotate = 0;
-//     var diffrotate = 0;
+  elems.forEach((elem) => {
+    var rotate = 0;
+    var diffrotate = 0;
 
-//     elem.addEventListener("mousemove", (dets) => {
-//       var diff = dets.clientY - elem.getBoundingClientRect().top;
-//       diffrotate = dets.clientX - rotate;
-//       rotate = dets.clientX;
+    elem.addEventListener("mousemove", (dets) => {
+      var diff = dets.clientY - elem.getBoundingClientRect().top;
+      diffrotate = dets.clientX - rotate;
+      rotate = dets.clientX;
 
-//       gsap.to(elem.querySelector("img"), {
-//         scale: 1,
-//         top: diff - 100,
-//         left: dets.clientX - 150,
-//         ease: "sine.inout",
-//         duration: 0.5,
-//         rotate: gsap.utils.clamp(-20, 20, diffrotate),
-//       });
-//     });
+      gsap.to(elem.querySelector("img"), {
+        scale: 1,
+        top: diff - 100,
+        left: dets.clientX - 150,
+        ease: "sine.inout",
+        duration: 0.5,
+        rotate: gsap.utils.clamp(-20, 20, diffrotate),
+      });
+    });
 
-//     elem.addEventListener("mouseleave", (dets) => {
-//       console.log("Mouse left");
-//       gsap.to(elem.querySelector("img"), {
-//         scale: 0,
-//       });
-//     });
-//   });
-// };
-// page4HoverAnimation();
+    elem.addEventListener("mouseleave", (dets) => {
+      console.log("Mouse left");
+      gsap.to(elem.querySelector("img"), {
+        scale: 0,
+      });
+    });
+  });
+};
+page4HoverAnimation();
 
 // Page 5 Animation
 
