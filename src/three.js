@@ -2,10 +2,6 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import GUI from "lil-gui";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Scene
@@ -171,7 +167,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0
+      switchAudio.playbackRate = 3.0;
       switchAudio.play();
 
       // Restart the animation on click
@@ -269,7 +265,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0
+      switchAudio.playbackRate = 3.0;
       switchAudio.play();
 
       // Restart the animation on click
@@ -368,7 +364,7 @@ const updateCans = (sound) => {
     // Can switch sound
     if (sound) {
       const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0
+      switchAudio.playbackRate = 3.0;
       switchAudio.play();
 
       // Restart the animation on click
