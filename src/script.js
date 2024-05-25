@@ -40,6 +40,98 @@ const clutterAnimation = (element) => {
 };
 
 // Nav Animation
+
+const navigationAnimation = () => {
+  let menubt = document.querySelector(".nav-right-menu");
+  let flag = true;
+  var metl = gsap.timeline({ paused: true, duration: 0.02 });
+  metl
+    .to(
+      "#li1 ,#li2",
+      {
+        top: "50%",
+      },
+      "b"
+    )
+    .to(
+      "#li1",
+      {
+        rotate: 45,
+      },
+      "a"
+    )
+    .to(
+      "#li2",
+      {
+        rotate: -45,
+      },
+      "a"
+    );
+  document
+    .querySelector(".nav-right-menu")
+    .addEventListener("click", function () {
+      if (flag === true) {
+        gsap.fromTo(
+          "#navpage",
+          {
+            clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
+          },
+          {
+            clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+            ease: "power4.in",
+            duration: 1,
+          }
+        );
+        gsap.fromTo(
+          "#navpage h2",
+          {
+            y: 10,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: {
+              amount: 0.3,
+            },
+            delay: 0.8,
+          }
+        );
+        metl.play();
+        flag = false;
+      } else {
+        gsap.fromTo(
+          "#navpage",
+          {
+            clipPath: "polygon(0 0%, 100% 0, 100% 100%, 0% 100%)",
+          },
+          {
+            clipPath: " polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
+            ease: "power4.in",
+            duration: 1,
+          }
+        );
+        gsap.fromTo(
+          "#navpage h2",
+          {
+            y: 0,
+            opacity: 1,
+          },
+          {
+            y: -10,
+            opacity: 0,
+            stagger: {
+              amount: 0.3,
+            },
+          }
+        );
+        metl.reverse();
+        flag = true;
+      }
+    });
+};
+navigationAnimation();
+
 const navAnimation = () => {
   // Variable to store the last scroll position
   let lastScrollTop = 0;
@@ -65,9 +157,12 @@ const navAnimation = () => {
       });
     }
     if (window.innerHeight < lastScrollTop) {
-      document.querySelector(".nav-center>h1").style.color = "#d91921";
-      gsap.to("nav", {
-        backgroundColor: "#ffffff",
+      gsap.to(".nav-center>h1", {
+        color: "#d91921",
+      });
+
+      gsap.to(".nav-overlay", {
+        backdropFilter: "blur(5px)",
       });
       gsap.to(".nav-right i", {
         color: "#000000",
@@ -75,16 +170,25 @@ const navAnimation = () => {
       gsap.to(".nav-right-menu", {
         border: "1px solid #000000",
       });
+      gsap.to(".nav-right-menu .menu-line", {
+        backgroundColor: "#000",
+      });
     } else {
-      document.querySelector(".nav-center>h1").style.color = "#ffffff";
-      gsap.to("nav", {
-        backgroundColor: "transparent",
+      gsap.to(".nav-center>h1", {
+        color: "#ffffff",
+      });
+
+      gsap.to(".nav-overlay", {
+        backdropFilter: "blur(0px)",
       });
       gsap.to(".nav-right i", {
         color: "#fff",
       });
       gsap.to(".nav-right-menu", {
         border: "1px solid #fff",
+      });
+      gsap.to(".nav-right-menu .menu-line", {
+        backgroundColor: "#fff",
       });
     }
     // Update last scroll position
@@ -94,7 +198,6 @@ const navAnimation = () => {
   // Add scroll event listener
   window.addEventListener("scroll", handleScroll);
 };
-
 navAnimation();
 
 // Page 1 Animations
@@ -289,7 +392,6 @@ const page2Animation = () => {
       ".swiper",
       {
         transform: "scale(1)",
-        delay: 0.1,
       },
       "a"
     )
@@ -297,7 +399,6 @@ const page2Animation = () => {
       "#swiper-btn",
       {
         scale: 0.3,
-        delay: 0.1,
       },
       "a"
     )
@@ -305,7 +406,6 @@ const page2Animation = () => {
       ".over-card",
       {
         opacity: 0,
-        delay: 0.1,
       },
       "a"
     )
@@ -314,7 +414,6 @@ const page2Animation = () => {
       {
         scale: 0,
         duration: 0,
-        delay: 0.1,
       },
       "a"
     );
@@ -458,153 +557,181 @@ const canvas1 = () => {
 };
 canvas1();
 
-// Page4HoverAnimation
+// Page 4 HoverAnimation
 
 const page4HoverAnimation = () => {
-  var elems = document.querySelectorAll("#page4 .section");
+  var sectionDiv = document.querySelector("#page4 #sections");
+  var hoverDiv = document.querySelectorAll("#page4 #sections #hoverdiv");
 
-  elems.forEach((elem) => {
     var rotate = 0;
     var diffrotate = 0;
 
-    elem.addEventListener("mousemove", (dets) => {
-      var diff = dets.clientY - elem.getBoundingClientRect().top;
+    sectionDiv.addEventListener("mouseenter", () => {
+      console.log("object");
+    })
+
+    sectionDiv.addEventListener("mousemove", (dets) => {
+      var diff = dets.clientY - sectionDiv.getBoundingClientRect().top;
       diffrotate = dets.clientX - rotate;
       rotate = dets.clientX;
 
-      gsap.to(elem.querySelector("img"), {
+      gsap.to(hoverDiv, {
         scale: 1,
-        top: diff - 100,
-        left: dets.clientX - 150,
+        top: diff - 30,
+        left: dets.clientX - 120,
         ease: "sine.inout",
         duration: 0.5,
         rotate: gsap.utils.clamp(-20, 20, diffrotate),
       });
     });
 
-    elem.addEventListener("mouseleave", (dets) => {
-      console.log("Mouse left");
-      gsap.to(elem.querySelector("img"), {
+    sectionDiv.addEventListener("mouseleave", (dets) => {
+      gsap.to(hoverDiv, {
         scale: 0,
       });
     });
-  });
+
+    var section1 = document.querySelector("#page4 #sections #section1")
+    var section2 = document.querySelector("#page4 #sections #section2")
+    var section3 = document.querySelector("#page4 #sections #section3")
+    var section4 = document.querySelector("#page4 #sections #section4")
+
+    var innerHoverDiv = document.querySelector("#page4 #inner-hoverdiv")
+
+    section1.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '0%',
+        duration: 0.3
+      });
+    });
+
+    section2.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-23%',
+        duration: 0.3
+      });
+    });
+
+    section3.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-46%',
+        duration: 0.3
+      });
+    });
+
+    section4.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-69%',
+        duration: 0.3
+      });
+    });
 };
 page4HoverAnimation();
 
-// Page5 Animation
 
-const page5ScrollAnimation = () => {
-  var tl = gsap.timeline({
+// Page 5 Animation
+
+const page5Scroll = () => {
+  const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: "#page5",
       scroller: "body",
-      // markers: true,
-      start: "top 0%",
-      end: "top -200%",
-      pin: true,
-      scrub: true,
+      trigger: "#page5",
+      start: "top 50%",
+      end: "top 5%",
+      scrub: 1,
+      markers: true,
     },
   });
-  tl.to(
-    "#page5 #video",
-    {
-      width: "109vw",
-      height: "109vh",
-      ease: "power4",
-    },
-    "a"
-  )
-    .to(
-      "#line1 h1",
-      {
-        y: -550,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line2 #first h1",
-      {
-        x: -1000,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line2 #second h1",
-      {
-        x: 1000,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line3 h1",
-      {
-        y: 550,
-        opacity: 0,
-      },
-      "a"
-    );
+  tl
+  .to("#page5 h3", {
+    y: -60,
+  },"a")
+  .to("#page5 #video", {
+    width: "100%",
+    height: "100%",
+    delay: 0.08
+  },"a")
+  .to("#page5", {
+    paddingTop: "0vw",
+    delay: 0.08
+  },"a")
 };
-page5ScrollAnimation();
+page5Scroll()
 
-const page5MouseFollower = () => {
-  const videoBox = document.querySelector("#page5 #video");
-  const cursor = document.querySelector("#page5 #cursor");
 
-  const updateCursorPosition = (dets) => {
-    const rect = videoBox.getBoundingClientRect();
-    const x = dets.clientX;
-    const y = dets.clientY - 80;
+const page5MouseFollower = () =>  {
+  var videoDiv = document.querySelector("#page5 #video");
+  var cursor = document.querySelector("#page5 #cursor");
 
-    gsap.to(cursor, {
-      left: x,
-      top: y,
-      scale: 1,
-    });
-  };
+  function updateCursorPosition(dets) {
+      var rect = videoDiv.getBoundingClientRect();
+      var x = dets.clientX - rect.left;
+      var y = dets.clientY - rect.top;
+      gsap.to(cursor, {
+          left: x - 50,
+          top: y - 50
+      });
+  }
 
-  videoBox.addEventListener("mouseenter", () => {
-    gsap.to(cursor, {
-      scale: 1,
-    });
+  videoDiv.addEventListener("mouseenter",function(){
+      gsap.to(cursor,{
+          scale: 1,
+      })
+  })
+  videoDiv.addEventListener("mousemove", updateCursorPosition);
+
+  videoDiv.addEventListener("mouseleave", function() {
+      gsap.to(cursor, {
+          scale: 0
+      });
   });
 
-  videoBox.addEventListener("mousemove", updateCursorPosition);
-
-  videoBox.addEventListener("mouseleave", () => {
-    gsap.to(cursor, {
-      scale: 0,
-    });
+  window.addEventListener("scroll", function() {
+      // Update cursor position based on current mouse position and scroll position
+      // This part needs to be adjusted based on how you're tracking the mouse position
+      // For example, you might need to store the last known mouse position and use it here
   });
-};
+}
 page5MouseFollower();
+
 
 const page5Click = () => {
   let flag = 0;
   const videoBox = document.querySelector("#page5 #video");
   const video = document.querySelector("#page5 #video video");
   const cursor = document.querySelector("#page5 #cursor");
+  const play = document.querySelector("#page5 #cursor .play");
+  const pause = document.querySelector("#page5 #cursor .pause");
 
   videoBox.addEventListener("click", () => {
     if (flag === 0) {
       video.pause();
-      cursor.style.color = "black";
-      cursor.style.fontWeight = "700";
-      cursor.innerHTML = "PLAY";
+      gsap.to(play, {
+        opacity: 0,
+        duration: 0.2
+      }),
+      gsap.to(pause, {
+        opacity: 1,
+        duration: 0.2
+      })
       flag = 1;
+
     } else if (flag === 1) {
       video.play();
-      cursor.style.color = "black";
-      cursor.style.fontWeight = "700";
-      cursor.innerHTML = "PAUSE";
+      gsap.to(pause, {
+        opacity: 0,
+        duration: 0.2
+      }),
+      gsap.to(play, {
+        opacity: 1,
+        duration: 0.2
+      })
       flag = 0;
     }
   });
 };
 page5Click();
+
 
 //  Page 6 Animations
 const page6Animation = () => {
@@ -798,6 +925,8 @@ const page6Animation = () => {
   });
 };
 page6Animation();
+
+//  Page 7 Animations
 const page7animation = () => {
   gsap.to(".scoll-speed", {
     transform: "translateY(-20%)",
@@ -811,9 +940,6 @@ const page7animation = () => {
     },
   });
 };
-
-//  Page  Animations
-
 page7animation();
 
 //  footer Animations
