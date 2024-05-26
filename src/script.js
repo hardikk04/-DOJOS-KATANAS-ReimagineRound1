@@ -560,15 +560,11 @@ canvas1();
 // Page 4 HoverAnimation
 
 const page4HoverAnimation = () => {
-  var sectionDiv = document.querySelector("#page4 #sections");
-  var hoverDiv = document.querySelectorAll("#page4 #sections #hoverdiv");
+  var sectionDiv = document.querySelector("#page4Desktop #sections");
+  var hoverDiv = document.querySelectorAll("#page4Desktop #sections #hoverdiv");
 
     var rotate = 0;
     var diffrotate = 0;
-
-    sectionDiv.addEventListener("mouseenter", () => {
-      console.log("object");
-    })
 
     sectionDiv.addEventListener("mousemove", (dets) => {
       var diff = dets.clientY - sectionDiv.getBoundingClientRect().top;
@@ -576,6 +572,7 @@ const page4HoverAnimation = () => {
       rotate = dets.clientX;
 
       gsap.to(hoverDiv, {
+        opacity: 1,
         scale: 1,
         top: diff - 30,
         left: dets.clientX - 120,
@@ -591,38 +588,42 @@ const page4HoverAnimation = () => {
       });
     });
 
-    var section1 = document.querySelector("#page4 #sections #section1")
-    var section2 = document.querySelector("#page4 #sections #section2")
-    var section3 = document.querySelector("#page4 #sections #section3")
-    var section4 = document.querySelector("#page4 #sections #section4")
+    var section1 = document.querySelector("#page4Desktop #sections #section1")
+    var section2 = document.querySelector("#page4Desktop #sections #section2")
+    var section3 = document.querySelector("#page4Desktop #sections #section3")
+    var section4 = document.querySelector("#page4Desktop #sections #section4")
 
-    var innerHoverDiv = document.querySelector("#page4 #inner-hoverdiv")
+    var innerHoverDiv = document.querySelector("#page4Desktop #inner-hoverdiv")
 
     section1.addEventListener("mouseenter", () => {
       gsap.to(innerHoverDiv, {
         y: '0%',
-        duration: 0.3
+        duration: 0.7,
+        ease: "power4.inOut",
       });
     });
 
     section2.addEventListener("mouseenter", () => {
       gsap.to(innerHoverDiv, {
         y: '-23%',
-        duration: 0.3
+        duration: 0.7,
+        ease: "power4.inOut",
       });
     });
 
     section3.addEventListener("mouseenter", () => {
       gsap.to(innerHoverDiv, {
         y: '-46%',
-        duration: 0.3
+        duration: 0.7,
+        ease: "power4.inOut",
       });
     });
 
     section4.addEventListener("mouseenter", () => {
       gsap.to(innerHoverDiv, {
         y: '-69%',
-        duration: 0.3
+        duration: 0.7,
+        ease: "power4.inOut",
       });
     });
 };
@@ -639,17 +640,17 @@ const page5Scroll = () => {
       start: "top 50%",
       end: "top 5%",
       scrub: 1,
-      markers: true,
+      // markers: true,
     },
   });
   tl
   .to("#page5 h3", {
     y: -60,
+    duration: 0.5
   },"a")
   .to("#page5 #video", {
     width: "100%",
     height: "100%",
-    delay: 0.08
   },"a")
   .to("#page5", {
     paddingTop: "0vw",
@@ -658,74 +659,18 @@ const page5Scroll = () => {
 };
 page5Scroll()
 
-
-const page5MouseFollower = () =>  {
-  var videoDiv = document.querySelector("#page5 #video");
-  var cursor = document.querySelector("#page5 #cursor");
-
-  function updateCursorPosition(dets) {
-      var rect = videoDiv.getBoundingClientRect();
-      var x = dets.clientX - rect.left;
-      var y = dets.clientY - rect.top;
-      gsap.to(cursor, {
-          left: x - 50,
-          top: y - 50
-      });
-  }
-
-  videoDiv.addEventListener("mouseenter",function(){
-      gsap.to(cursor,{
-          scale: 1,
-      })
-  })
-  videoDiv.addEventListener("mousemove", updateCursorPosition);
-
-  videoDiv.addEventListener("mouseleave", function() {
-      gsap.to(cursor, {
-          scale: 0
-      });
-  });
-
-  window.addEventListener("scroll", function() {
-      // Update cursor position based on current mouse position and scroll position
-      // This part needs to be adjusted based on how you're tracking the mouse position
-      // For example, you might need to store the last known mouse position and use it here
-  });
-}
-page5MouseFollower();
-
-
 const page5Click = () => {
   let flag = 0;
   const videoBox = document.querySelector("#page5 #video");
   const video = document.querySelector("#page5 #video video");
-  const cursor = document.querySelector("#page5 #cursor");
-  const play = document.querySelector("#page5 #cursor .play");
-  const pause = document.querySelector("#page5 #cursor .pause");
 
   videoBox.addEventListener("click", () => {
     if (flag === 0) {
       video.pause();
-      gsap.to(play, {
-        opacity: 0,
-        duration: 0.2
-      }),
-      gsap.to(pause, {
-        opacity: 1,
-        duration: 0.2
-      })
       flag = 1;
 
     } else if (flag === 1) {
       video.play();
-      gsap.to(pause, {
-        opacity: 0,
-        duration: 0.2
-      }),
-      gsap.to(play, {
-        opacity: 1,
-        duration: 0.2
-      })
       flag = 0;
     }
   });
