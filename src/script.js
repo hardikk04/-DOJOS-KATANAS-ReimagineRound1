@@ -633,31 +633,20 @@ page4HoverAnimation();
 // Page 5 Animation
 
 const page5Scroll = () => {
-  const tl = gsap.timeline({
+  gsap.to("#page5 #video", {
+    width: "100%",
     scrollTrigger: {
       scroller: "body",
       trigger: "#page5",
-      start: "top 50%",
-      end: "top 5%",
+      start: "top 55%",
+      end: "top 0%",
       scrub: 1,
       // markers: true,
     },
   });
-  tl
-  .to("#page5 h3", {
-    y: -60,
-    duration: 0.5
-  },"a")
-  .to("#page5 #video", {
-    width: "100%",
-    height: "100%",
-  },"a")
-  .to("#page5", {
-    paddingTop: "0vw",
-    delay: 0.08
-  },"a")
 };
-page5Scroll()
+page5Scroll();
+
 
 const page5Click = () => {
   let flag = 0;
