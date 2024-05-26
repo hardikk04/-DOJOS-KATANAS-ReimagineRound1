@@ -560,150 +560,123 @@ canvas1();
 // Page 4 HoverAnimation
 
 const page4HoverAnimation = () => {
-  var elems = document.querySelectorAll("#page4 .section");
+  var sectionDiv = document.querySelector("#page4Desktop #sections");
+  var hoverDiv = document.querySelectorAll("#page4Desktop #sections #hoverdiv");
 
-  elems.forEach((elem) => {
     var rotate = 0;
     var diffrotate = 0;
 
-    elem.addEventListener("mousemove", (dets) => {
-      var diff = dets.clientY - elem.getBoundingClientRect().top;
+    sectionDiv.addEventListener("mousemove", (dets) => {
+      var diff = dets.clientY - sectionDiv.getBoundingClientRect().top;
       diffrotate = dets.clientX - rotate;
       rotate = dets.clientX;
 
-      gsap.to(elem.querySelector("img"), {
+      gsap.to(hoverDiv, {
+        opacity: 1,
         scale: 1,
-        top: diff - 100,
-        left: dets.clientX - 150,
+        top: diff - 30,
+        left: dets.clientX - 120,
         ease: "sine.inout",
         duration: 0.5,
         rotate: gsap.utils.clamp(-20, 20, diffrotate),
       });
     });
 
-    elem.addEventListener("mouseleave", (dets) => {
-      console.log("Mouse left");
-      gsap.to(elem.querySelector("img"), {
+    sectionDiv.addEventListener("mouseleave", (dets) => {
+      gsap.to(hoverDiv, {
         scale: 0,
       });
     });
-  });
+
+    var section1 = document.querySelector("#page4Desktop #sections #section1")
+    var section2 = document.querySelector("#page4Desktop #sections #section2")
+    var section3 = document.querySelector("#page4Desktop #sections #section3")
+    var section4 = document.querySelector("#page4Desktop #sections #section4")
+
+    var innerHoverDiv = document.querySelector("#page4Desktop #inner-hoverdiv")
+
+    section1.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '0%',
+        duration: 0.7,
+        ease: "power4.inOut",
+      });
+    });
+
+    section2.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-23%',
+        duration: 0.7,
+        ease: "power4.inOut",
+      });
+    });
+
+    section3.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-46%',
+        duration: 0.7,
+        ease: "power4.inOut",
+      });
+    });
+
+    section4.addEventListener("mouseenter", () => {
+      gsap.to(innerHoverDiv, {
+        y: '-69%',
+        duration: 0.7,
+        ease: "power4.inOut",
+      });
+    });
 };
 page4HoverAnimation();
 
+
 // Page 5 Animation
 
-const page5ScrollAnimation = () => {
-  var tl = gsap.timeline({
+const page5Scroll = () => {
+  const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: "#page5",
       scroller: "body",
+      trigger: "#page5",
+      start: "top 50%",
+      end: "top 5%",
+      scrub: 1,
       // markers: true,
-      start: "top 0%",
-      end: "top -200%",
-      pin: true,
-      scrub: true,
     },
   });
-  tl.to(
-    "#page5 #video",
-    {
-      width: "109vw",
-      height: "109vh",
-      ease: "power4",
-    },
-    "a"
-  )
-    .to(
-      "#line1 h1",
-      {
-        y: -550,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line2 #first h1",
-      {
-        x: -1000,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line2 #second h1",
-      {
-        x: 1000,
-        opacity: 0,
-      },
-      "a"
-    )
-    .to(
-      "#line3 h1",
-      {
-        y: 550,
-        opacity: 0,
-      },
-      "a"
-    );
+  tl
+  .to("#page5 h3", {
+    y: -60,
+    duration: 0.5
+  },"a")
+  .to("#page5 #video", {
+    width: "100%",
+    height: "100%",
+  },"a")
+  .to("#page5", {
+    paddingTop: "0vw",
+    delay: 0.08
+  },"a")
 };
-page5ScrollAnimation();
-
-const page5MouseFollower = () => {
-  const videoBox = document.querySelector("#page5 #video");
-  const cursor = document.querySelector("#page5 #cursor");
-
-  const updateCursorPosition = (dets) => {
-    const rect = videoBox.getBoundingClientRect();
-    const x = dets.clientX;
-    const y = dets.clientY - 80;
-
-    gsap.to(cursor, {
-      left: x,
-      top: y,
-      scale: 1,
-    });
-  };
-
-  videoBox.addEventListener("mouseenter", () => {
-    gsap.to(cursor, {
-      scale: 1,
-    });
-  });
-
-  videoBox.addEventListener("mousemove", updateCursorPosition);
-
-  videoBox.addEventListener("mouseleave", () => {
-    gsap.to(cursor, {
-      scale: 0,
-    });
-  });
-};
-page5MouseFollower();
+page5Scroll()
 
 const page5Click = () => {
   let flag = 0;
   const videoBox = document.querySelector("#page5 #video");
   const video = document.querySelector("#page5 #video video");
-  const cursor = document.querySelector("#page5 #cursor");
 
   videoBox.addEventListener("click", () => {
     if (flag === 0) {
       video.pause();
-      cursor.style.color = "black";
-      cursor.style.fontWeight = "700";
-      cursor.innerHTML = "PLAY";
       flag = 1;
+
     } else if (flag === 1) {
       video.play();
-      cursor.style.color = "black";
-      cursor.style.fontWeight = "700";
-      cursor.innerHTML = "PAUSE";
       flag = 0;
     }
   });
 };
 page5Click();
+
 
 //  Page 6 Animations
 const page6Animation = () => {
