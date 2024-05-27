@@ -25,6 +25,11 @@ const lenisJs = () => {
 };
 lenisJs();
 
+// Restart always from top - 0
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
 // Clutter Animation
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
@@ -563,72 +568,71 @@ const page4HoverAnimation = () => {
   var sectionDiv = document.querySelector("#page4Desktop #sections");
   var hoverDiv = document.querySelectorAll("#page4Desktop #sections #hoverdiv");
 
-    var rotate = 0;
-    var diffrotate = 0;
+  var rotate = 0;
+  var diffrotate = 0;
 
-    sectionDiv.addEventListener("mousemove", (dets) => {
-      var diff = dets.clientY - sectionDiv.getBoundingClientRect().top;
-      diffrotate = dets.clientX - rotate;
-      rotate = dets.clientX;
+  sectionDiv.addEventListener("mousemove", (dets) => {
+    var diff = dets.clientY - sectionDiv.getBoundingClientRect().top;
+    diffrotate = dets.clientX - rotate;
+    rotate = dets.clientX;
 
-      gsap.to(hoverDiv, {
-        opacity: 1,
-        scale: 1,
-        top: diff - 30,
-        left: dets.clientX - 120,
-        ease: "sine.inout",
-        duration: 0.5,
-        rotate: gsap.utils.clamp(-20, 20, diffrotate),
-      });
+    gsap.to(hoverDiv, {
+      opacity: 1,
+      scale: 1,
+      top: diff - 30,
+      left: dets.clientX - 120,
+      ease: "sine.inout",
+      duration: 0.5,
+      rotate: gsap.utils.clamp(-20, 20, diffrotate),
     });
+  });
 
-    sectionDiv.addEventListener("mouseleave", (dets) => {
-      gsap.to(hoverDiv, {
-        scale: 0,
-      });
+  sectionDiv.addEventListener("mouseleave", (dets) => {
+    gsap.to(hoverDiv, {
+      scale: 0,
     });
+  });
 
-    var section1 = document.querySelector("#page4Desktop #sections #section1")
-    var section2 = document.querySelector("#page4Desktop #sections #section2")
-    var section3 = document.querySelector("#page4Desktop #sections #section3")
-    var section4 = document.querySelector("#page4Desktop #sections #section4")
+  var section1 = document.querySelector("#page4Desktop #sections #section1");
+  var section2 = document.querySelector("#page4Desktop #sections #section2");
+  var section3 = document.querySelector("#page4Desktop #sections #section3");
+  var section4 = document.querySelector("#page4Desktop #sections #section4");
 
-    var innerHoverDiv = document.querySelector("#page4Desktop #inner-hoverdiv")
+  var innerHoverDiv = document.querySelector("#page4Desktop #inner-hoverdiv");
 
-    section1.addEventListener("mouseenter", () => {
-      gsap.to(innerHoverDiv, {
-        y: '0%',
-        duration: 0.7,
-        ease: "power4.inOut",
-      });
+  section1.addEventListener("mouseenter", () => {
+    gsap.to(innerHoverDiv, {
+      y: "0%",
+      duration: 0.7,
+      ease: "power4.inOut",
     });
+  });
 
-    section2.addEventListener("mouseenter", () => {
-      gsap.to(innerHoverDiv, {
-        y: '-23%',
-        duration: 0.7,
-        ease: "power4.inOut",
-      });
+  section2.addEventListener("mouseenter", () => {
+    gsap.to(innerHoverDiv, {
+      y: "-23%",
+      duration: 0.7,
+      ease: "power4.inOut",
     });
+  });
 
-    section3.addEventListener("mouseenter", () => {
-      gsap.to(innerHoverDiv, {
-        y: '-46%',
-        duration: 0.7,
-        ease: "power4.inOut",
-      });
+  section3.addEventListener("mouseenter", () => {
+    gsap.to(innerHoverDiv, {
+      y: "-46%",
+      duration: 0.7,
+      ease: "power4.inOut",
     });
+  });
 
-    section4.addEventListener("mouseenter", () => {
-      gsap.to(innerHoverDiv, {
-        y: '-69%',
-        duration: 0.7,
-        ease: "power4.inOut",
-      });
+  section4.addEventListener("mouseenter", () => {
+    gsap.to(innerHoverDiv, {
+      y: "-69%",
+      duration: 0.7,
+      ease: "power4.inOut",
     });
+  });
 };
 page4HoverAnimation();
-
 
 // Page 5 Animation
 
@@ -657,7 +661,6 @@ const page5Click = () => {
     if (flag === 0) {
       video.pause();
       flag = 1;
-
     } else if (flag === 1) {
       video.play();
       flag = 0;
@@ -665,7 +668,6 @@ const page5Click = () => {
   });
 };
 page5Click();
-
 
 //  Page 6 Animations
 const page6Animation = () => {

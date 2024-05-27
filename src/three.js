@@ -7,7 +7,6 @@ import { gsap } from "gsap";
  * Scene
  */
 const scene = new THREE.Scene();
-// const gui = new GUI({ width: 400 });
 
 const debug = {};
 debug.ambientLight = "#ffffff";
@@ -30,7 +29,6 @@ const updateMaterial = () => {
   scene.traverse((child) => {
     if (child.isMesh && child.material.isMeshStandardMaterial) {
       child.material.roughness = 0.2;
-      // gui.add(child.material, "roughness").min(0).max(1).step(0.01);
     }
   });
 };
@@ -38,11 +36,38 @@ const updateMaterial = () => {
 /**
  * Loaders
  */
+
 const loadingManager = new THREE.LoadingManager(
   // Loaded
-  () => {},
+  () => {
+    const tl = gsap.timeline();
+    // removing the loader div
+    gsap.to(".main-loader", {
+      opacity: 0,
+    });
+
+    // Playing the all animations which is sync with cans Animation
+    clutterAnimation(".page1-footer-title>h1");
+    tl.from(".page1-footer-title>h1>span", {
+      opacity: 0,
+      y: 50,
+      textContent: getRandomText(4),
+      stagger: {
+        amount: randomTextAnimationSpeed,
+        from: "x",
+      },
+      onStart: () => {
+        updateMaterial();
+        cansAnimationLoop();
+      },
+    });
+  },
   // Process
-  () => {}
+  (itemUrl, itemsLoaded, itemsTotal) => {
+    const progressRatio = itemsLoaded / itemsTotal;
+    const loaderCount = document.querySelector(".main-loader-counter > h1");
+    loaderCount.textContent = `${Math.round(progressRatio * 100)}%`;
+  }
 );
 const gltfLoader = new GLTFLoader(loadingManager);
 
@@ -94,8 +119,6 @@ gltfLoader.load("/models/3_cans_com.glb", (gltf) => {
   blackModel.position.sub(blackModelCenter);
 
   redModelGroup.add(redModel);
-  updateMaterial();
-  cansAnimationLoop();
 });
 
 // Mousemove (Cursor)
@@ -140,291 +163,384 @@ const page1Para1 = document.querySelector(".page1-para1");
 const page1Para2 = document.querySelector(".page1-para2");
 const page1Para3 = document.querySelector(".page1-para3");
 
+// text animation
+// Clutter Animation
+const clutterAnimation = (element) => {
+  const htmlTag = document.querySelector(element);
+  let clutter = "";
+
+  // Splitting the text content into individual letters and wrapping each in a span with a class
+  htmlTag.textContent.split("").forEach((word) => {
+    clutter += `<span class="inline-block text-span">${word}</span>`;
+  });
+
+  // Updating the HTML content of the element with the animated spans
+  htmlTag.innerHTML = clutter;
+};
+
+function getRandomText(length) {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!$&?";
+  // const characters = "?";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+const randomTextAnimation = [
+  "<h1>Original &nbsp; Taste</h1>",
+  "<h1>Diet &nbsp; Coke<h1>",
+  "<h1>Zero &nbsp; Sugar<h1>",
+];
+const randomTextAnimationSpeed = 0.5;
+
+// Red to Grey can animation
+const redToGreyCanAnimation = (sound) => {
+  // Heading text animation
+  gsap.to(page1Heading1, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Heading2, {
+        top: "0",
+      });
+    },
+  });
+
+  // Heading text animation
+  gsap.to(page1Para1, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Para2, {
+        top: "0",
+      });
+    },
+  });
+
+  // Random text animation
+  document.querySelector(".page1-footer-title>h1").innerHTML =
+    randomTextAnimation[1];
+  clutterAnimation(".page1-footer-title>h1");
+
+  gsap.from(".page1-footer-title>h1>span", {
+    opacity: 0,
+    y: 50,
+    textContent: getRandomText(4),
+    stagger: {
+      amount: randomTextAnimationSpeed,
+      from: "x",
+    },
+  });
+
+  // Can switch sound
+  if (sound) {
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.playbackRate = 3.0;
+    switchAudio.play();
+
+    // Restart the animation on click
+    lineAnimation.restart();
+  }
+  // Rotates red
+  if (canRotationFlag) {
+    gsap.from(redModel.rotation, {
+      y: -Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes red model
+        redModelGroup.remove(redModel);
+
+        // Rotates grey
+        gsap.from(greyModel.rotation, {
+          y: -Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to white
+        gsap.to("#page1", {
+          backgroundColor: "#ffffff",
+        });
+
+        // Add grey model
+        greyModelGroup.add(greyModel);
+        if (!checkUpdatedGrey) {
+          updateMaterial();
+          checkUpdatedGrey = true;
+        }
+
+        // Turn the flag to grey
+        flag = "grey";
+      },
+    });
+  } else {
+    gsap.from(redModel.rotation, {
+      y: Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes red model
+        redModelGroup.remove(redModel);
+
+        // Rotates grey
+        gsap.from(greyModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to white
+        gsap.to("#page1", {
+          backgroundColor: "#ffffff",
+        });
+
+        // Add grey model
+        greyModelGroup.add(greyModel);
+        if (!checkUpdatedGrey) {
+          updateMaterial();
+          checkUpdatedGrey = true;
+        }
+
+        // Turn the flag to grey
+        flag = "grey";
+      },
+    });
+  }
+};
+
+// Grey to Black can animation
+const greyToBlackCanAnimation = (sound) => {
+  // Heading text animation
+  gsap.to(page1Heading2, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Heading3, {
+        top: "0",
+      });
+    },
+  });
+
+  // Heading text animation
+  gsap.to(page1Para2, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Para3, {
+        top: "0",
+      });
+    },
+  });
+
+  // Random text animation
+  document.querySelector(".page1-footer-title>h1").innerHTML =
+    randomTextAnimation[2];
+  clutterAnimation(".page1-footer-title>h1");
+
+  gsap.from(".page1-footer-title>h1>span", {
+    opacity: 0,
+    y: 50,
+    textContent: getRandomText(4),
+    stagger: {
+      amount: randomTextAnimationSpeed,
+      from: "x",
+    },
+  });
+
+  // Can switch sound
+  if (sound) {
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.playbackRate = 3.0;
+    switchAudio.play();
+
+    // Restart the animation on click
+    lineAnimation.restart();
+  }
+
+  // Rotates grey
+  if (canRotationFlag) {
+    gsap.from(greyModel.rotation, {
+      y: -Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes grey
+        greyModelGroup.remove(greyModel);
+
+        // Rotates black
+        gsap.from(blackModel.rotation, {
+          y: -Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to black
+        gsap.to("#page1", {
+          backgroundColor: "#000",
+        });
+
+        // Add black model
+        blackModelGroup.add(blackModel);
+        if (!checkUpdatedBlack) {
+          updateMaterial();
+          checkUpdatedBlack = true;
+        }
+
+        // Turn the flag to black
+        flag = "black";
+      },
+    });
+  } else {
+    gsap.from(greyModel.rotation, {
+      y: Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes grey
+        greyModelGroup.remove(greyModel);
+
+        // Rotates black
+        gsap.from(blackModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to black
+        gsap.to("#page1", {
+          backgroundColor: "#000",
+        });
+
+        // Add black model
+        blackModelGroup.add(blackModel);
+        if (!checkUpdatedBlack) {
+          updateMaterial();
+          checkUpdatedBlack = true;
+        }
+
+        // Turn the flag to black
+        flag = "black";
+      },
+    });
+  }
+};
+
+// Black to Red can animation
+const blackToRedCanAnimation = (sound) => {
+  // Heading text animation
+  gsap.to(page1Heading3, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Heading1, {
+        top: "0",
+      });
+    },
+  });
+
+  // Heading text animation
+  gsap.to(page1Para3, {
+    top: "100%",
+    onComplete: () => {
+      gsap.to(page1Para1, {
+        top: "0",
+      });
+    },
+  });
+
+  // Random text animation
+  document.querySelector(".page1-footer-title>h1").innerHTML =
+    randomTextAnimation[0];
+  clutterAnimation(".page1-footer-title>h1");
+
+  gsap.from(".page1-footer-title>h1>span", {
+    opacity: 0,
+    y: 50,
+    textContent: getRandomText(4),
+    stagger: {
+      amount: randomTextAnimationSpeed,
+      from: "x",
+    },
+  });
+
+  // Can switch sound
+  if (sound) {
+    const switchAudio = new Audio("sounds/canSwitch3.wav");
+    switchAudio.playbackRate = 3.0;
+    switchAudio.play();
+
+    // Restart the animation on click
+    lineAnimation.restart();
+  }
+
+  // Rotates black
+  if (canRotationFlag) {
+    gsap.from(blackModel.rotation, {
+      y: -Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes black
+        blackModelGroup.remove(blackModel);
+        gsap.from(redModel.rotation, {
+          y: -Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to red
+        gsap.to("#page1", {
+          backgroundColor: "#d91921",
+        });
+
+        // Add red model
+        redModelGroup.add(redModel);
+
+        // Turn the flag to red
+        flag = "red";
+      },
+    });
+  } else {
+    gsap.from(blackModel.rotation, {
+      y: Math.PI * 3,
+      duration: 0.4,
+      ease: "power1.in",
+      onComplete: () => {
+        // Removes black
+        blackModelGroup.remove(blackModel);
+        gsap.from(redModel.rotation, {
+          y: Math.PI * 2,
+          duration: 0.5,
+          ease: "power1.out",
+        });
+
+        // Change page color to red
+        gsap.to("#page1", {
+          backgroundColor: "#d91921",
+        });
+
+        // Add red model
+        redModelGroup.add(redModel);
+
+        // Turn the flag to red
+        flag = "red";
+      },
+    });
+  }
+};
+
 // Update cans function
 const updateCans = (sound) => {
   // Red to Grey
   if (flag === "red") {
-    // Heading text animation
-    gsap.to(page1Heading1, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Heading2, {
-          top: "0",
-        });
-      },
-    });
-
-    // Heading text animation
-    gsap.to(page1Para1, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Para2, {
-          top: "0",
-        });
-      },
-    });
-
-    // Can switch sound
-    if (sound) {
-      const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0;
-      switchAudio.play();
-
-      // Restart the animation on click
-      lineAnimation.restart();
-    }
-    // Rotates red
-    if (canRotationFlag) {
-      gsap.from(redModel.rotation, {
-        y: -Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes red model
-          redModelGroup.remove(redModel);
-
-          // Rotates grey
-          gsap.from(greyModel.rotation, {
-            y: -Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to white
-          gsap.to("#page1", {
-            backgroundColor: "#ffffff",
-          });
-
-          // Add grey model
-          greyModelGroup.add(greyModel);
-          if (!checkUpdatedGrey) {
-            updateMaterial();
-            checkUpdatedGrey = true;
-          }
-
-          // Turn the flag to grey
-          flag = "grey";
-        },
-      });
-    } else {
-      gsap.from(redModel.rotation, {
-        y: Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes red model
-          redModelGroup.remove(redModel);
-
-          // Rotates grey
-          gsap.from(greyModel.rotation, {
-            y: Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to white
-          gsap.to("#page1", {
-            backgroundColor: "#ffffff",
-          });
-
-          // Add grey model
-          greyModelGroup.add(greyModel);
-          if (!checkUpdatedGrey) {
-            updateMaterial();
-            checkUpdatedGrey = true;
-          }
-
-          // Turn the flag to grey
-          flag = "grey";
-        },
-      });
-    }
+    redToGreyCanAnimation(sound);
   }
   // Grey to Black
   else if (flag === "grey") {
-    // Heading text animation
-    gsap.to(page1Heading2, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Heading3, {
-          top: "0",
-        });
-      },
-    });
-
-    // Heading text animation
-    gsap.to(page1Para2, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Para3, {
-          top: "0",
-        });
-      },
-    });
-
-    // Can switch sound
-    if (sound) {
-      const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0;
-      switchAudio.play();
-
-      // Restart the animation on click
-      lineAnimation.restart();
-    }
-
-    // Rotates grey
-    if (canRotationFlag) {
-      gsap.from(greyModel.rotation, {
-        y: -Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes grey
-          greyModelGroup.remove(greyModel);
-
-          // Rotates black
-          gsap.from(blackModel.rotation, {
-            y: -Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to black
-          gsap.to("#page1", {
-            backgroundColor: "#000",
-          });
-
-          // Add black model
-          blackModelGroup.add(blackModel);
-          if (!checkUpdatedBlack) {
-            updateMaterial();
-            checkUpdatedBlack = true;
-          }
-
-          // Turn the flag to black
-          flag = "black";
-        },
-      });
-    } else {
-      gsap.from(greyModel.rotation, {
-        y: Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes grey
-          greyModelGroup.remove(greyModel);
-
-          // Rotates black
-          gsap.from(blackModel.rotation, {
-            y: Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to black
-          gsap.to("#page1", {
-            backgroundColor: "#000",
-          });
-
-          // Add black model
-          blackModelGroup.add(blackModel);
-          if (!checkUpdatedBlack) {
-            updateMaterial();
-            checkUpdatedBlack = true;
-          }
-
-          // Turn the flag to black
-          flag = "black";
-        },
-      });
-    }
+    greyToBlackCanAnimation(sound);
   }
   // Black to Red
   else {
-    // Heading text animation
-    gsap.to(page1Heading3, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Heading1, {
-          top: "0",
-        });
-      },
-    });
-
-    // Heading text animation
-    gsap.to(page1Para3, {
-      top: "100%",
-      onComplete: () => {
-        gsap.to(page1Para1, {
-          top: "0",
-        });
-      },
-    });
-
-    // Can switch sound
-    if (sound) {
-      const switchAudio = new Audio("sounds/canSwitch3.wav");
-      switchAudio.playbackRate = 3.0;
-      switchAudio.play();
-
-      // Restart the animation on click
-      lineAnimation.restart();
-    }
-
-    // Rotates black
-    if (canRotationFlag) {
-      gsap.from(blackModel.rotation, {
-        y: -Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes black
-          blackModelGroup.remove(blackModel);
-          gsap.from(redModel.rotation, {
-            y: -Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to red
-          gsap.to("#page1", {
-            backgroundColor: "#d91921",
-          });
-
-          // Add red model
-          redModelGroup.add(redModel);
-
-          // Turn the flag to red
-          flag = "red";
-        },
-      });
-    } else {
-      gsap.from(blackModel.rotation, {
-        y: Math.PI * 3,
-        duration: 0.4,
-        ease: "power1.in",
-        onComplete: () => {
-          // Removes black
-          blackModelGroup.remove(blackModel);
-          gsap.from(redModel.rotation, {
-            y: Math.PI * 2,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-
-          // Change page color to red
-          gsap.to("#page1", {
-            backgroundColor: "#d91921",
-          });
-
-          // Add red model
-          redModelGroup.add(redModel);
-
-          // Turn the flag to red
-          flag = "red";
-        },
-      });
-    }
+    blackToRedCanAnimation(sound);
   }
 };
 
@@ -470,7 +586,7 @@ directionalLight.position.set(2, 1.5, 2);
 scene.add(directionalLight);
 
 // Directional Light helper
-const directionLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+// const directionLightHelper = new THREE.DirectionalLightHelper(directionalLight);
 // scene.add(directionLightHelper);
 
 // Gui
