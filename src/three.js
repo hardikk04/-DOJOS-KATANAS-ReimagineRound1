@@ -604,6 +604,27 @@ scene.add(directionalLight);
 // });
 
 /**
+ * Scroll Animation of can
+ */
+
+let scrollY = window.screenY;
+
+window.addEventListener("scroll", () => {
+  scrollY = window.scrollY;
+});
+
+gsap.to(".webgl", {
+  scale: "1.15",
+  scrollTrigger: {
+    scroller: "body",
+    trigger: "#page1",
+    start: "top 0",
+    end: "top -100%",
+    scrub: 1,
+  },
+});
+
+/**
  * Sizes
  */
 const sizes = {};
@@ -654,6 +675,9 @@ let time = Date.now();
 
 let speed = 0.5;
 const tick = () => {
+  // Making scroll illusion
+  camera.position.y = (scrollY / sizes.height) * 2;
+
   // Time
   const currentTime = Date.now();
   const deltaTime = currentTime - time;
