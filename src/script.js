@@ -18,7 +18,7 @@ const lenisJs = () => {
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
-    lenis.raf(time * 500);
+    lenis.raf(time * 200);
   });
 
   gsap.ticker.lagSmoothing(0);
@@ -887,13 +887,12 @@ page6Animation();
 //  Page 7 Animations
 const page7animation = () => {
   gsap.to(".scoll-speed", {
-    transform: "translateY(-20%)",
-    duration: 1.5,
+    y: "-150",
     scrollTrigger: {
       trigger: "#page7",
       scroll: "body",
-      start: "top bottom",
-      end: "bottom -10%",
+      start: "top 100%",
+      end: "top -100%",
       scrub: 1,
     },
   });
