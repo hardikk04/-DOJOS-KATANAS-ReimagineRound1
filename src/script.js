@@ -645,7 +645,7 @@ const page5Scroll = () => {
       start: "top 65%",
       end: "top -22%",
       scrub: 1,
-      markers: true,
+      // markers: true,
     },
   });
 };
