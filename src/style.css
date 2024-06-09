@@ -1,3 +1,44 @@
+/* Fonts Loader*/
+@font-face {
+  font-family: cocaCola;
+  src: url(/fonts/cocacola1.ttf);
+}
+
+@font-face {
+  font-family: heading;
+  src: url(/fonts/headingFonts/Titania-Regular.ttf);
+}
+
+@font-face {
+  font-family: extraLightFont;
+  src: url(/fonts/paraFonts/extraLight.ttf);
+}
+
+@font-face {
+  font-family: heavyFont;
+  src: url(/fonts/paraFonts/heavy.ttf);
+}
+
+@font-face {
+  font-family: italicFont;
+  src: url(/fonts/paraFonts/italic.ttf);
+}
+
+@font-face {
+  font-family: lightFont;
+  src: url(/fonts/paraFonts/light.ttf);
+}
+
+@font-face {
+  font-family: mediumFont;
+  src: url(/fonts/paraFonts/medium.ttf);
+}
+
+@font-face {
+  font-family: semiBold;
+  src: url(/fonts/paraFonts/semiBold.ttf);
+}
+
 /* Boiler Plate */
 * {
   margin: 0;
@@ -39,47 +80,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 body::-webkit-scrollbar-thumb:active {
   background-color: rgba(0, 0, 0, 1); /* Adjust handle color on active state */
-}
-
-/* Fonts Loader*/
-@font-face {
-  font-family: cocaCola;
-  src: url(/fonts/cocacola1.ttf);
-}
-
-@font-face {
-  font-family: heading;
-  src: url(/fonts/headingFonts/Titania-Regular.ttf);
-}
-
-@font-face {
-  font-family: extraLightFont;
-  src: url(/fonts/paraFonts/extraLight.ttf);
-}
-
-@font-face {
-  font-family: heavyFont;
-  src: url(/fonts/paraFonts/heavy.ttf);
-}
-
-@font-face {
-  font-family: italicFont;
-  src: url(/fonts/paraFonts/italic.ttf);
-}
-
-@font-face {
-  font-family: lightFont;
-  src: url(/fonts/paraFonts/light.ttf);
-}
-
-@font-face {
-  font-family: mediumFont;
-  src: url(/fonts/paraFonts/medium.ttf);
-}
-
-@font-face {
-  font-family: semiBold;
-  src: url(/fonts/paraFonts/semiBold.ttf);
 }
 
 /* For spans */
@@ -247,48 +247,104 @@ nav {
 }
 
 .nav-right-menu {
-  position: relative;
   z-index: 9;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
-  width: 3vw;
-  height: 3vw;
+  width: 2.2vw;
+  height: 2.2vw;
+  position: relative;
 }
+
 .menu-line {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 5%;
+  width: 100%;
+  height: 8%;
   background-color: #fff;
 }
 #li1 {
-  top: 40%;
+  top: 35%;
+  left: 0;
 }
 #li2 {
-  top: 60%;
+  top: 65%;
+  right: 0;
 }
-#navpage {
-  height: 100vh;
-  width: 100%;
-  background: radial-gradient(#d3262b 10%, rgb(43, 2, 2));
+#navigation{
   position: fixed;
-  left: 0;
+  z-index: 9;
   top: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  padding: 10vw 2vw;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+}
+#logo{
+  position: absolute;
+  padding: 0vw 2vw;
+  padding-top: 1vw;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#logo h1{
+  font-size: 3.5vw;
+  opacity: 0.9;
+  font-family: cocaCola;
+  font-weight: 100;
+  color: #d91921;
+}
+#close {
+  z-index: 9;
+  cursor: pointer;
+  width: 2.2vw;
+  height: 2.2vw;
+  position: relative;
+}
+
+.close-line {
+  position: absolute;
+  width: 8%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  top: 15%;
+}
+#cli1 {
+  left: 10%;
+  transform-origin: top;
+  transform:rotate(-45deg);
+}
+#cli2 {
+  transform-origin: top;
+  right: 10%;
+  transform:rotate(45deg);
+}
+#navigation #lf{
+  width: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 2vw;
 }
-#navpage h2 {
-  font-size: 6vw;
-  color: #fff;
+#navigation #lf h4{
+  font-size: 5vw;
+  color: #d91921;
+  text-transform: capitalize;
   font-family: heading;
-  line-height: 1.2;
+  font-weight: 500;
+  cursor: pointer;
+}
+#navigation #rt{
+  width: 40%;
+  height: 100%;
+  background-image: url(https://i.pinimg.com/564x/85/1c/e4/851ce4e51eba68f0db0fd6a72bb5164a.jpg);
+  background-size: cover;
+  background-position: bottom;
 }
 .webgl {
   position: absolute;
