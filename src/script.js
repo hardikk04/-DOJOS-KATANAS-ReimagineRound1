@@ -642,10 +642,10 @@ const page5Scroll = () => {
     scrollTrigger: {
       scroller: "body",
       trigger: "#page5",
-      start: "top 55%",
-      end: "top 0%",
+      start: "top 65%",
+      end: "top -22%",
       scrub: 1,
-      // markers: true,
+      markers: true,
     },
   });
 };
