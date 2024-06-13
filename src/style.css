@@ -778,19 +778,18 @@ nav {
   font-size: 4vw;
   font-weight: 600;
   text-transform: capitalize;
-  color: rgb(80, 80, 80);
+  color: rgb(91, 91, 91);
   z-index: 99;
   transition: all ease 0.3s;
 }
 
 #page4Desktop .section:hover {
-  background-color: rgb(49, 49, 49);
   cursor: pointer;
 }
 
 #page4Desktop .section:hover h3 {
   transform: translateX(5%);
-  color: white;
+  color: black;
 }
 
 #page4Desktop .section i {
@@ -850,7 +849,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: rgb(80, 80, 80);
+  color: rgb(91, 91, 91);
 }
 
 /* Page4 ends */
@@ -858,7 +857,7 @@ nav {
 /* Page5 starts */
 #page5 {
   width: 100%;
-  height: 100vh;
+  height: 121vh;
   color: #d91921;
   background-color: #fff;
   display: flex;
@@ -866,27 +865,25 @@ nav {
   align-items: center;
   position: relative;
   font-family: heading;
-  padding-top: 9vw;
 }
 
 #page5 #heading {
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   margin-top: 6vh;
-  overflow: hidden;
-  position: absolute;
-  top: 0%;
 }
 
-#page5 #heading h3 {
-  font-size: 2.5vw;
+#page5 #heading h3
+{
+  font-size: 3vw;
   font-weight: 500;
   text-align: center;
 }
 
 #page5 #video {
   width: 60%;
-  height: 100%;
+  height: 100vh;
+  position: relative;
 }
 
 #page5 #video video {

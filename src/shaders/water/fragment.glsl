@@ -1,8 +1,10 @@
-varying vec2 vUv;
 uniform sampler2D uTexture;
 uniform vec2 uMouse;
 uniform vec2 uPrevMouse;
 uniform float uAberrationIntensity;
+
+varying float vElevation;
+varying vec2 vUv;
 
 void main()
 {
