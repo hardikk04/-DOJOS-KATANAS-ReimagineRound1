@@ -272,15 +272,24 @@ nav {
   position: fixed;
   z-index: 9;
   top: 0;
-  left: 0;
+  right: -100%;
   width: 100%;
   height: 100vh;
-  background-color: #fff;
   display: flex;
   align-items: center;
-  opacity: 0;
+  justify-content: end;
 }
-#logo{
+#sidepanel{
+  width: 40%;
+  height: 100%;
+  background-color: #F8F8F8;
+  position: relative;
+  padding: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#sidepanel #logo{
   position: absolute;
   padding: 0vw 2vw;
   padding-top: 1vw;
@@ -289,15 +298,9 @@ nav {
   left: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content:end;
 }
-#logo h1{
-  font-size: 3.5vw;
-  opacity: 0.9;
-  font-family: cocaCola;
-  font-weight: 100;
-  color: #d91921;
-}
+
 #close {
   z-index: 9;
   cursor: pointer;
@@ -309,8 +312,8 @@ nav {
 .close-line {
   position: absolute;
   width: 8%;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
+  height: 0%;
+  background-color: rgb(1, 1, 1);
   top: 15%;
 }
 #cli1 {
@@ -323,28 +326,42 @@ nav {
   right: 10%;
   transform:rotate(45deg);
 }
-#navigation #lf{
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 2vw;
-}
-#navigation #lf h4{
-  font-size: 5vw;
-  color: #d91921;
+#sidepanel #menu-text h4{
+  font-size: 3vw;
+  font-family: mediumfont;
   text-transform: capitalize;
-  font-family: heading;
   font-weight: 500;
   cursor: pointer;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
+  line-height: 1;
 }
-#navigation #rt{
-  width: 40%;
-  height: 100%;
-  background-image: url(https://i.pinimg.com/564x/85/1c/e4/851ce4e51eba68f0db0fd6a72bb5164a.jpg);
-  background-size: cover;
-  background-position: bottom;
+#sidepanel #menu-text .menu-wrap{
+  height: 3.3vw;
+  width: fit-content;
+  overflow: hidden;
+  margin-bottom: 1.1vw;
+}
+#sidepanel #menu-text .menu-wrap:hover h4{
+  transform: translateY(-108%);
+}
+#sidepanel #menu-logo i{
+  position: relative;
+  font-size: 2vw;
+  margin-left: 1vw;
+  cursor: pointer;
+}
+#sidepanel #menu-logo i::after{
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  height: 5%;
+  width: 0%;
+  background-color: black;
+  transition: all ease 0.3s;
+}
+#sidepanel #menu-logo i:hover::after{
+  width: 100%;
 }
 .webgl {
   position: absolute;
@@ -710,7 +727,7 @@ nav {
 }
 
 #page4Desktop .heading h1 {
-  font-size: 5vw;
+  font-size: 4vw;
   color: #d91921;
   text-transform: capitalize;
   font-weight: 500;
@@ -857,7 +874,7 @@ nav {
 /* Page5 starts */
 #page5 {
   width: 100%;
-  height: 121vh;
+  min-height: 100vh;
   color: #d91921;
   background-color: #fff;
   display: flex;
@@ -869,15 +886,15 @@ nav {
 
 #page5 #heading {
   width: 100%;
-  height: 15vh;
-  margin-top: 6vh;
 }
 
 #page5 #heading h3
 {
-  font-size: 3vw;
+  font-size: 3.5vw;
+  line-height: 1.2;
   font-weight: 500;
   text-align: center;
+  margin: 8vh 0;
 }
 
 #page5 #video {
@@ -1763,7 +1780,6 @@ nav {
     font-size: 4vw;
   }
   .nav-right-menu {
-    border: 2px solid #fff;
     padding: 2vw;
   }
   .page1-overlay {
@@ -1891,26 +1907,25 @@ nav {
     color: #fff;
     transform: translateY(110%);
   }
-  #page4 {
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  #page4Desktop{
+    display: none;
   }
-  #page4 .heading h1 {
+  #page4Mobile{
+    display: block;
+  }
+  #page5{
+    min-height:80vh ;
+    justify-content: space-between;
+  }
+  #page5 #heading h3{
     font-size: 6.5vw;
-    font-family: heading;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: 400;
+    margin: 4vw 0;
   }
-  #page4 .section {
-    height: 8vh;
-  }
-  #page4 .section h3 {
-    font-size: 4.5vw;
-    font-family: heading;
-    font-weight: 600;
-    font-family: lightFont;
+  #page5 #video {
+    width: 60%;
+    height: 60vh;
+    position: relative;
   }
   #page6 .page6-imgs {
     top: 110%;
@@ -2101,7 +2116,7 @@ nav {
     font-size: 5vw;
   }
   #footer-fixed #line {
-    bottom: 15%;
+    bottom: 12%;
     overflow: hidden;
     width: 100%;
     height: 8vh;

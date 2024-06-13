@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
+import { DoubleSide } from "three";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,8 +44,73 @@ const clutterAnimation = (element) => {
   // Updating the HTML content of the element with the animated spans
   htmlTag.innerHTML = clutter;
 };
+// Navigation Animation
+const navigation = ()=>{
+  var navigation = document.querySelector("#navigation")
+  var menutl = gsap.timeline({paused:true})
+menutl
+  .to("#containermu #li1",{
+    width:"0%",
+    duration:.6,
+    ease: "expo.out",
+  },"a")
+  .to("#containermu #li2",{
+    width:"0%",
+    duration:.6,
+    ease: "expo.out",
+  },"a")
+  .to(navigation,{
+    right:0,
+    delay:-.5,
+    duration:.8,
+  })
+  .to(navigation,{
+    backgroundColor:"rgba(0, 0, 0, 0.400)",
+    duration:0
+  })
+  .from(navigation.querySelectorAll(".menu-wrap"),{
+    x:10,
+    opacity:0,
+    duration:.2,
+    stagger:0.1
+  })
+  .from(navigation.querySelectorAll("#menu-logo i"),{
+    y:2,
+    opacity:0,
+  })
+  document.querySelector(".nav-right-menu").addEventListener("click",function(){
+    gsap.to("#cli1",{
+     height:"100%",
+     duration:.6,
+     ease: "expo.out",
+   })
+   gsap.to("#cli2",{
+     height:"100%",
+     duration:.6,
+     ease: "expo.out",
+   })
+   menutl.play()
+ })
+ document.querySelector("#close").addEventListener("click",function(){
+   gsap.to("#cli1",{
+     height:"0%",
+     duration:.6,
+     ease: "expo.out",
+   })
+   gsap.to("#cli2",{
+     height:"0%",
+     duration:.6,
+     ease: "expo.out",
+   })
+   menutl.reverse()
+ })
+}
+navigation()
+  
+
 
 // Nav Animation
+
 
 const navAnimation = () => {
   // Variable to store the last scroll position
@@ -81,9 +147,6 @@ const navAnimation = () => {
       gsap.to(".nav-right i", {
         color: "#000000",
       });
-      gsap.to(".nav-right-menu", {
-        border: "1px solid #000000",
-      });
       gsap.to(".nav-right-menu .menu-line", {
         backgroundColor: "#000",
       });
@@ -97,9 +160,6 @@ const navAnimation = () => {
       });
       gsap.to(".nav-right i", {
         color: "#fff",
-      });
-      gsap.to(".nav-right-menu", {
-        border: "1px solid #fff",
       });
       gsap.to(".nav-right-menu .menu-line", {
         backgroundColor: "#fff",
@@ -813,9 +873,8 @@ const lineEffect = () => {
       let valY =
         dets.y -
         document.querySelector(".lineeffect").getBoundingClientRect().top;
-      console.log(valY * 0.5);
       gsap.to(".lineeffect svg path", {
-        attr: { d: `M -500,50 Q 0,${valY} 600,50` },
+        attr: { d: `M -500,50 Q 0,${valY*0.8} 600,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -831,4 +890,4 @@ const lineEffect = () => {
       });
     });
 };
-lineEffect();
+lineEffect(); 
