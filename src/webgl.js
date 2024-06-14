@@ -152,7 +152,7 @@ if (!isMobileDevice()) {
       gsap.to(planeMesh.material.uniforms.uFrequency.value, {
         x: 0,
         y: 0,
-        duration: 2,
+        duration: 1,
       });
       gsap.to(planeMesh.material.uniforms.uTime, {
         value: 0,
