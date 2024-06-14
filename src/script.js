@@ -18,7 +18,7 @@ const lenisJs = () => {
   lenis.on("scroll", ScrollTrigger.update);
 
   gsap.ticker.add((time) => {
-    lenis.raf(time * 200);
+    lenis.raf(time * 500);
   });
 
   gsap.ticker.lagSmoothing(0);
@@ -650,7 +650,6 @@ const page5Scroll = () => {
   });
 };
 page5Scroll();
-
 
 const page5Click = () => {
   let flag = 0;
