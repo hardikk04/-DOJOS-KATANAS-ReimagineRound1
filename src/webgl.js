@@ -128,14 +128,9 @@ if (!isMobileDevice()) {
     function handleMouseEnter(event) {
       mouseE = true;
       gsap.to(planeMesh.material.uniforms.uFrequency.value, {
-        x: 5,
-        y: 5,
+        x: 3,
+        y: 3,
         duration: 1,
-      });
-
-      gsap.to(camera.position, {
-        z: 1.5,
-        duration: 2,
       });
 
       easeFactor = 0.05;
@@ -159,10 +154,6 @@ if (!isMobileDevice()) {
         duration: 1,
       });
 
-      gsap.to(camera.position, {
-        z: 1,
-        duration: 2,
-      });
       easeFactor = 0.05;
       targetMousePosition = { ...prevPosition };
     }
