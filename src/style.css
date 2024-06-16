@@ -963,8 +963,7 @@ nav {
   top: 0%;
   font-size: 16vw;
   line-height: 1;
-  color: #fff;
-  mix-blend-mode: difference;
+  color: #d91921;
   font-family: heading;
   font-weight: 500;
 }
