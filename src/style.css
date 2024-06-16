@@ -236,7 +236,7 @@ nav {
   position: relative;
   z-index: 1;
   display: flex;
-  gap: 1.5vw;
+  gap: 2vw;
 }
 
 .nav-right {
@@ -249,8 +249,16 @@ nav {
 .nav-right-menu {
   z-index: 9;
   cursor: pointer;
-  width: 2.2vw;
-  height: 2.2vw;
+  width: 3.2vw;
+  height: 3.2vw;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding: .5vw .6vw;
+}
+#containermu{
+  height:100%;
+  width: 100%;
   position: relative;
 }
 
@@ -300,12 +308,20 @@ nav {
   align-items: center;
   justify-content:end;
 }
+.close-container{
+  width: 3.2vw;
+  height: 3.2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5vw .6vw;
+}
 
 #close {
   z-index: 9;
   cursor: pointer;
-  width: 2.2vw;
-  height: 2.2vw;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -317,13 +333,13 @@ nav {
   top: 15%;
 }
 #cli1 {
-  left: 10%;
+  left: 7%;
   transform-origin: top;
   transform:rotate(-45deg);
 }
 #cli2 {
   transform-origin: top;
-  right: 10%;
+  right: 7%;
   transform:rotate(45deg);
 }
 #sidepanel #menu-text h4{
@@ -362,6 +378,22 @@ nav {
 }
 #sidepanel #menu-logo i:hover::after{
   width: 100%;
+}
+#menu-text .txt{
+  margin-bottom: 1.5vw;
+}
+#cursor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  height: 3.2vw;
+  width: 3.2vw;
+  z-index: 999;
+  transform: translate(-50%,-50%) scale(0);
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
 .webgl {
   position: absolute;

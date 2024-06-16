@@ -891,3 +891,57 @@ const lineEffect = () => {
     });
 };
 lineEffect(); 
+
+// magneticEffect animation
+
+const magneticEffect = ()=>{
+  window.addEventListener("mousemove",function(dets){
+    gsap.to("#cursor",{
+      top:dets.y,
+      left:dets.x
+    })
+  })
+  
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+     e.addEventListener("mouseenter",function(){
+      gsap.to("#cursor",{
+        scale:1
+      })
+    })
+  })
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mouseleave",function(){
+      gsap.to("#cursor",{
+        scale:0
+      })
+    })
+  })
+  
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mousemove",function(dets){
+      var xStart = dets.x -  e.getBoundingClientRect().x
+      var xEnd = e.getBoundingClientRect().width
+      var valx = gsap.utils.mapRange(0,xEnd , -12,12,xStart)
+      var yStart = dets.y -  e.getBoundingClientRect().y
+      var yEnd = e.getBoundingClientRect().height
+      var valy = gsap.utils.mapRange(0,yEnd , -12,12,yStart)
+      gsap.to(e.querySelector(".effect"),{
+        x:valx,
+        y:valy,
+        duration:.3
+      })
+    })
+  })
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mouseleave",function(dets){
+      gsap.to(e.querySelector(".effect"),{
+        x:0,
+        y:0,
+        duration:.3
+      })
+    })
+  })
+  
+  
+}
+magneticEffect()
