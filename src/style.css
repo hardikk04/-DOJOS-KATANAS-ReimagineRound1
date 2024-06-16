@@ -1,3 +1,44 @@
+/* Fonts Loader*/
+@font-face {
+  font-family: cocaCola;
+  src: url(/fonts/cocacola1.ttf);
+}
+
+@font-face {
+  font-family: heading;
+  src: url(/fonts/headingFonts/Titania-Regular.ttf);
+}
+
+@font-face {
+  font-family: extraLightFont;
+  src: url(/fonts/paraFonts/extraLight.ttf);
+}
+
+@font-face {
+  font-family: heavyFont;
+  src: url(/fonts/paraFonts/heavy.ttf);
+}
+
+@font-face {
+  font-family: italicFont;
+  src: url(/fonts/paraFonts/italic.ttf);
+}
+
+@font-face {
+  font-family: lightFont;
+  src: url(/fonts/paraFonts/light.ttf);
+}
+
+@font-face {
+  font-family: mediumFont;
+  src: url(/fonts/paraFonts/medium.ttf);
+}
+
+@font-face {
+  font-family: semiBold;
+  src: url(/fonts/paraFonts/semiBold.ttf);
+}
+
 /* Boiler Plate */
 * {
   margin: 0;
@@ -39,47 +80,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 body::-webkit-scrollbar-thumb:active {
   background-color: rgba(0, 0, 0, 1); /* Adjust handle color on active state */
-}
-
-/* Fonts Loader*/
-@font-face {
-  font-family: cocaCola;
-  src: url(/fonts/cocacola1.ttf);
-}
-
-@font-face {
-  font-family: heading;
-  src: url(/fonts/headingFonts/Titania-Regular.ttf);
-}
-
-@font-face {
-  font-family: extraLightFont;
-  src: url(/fonts/paraFonts/extraLight.ttf);
-}
-
-@font-face {
-  font-family: heavyFont;
-  src: url(/fonts/paraFonts/heavy.ttf);
-}
-
-@font-face {
-  font-family: italicFont;
-  src: url(/fonts/paraFonts/italic.ttf);
-}
-
-@font-face {
-  font-family: lightFont;
-  src: url(/fonts/paraFonts/light.ttf);
-}
-
-@font-face {
-  font-family: mediumFont;
-  src: url(/fonts/paraFonts/medium.ttf);
-}
-
-@font-face {
-  font-family: semiBold;
-  src: url(/fonts/paraFonts/semiBold.ttf);
 }
 
 /* For spans */
@@ -236,7 +236,7 @@ nav {
   position: relative;
   z-index: 1;
   display: flex;
-  gap: 1.5vw;
+  gap: 2vw;
 }
 
 .nav-right {
@@ -247,48 +247,152 @@ nav {
 }
 
 .nav-right-menu {
-  position: relative;
   z-index: 9;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
-  width: 3vw;
-  height: 3vw;
+  width: 3.2vw;
+  height: 3.2vw;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding: .5vw .6vw;
 }
+#containermu{
+  height:100%;
+  width: 100%;
+  position: relative;
+}
+
 .menu-line {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 5%;
+  width: 100%;
+  height: 8%;
   background-color: #fff;
 }
 #li1 {
-  top: 40%;
+  top: 35%;
+  left: 0;
 }
 #li2 {
-  top: 60%;
+  top: 65%;
+  right: 0;
 }
-#navpage {
-  height: 100vh;
-  width: 100%;
-  background: radial-gradient(#d3262b 10%, rgb(43, 2, 2));
+#navigation{
   position: fixed;
-  left: 0;
+  z-index: 9;
   top: 0;
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  padding: 10vw 2vw;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+#sidepanel{
+  width: 40%;
+  height: 100%;
+  background-color: #F8F8F8;
+  position: relative;
+  padding: 5vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
-#navpage h2 {
-  font-size: 6vw;
-  color: #fff;
-  font-family: heading;
-  line-height: 1.2;
+#sidepanel #logo{
+  position: absolute;
+  padding: 0vw 2vw;
+  padding-top: 1vw;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content:end;
+}
+.close-container{
+  width: 3.2vw;
+  height: 3.2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5vw .6vw;
+}
+
+#close {
+  z-index: 9;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.close-line {
+  position: absolute;
+  width: 8%;
+  height: 0%;
+  background-color: rgb(1, 1, 1);
+  top: 15%;
+}
+#cli1 {
+  left: 7%;
+  transform-origin: top;
+  transform:rotate(-45deg);
+}
+#cli2 {
+  transform-origin: top;
+  right: 7%;
+  transform:rotate(45deg);
+}
+#sidepanel #menu-text h4{
+  font-size: 3vw;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 1;
+}
+#sidepanel #menu-text h4 span{
+  font-family: mediumfont;
+}
+#sidepanel #menu-text .menu-wrap{
+  height: 3.3vw;
+  width: fit-content;
+  overflow: hidden;
+  margin-bottom: 1.1vw;
+}
+
+#sidepanel #menu-logo i{
+  position: relative;
+  font-size: 2vw;
+  margin-left: 1vw;
+  cursor: pointer;
+}
+#sidepanel #menu-logo i::after{
+  content: "";
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  height: 5%;
+  width: 0%;
+  background-color: black;
+  transition: all ease 0.3s;
+}
+#sidepanel #menu-logo i:hover::after{
+  width: 100%;
+}
+#menu-text .txt{
+  width: fit-content;
+  margin-bottom: 1.5vw;
+}
+#cursor{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  height: 3.2vw;
+  width: 3.2vw;
+  z-index: 999;
+  transform: translate(-50%,-50%) scale(0);
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
 .webgl {
   position: absolute;
@@ -613,23 +717,23 @@ nav {
   width: 100%;
   z-index: 2;
   display: flex;
-  align-items: start;
-  justify-content: center;
-  padding: 5vw;
+  align-items:end;
+  justify-content: start;
+  padding: 4vw 2vw;
 }
-#page3 #text-container .textc {
-  overflow: hidden;
-  height: 3vw;
-}
-#page3 #text-container h2 {
-  font-size: 3vw;
-  line-height: 1;
-  font-weight: 600;
+#page3 #text-container h4{
+  font-size: 2.5vw;
+  font-family: lightfont;
   color: #fff;
-  text-transform: capitalize;
-  transform: translateY(108%);
-  text-align: center;
-  font-family: mediumFont;
+}
+
+.canvas-text-wrap{
+  height: 3vw;
+  overflow: hidden;
+  margin-bottom: .8vw;
+}
+.canvas-text-wrap h4 span{
+  display: inline-block;
 }
 /* Page3 ends */
 
@@ -654,7 +758,7 @@ nav {
 }
 
 #page4Desktop .heading h1 {
-  font-size: 5vw;
+  font-size: 4vw;
   color: #d91921;
   text-transform: capitalize;
   font-weight: 500;
@@ -801,7 +905,7 @@ nav {
 /* Page5 starts */
 #page5 {
   width: 100%;
-  height: 121vh;
+  min-height: 100vh;
   color: #d91921;
   background-color: #fff;
   display: flex;
@@ -813,14 +917,15 @@ nav {
 
 #page5 #heading {
   width: 100%;
-  height: 15vh;
-  margin-top: 6vh;
 }
 
-#page5 #heading h3 {
-  font-size: 3vw;
+#page5 #heading h3
+{
+  font-size: 3.5vw;
+  line-height: 1.2;
   font-weight: 500;
   text-align: center;
+  margin: 8vh 0;
 }
 
 #page5 #video {
@@ -1220,9 +1325,7 @@ nav {
   overflow: hidden;
   margin-bottom: 0.8vw;
 }
-#foot-pt2 .wrap-ft:hover h4 {
-  transform: translateY(-100%);
-}
+
 #foot-pt2 h2 {
   font-weight: 600;
   line-height: 1;
@@ -1234,7 +1337,6 @@ nav {
   font-weight: 500;
   font-size: 1.2vw;
   line-height: 1;
-  transition: all ease 0.3s;
   cursor: pointer;
   font-family: mediumFont;
 }
@@ -1245,6 +1347,9 @@ nav {
   justify-content: space-between;
   margin-top: 3vw;
   padding-bottom: 1vw;
+}
+.text-effect span{
+  display: inline-block;
 }
 
 #foot-pt3 #social {
@@ -1329,9 +1434,6 @@ nav {
   #page2 p {
     font-size: 1.6vw;
     width: 60%;
-  }
-  #canvas-text {
-    padding-top: 3vw;
   }
   #page7 {
     padding: 2vw;
@@ -1488,9 +1590,72 @@ nav {
   .nav-right {
     font-size: 2vw;
   }
-  .nav-right-menu {
-    padding: 1vw;
+  .nav-right-elem{
+    gap: 4vw;
   }
+  .nav-right-menu {
+    z-index: 9;
+    cursor: pointer;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    padding: 2vw 2vw;
+  }
+  #containermu{
+    height:100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  .menu-line {
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    background-color: #fff;
+  }
+  #li1 {
+    top: 35%;
+    left: 0;
+  }
+  #li2 {
+    top: 65%;
+    right: 0;
+  }
+
+#sidepanel{
+  width: 50%;
+  padding: 10vw 3vw;
+}
+#sidepanel #logo{
+  padding: 0vw 3vw;
+  padding-top: 2vw;
+}
+.close-container{
+  width: 6vw;
+  height: 6vw;
+}
+
+#cli1 {
+  left: 10%;
+}
+#cli2 {
+  right: 10%;
+}
+#sidepanel #menu-text h4{
+  font-size: 5vw;
+}
+
+#sidepanel #menu-text .menu-wrap{
+  height: 5.3vw;
+  margin-bottom: 3vw;
+}
+
+#sidepanel #menu-logo i{
+  font-size: 4vw;
+  margin-left: 3vw;
+}
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -1507,6 +1672,15 @@ nav {
   .page1-footer {
     padding: 1vw 3vw;
     margin-bottom: 3vw;
+  }
+  .page1-footer-title{
+    width: 20vw;
+  }
+  .three-loder{
+    width: 20vw;
+  }
+  .page1-footer-title h1 span{
+    font-size: 1vw;
   }
   #page2 .resp-des {
     display: none;
@@ -1534,9 +1708,22 @@ nav {
   .over-card h6 {
     font-size: 0.8vw;
   }
-  #page3 #text-container {
-    padding-top: 15vw;
+  #page3 #text-container{
+    padding-bottom: 12vw;
   }
+  #page3 #text-container h4{
+    font-size: 3.5vw;
+    font-weight: 500;
+    font-family: lightfont;
+    color: #fff;
+  }
+  
+  .canvas-text-wrap{
+    height: 4vw;
+    overflow: hidden;
+    margin-bottom: .8vw;
+  }
+
   #page4 .heading h1 {
     font-size: 6vw;
     text-transform: capitalize;
@@ -1704,10 +1891,68 @@ nav {
   .nav-right i {
     font-size: 4vw;
   }
-  .nav-right-menu {
-    border: 2px solid #fff;
-    padding: 2vw;
-  }
+.nav-right-menu {
+  z-index: 9;
+  cursor: pointer;
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding: .5vw 2vw;
+}
+#containermu{
+  height:100%;
+  width: 100%;
+  position: relative;
+}
+
+.menu-line {
+  position: absolute;
+  width: 100%;
+  height: 8%;
+  background-color: #fff;
+}
+#li1 {
+  top: 35%;
+  left: 0;
+}
+#li2 {
+  top: 65%;
+  right: 0;
+}
+#sidepanel{
+  width: 100%;
+  padding: 20vw 3.5vw;
+}
+#sidepanel #logo{
+  padding: 0vw 3.5vw;
+  padding-top: 4vw;
+}
+.close-container{
+  width: 10vw;
+  height: 10vw;
+}
+
+#cli1 {
+  left: 10%;
+}
+#cli2 {
+  right: 10%;
+}
+#sidepanel #menu-text h4{
+  font-size: 7vw;
+}
+
+#sidepanel #menu-text .menu-wrap{
+  height: 7.3vw;
+  margin-bottom: 5vw;
+}
+
+#sidepanel #menu-logo i{
+  font-size: 7vw;
+  margin-left: 5vw;
+}
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -1747,10 +1992,6 @@ nav {
   }
 
   .page1-footer-right {
-    margin-top: 3vw;
-  }
-
-  .three-loder {
     display: none;
   }
   #page2 {
@@ -1819,40 +2060,41 @@ nav {
     padding: 10vw;
     transform: scale(0.5);
   }
-
-  #page3 #text-container {
-    margin-top: 20vw;
+  #page3 #text-container{
+    padding-bottom: 15vw;
   }
-  #page3 #text-container .textc {
-    height: 6.8vw;
-  }
-  #page3 #text-container h2 {
-    font-size: 6vw;
-    line-height: 1;
+  #page3 #text-container h4{
+    font-size: 5vw;
     font-weight: 500;
+    font-family: lightfont;
     color: #fff;
-    transform: translateY(110%);
   }
-  #page4 {
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  
+  .canvas-text-wrap{
+    height: 5.2vw;
+    overflow: hidden;
+    margin-bottom: .8vw;
   }
-  #page4 .heading h1 {
+ 
+  #page4Desktop{
+    display: none;
+  }
+  #page4Mobile{
+    display: block;
+  }
+  #page5{
+    min-height:80vh ;
+    justify-content: space-between;
+  }
+  #page5 #heading h3{
     font-size: 6.5vw;
-    font-family: heading;
-    font-weight: 500;
-    text-transform: capitalize;
+    font-weight: 400;
+    margin: 4vw 0;
   }
-  #page4 .section {
-    height: 8vh;
-  }
-  #page4 .section h3 {
-    font-size: 4.5vw;
-    font-family: heading;
-    font-weight: 600;
-    font-family: lightFont;
+  #page5 #video {
+    width: 60%;
+    height: 60vh;
+    position: relative;
   }
   #page6 .page6-imgs {
     top: 110%;
@@ -2043,7 +2285,7 @@ nav {
     font-size: 5vw;
   }
   #footer-fixed #line {
-    bottom: 15%;
+    bottom: 12%;
     overflow: hidden;
     width: 100%;
     height: 8vh;
