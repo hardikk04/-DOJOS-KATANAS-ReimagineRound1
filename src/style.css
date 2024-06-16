@@ -817,8 +817,7 @@ nav {
   margin-top: 6vh;
 }
 
-#page5 #heading h3
-{
+#page5 #heading h3 {
   font-size: 3vw;
   font-weight: 500;
   text-align: center;
@@ -859,8 +858,7 @@ nav {
   top: 0%;
   font-size: 16vw;
   line-height: 1;
-  color: #fff;
-  mix-blend-mode: difference;
+  color: #d91921;
   font-family: heading;
   font-weight: 500;
 }
