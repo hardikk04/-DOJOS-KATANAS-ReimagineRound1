@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-import { DoubleSide } from "three";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,10 +25,118 @@ const lenisJs = () => {
 };
 lenisJs();
 
+
 // Restart always from top - 0
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
+
+// magneticEffect animation
+// can be used by giving class .magnet-effect to parent and .effect to child
+
+const magneticEffect = ()=>{
+  window.addEventListener("mousemove",function(dets){
+    gsap.to("#cursor",{
+      top:dets.y,
+      left:dets.x
+    })
+  })
+  
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+     e.addEventListener("mouseenter",function(){
+      gsap.to("#cursor",{
+        scale:1
+      })
+    })
+  })
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mouseleave",function(){
+      gsap.to("#cursor",{
+        scale:0
+      })
+    })
+  })
+  
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mousemove",function(dets){
+      var xStart = dets.x -  e.getBoundingClientRect().x
+      var xEnd = e.getBoundingClientRect().width
+      var valx = gsap.utils.mapRange(0,xEnd , -12,12,xStart)
+      var yStart = dets.y -  e.getBoundingClientRect().y
+      var yEnd = e.getBoundingClientRect().height
+      var valy = gsap.utils.mapRange(0,yEnd , -12,12,yStart)
+      gsap.to(e.querySelector(".effect"),{
+        x:valx,
+        y:valy,
+        duration:.5
+      })
+    })
+  })
+  document.querySelectorAll(".magnet-effect").forEach(function(e){
+    e.addEventListener("mouseleave",function(dets){
+      gsap.to(e.querySelector(".effect"),{
+        x:0,
+        y:0,
+        duration:.5,
+      })
+    })
+  })
+  
+  
+}
+magneticEffect()
+
+// textEffect animation
+// can be used by giving class .text-effect to parent 
+// and .first and .second classes to child's(both child should be h4)
+const textEffect = ()=>{
+
+  document.querySelectorAll(".text-effect h4").forEach(function(h){
+    var clutter = ""
+    h.textContent.split("").forEach(function(l){
+    clutter += `<span>${l}</span>`
+    })
+    h.innerHTML = clutter
+   })
+   
+   document.querySelectorAll(".text-effect").forEach(function(e){
+     e.addEventListener("mouseenter",function(){
+      gsap.to(e.querySelectorAll(".first span"),{
+       y:"-106%",
+       stagger:{
+         amount:0.2
+       },
+       duration:0.4
+      })
+      gsap.to(e.querySelectorAll(".second span"),{
+       y:"-100%",
+       stagger:{
+         amount:0.2
+       },
+       duration:.4
+      })
+     })
+   })
+   document.querySelectorAll(".text-effect").forEach(function(e){
+     e.addEventListener("mouseleave",function(){
+      gsap.to(e.querySelectorAll(".first span"),{
+       y:"0%",
+       stagger:{
+         amount:0.2
+       }
+      })
+      gsap.to(e.querySelectorAll(".second span"),{
+       y:"0%",
+       stagger:{
+         amount:0.2
+       }
+      })
+     })
+   })
+}
+textEffect()
+
+
 
 // Clutter Animation
 const clutterAnimation = (element) => {
@@ -106,11 +213,8 @@ menutl
  })
 }
 navigation()
-  
-
 
 // Nav Animation
-
 
 const navAnimation = () => {
   // Variable to store the last scroll position
@@ -410,43 +514,51 @@ const canvas1 = () => {
 
   function files(index) {
     var data = `
-    canvas/canvas00064.png
-    canvas/canvas00065.png
-    canvas/canvas00066.png
-    canvas/canvas00067.png
-    canvas/canvas00068.png
-    canvas/canvas00069.png
-    canvas/canvas00070.png
-    canvas/canvas00071.png
-    canvas/canvas00072.png
-    canvas/canvas00073.png
-    canvas/canvas00074.png
-    canvas/canvas00075.png
-    canvas/canvas00076.png
-    canvas/canvas00077.png
-    canvas/canvas00078.png
-    canvas/canvas00079.png
-    canvas/canvas00080.png
-    canvas/canvas00081.png
-    canvas/canvas00082.png
-    canvas/canvas00083.png
-    canvas/canvas00084.png
-    canvas/canvas00085.png
-    canvas/canvas00086.png
-    canvas/canvas00087.png
-    canvas/canvas00088.png
-    canvas/canvas00089.png
-    canvas/canvas00090.png
-    canvas/canvas00091.png
-    canvas/canvas00092.png
-    canvas/canvas00093.png
-    canvas/canvas00094.png
-    canvas/canvas00095.png
+  canvas1/canvas (1).png
+  canvas1/canvas (2).png
+  canvas1/canvas (3).png
+  canvas1/canvas (4).png
+  canvas1/canvas (5).png
+  canvas1/canvas (6).png
+  canvas1/canvas (7).png
+  canvas1/canvas (8).png
+  canvas1/canvas (9).png
+  canvas1/canvas (10).png
+  canvas1/canvas (11).png
+  canvas1/canvas (12).png
+  canvas1/canvas (13).png
+  canvas1/canvas (14).png
+  canvas1/canvas (15).png
+  canvas1/canvas (16).png
+  canvas1/canvas (17).png
+  canvas1/canvas (18).png
+  canvas1/canvas (19).png
+  canvas1/canvas (20).png
+  canvas1/canvas (21).png
+  canvas1/canvas (22).png
+  canvas1/canvas (23).png
+  canvas1/canvas (24).png
+  canvas1/canvas (25).png
+  canvas1/canvas (26).png
+  canvas1/canvas (27).png
+  canvas1/canvas (28).png
+  canvas1/canvas (29).png
+  canvas1/canvas (30).png
+  canvas1/canvas (31).png
+  canvas1/canvas (32).png
+  canvas1/canvas (33).png
+  canvas1/canvas (34).png
+  canvas1/canvas (35).png
+  canvas1/canvas (36).png
+  canvas1/canvas (37).png
+  canvas1/canvas (38).png
+  canvas1/canvas (39).png
+  
    `;
     return data.split("\n")[index];
   }
 
-  const frameCount = 32;
+  const frameCount = 39;
 
   const images = [];
   const imageSeq = {
@@ -466,9 +578,8 @@ const canvas1 = () => {
     scrollTrigger: {
       scrub: 0.15,
       trigger: `#page3>canvas`,
-      //   set start end according to preference
       start: `top top`,
-      end: `250% top`,
+      end: `300% top`,
       scroller: `body`,
     },
     onUpdate: render,
@@ -505,29 +616,56 @@ const canvas1 = () => {
     pin: true,
     scroller: `body`,
     start: `top top`,
-    end: `250% top`,
+    end: `300% top`,
   });
+
+  document.querySelectorAll(".canvas-text h4").forEach(function(h){
+    var clutterc = ""
+    h.textContent.split("").forEach(function(l){
+    clutterc += `<span>${l}</span>`
+    })
+    h.innerHTML = clutterc
+   })
+
   var tlc = gsap.timeline({
     scrollTrigger: {
       trigger: "#page3 canvas",
       scroller: "body",
       start: "top -10%",
-      end: "top -220%",
+      end: "top -250%",
       scrub: 1,
       // markers: true,
     },
   });
   tlc
-    .to(".textc h2", {
-      transform: "translateY(0%)",
-      duration: 0.5,
-      delay: 3,
+    .to(".canvas-text-wrap .h41 span", {
+      transform: "translateY(-140%)",
+      stagger:{
+        amount:0.4
+      },
+      duration: 0.6,
     })
-    .to(".textc h2", {
-      transform: "translateY(-108%)",
-      duration: 0.5,
-      delay: 3,
-    });
+    .to(".canvas-text-wrap .h42 span", {
+      transform: "translateY(-100%)",
+      stagger:{
+        amount:0.4
+      },
+      duration: 0.6,
+    })
+    .to(".canvas-text-wrap .h42 span", {
+      transform: "translateY(-230%)",
+      stagger:{
+        amount:0.4
+      },
+      duration: 0.6,
+    })
+    .to(".canvas-text-wrap .h43 span", {
+      transform: "translateY(-200%)",
+      stagger:{
+        amount:0.4
+      },
+      duration: 0.6,
+    })
 };
 canvas1();
 
@@ -853,7 +991,7 @@ const lineEffect = () => {
     .querySelector(".line")
     .addEventListener("mousemove", function (dets) {
       gsap.to(".line svg path", {
-        attr: { d: `M -400,50 Q 0,${dets.y} 500,50` },
+        attr: { d: `M -400,50 Q 0,${dets.y*0.5} 500,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -874,7 +1012,7 @@ const lineEffect = () => {
         dets.y -
         document.querySelector(".lineeffect").getBoundingClientRect().top;
       gsap.to(".lineeffect svg path", {
-        attr: { d: `M -500,50 Q 0,${valY*0.8} 600,50` },
+        attr: { d: `M -500,50 Q 0,${valY*0.5} 600,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -892,56 +1030,4 @@ const lineEffect = () => {
 };
 lineEffect(); 
 
-// magneticEffect animation
 
-const magneticEffect = ()=>{
-  window.addEventListener("mousemove",function(dets){
-    gsap.to("#cursor",{
-      top:dets.y,
-      left:dets.x
-    })
-  })
-  
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-     e.addEventListener("mouseenter",function(){
-      gsap.to("#cursor",{
-        scale:1
-      })
-    })
-  })
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mouseleave",function(){
-      gsap.to("#cursor",{
-        scale:0
-      })
-    })
-  })
-  
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mousemove",function(dets){
-      var xStart = dets.x -  e.getBoundingClientRect().x
-      var xEnd = e.getBoundingClientRect().width
-      var valx = gsap.utils.mapRange(0,xEnd , -12,12,xStart)
-      var yStart = dets.y -  e.getBoundingClientRect().y
-      var yEnd = e.getBoundingClientRect().height
-      var valy = gsap.utils.mapRange(0,yEnd , -12,12,yStart)
-      gsap.to(e.querySelector(".effect"),{
-        x:valx,
-        y:valy,
-        duration:.3
-      })
-    })
-  })
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mouseleave",function(dets){
-      gsap.to(e.querySelector(".effect"),{
-        x:0,
-        y:0,
-        duration:.3
-      })
-    })
-  })
-  
-  
-}
-magneticEffect()

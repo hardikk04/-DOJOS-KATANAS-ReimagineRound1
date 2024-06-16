@@ -344,12 +344,12 @@ nav {
 }
 #sidepanel #menu-text h4{
   font-size: 3vw;
-  font-family: mediumfont;
-  text-transform: capitalize;
   font-weight: 500;
   cursor: pointer;
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.5s;
   line-height: 1;
+}
+#sidepanel #menu-text h4 span{
+  font-family: mediumfont;
 }
 #sidepanel #menu-text .menu-wrap{
   height: 3.3vw;
@@ -357,9 +357,7 @@ nav {
   overflow: hidden;
   margin-bottom: 1.1vw;
 }
-#sidepanel #menu-text .menu-wrap:hover h4{
-  transform: translateY(-108%);
-}
+
 #sidepanel #menu-logo i{
   position: relative;
   font-size: 2vw;
@@ -380,6 +378,7 @@ nav {
   width: 100%;
 }
 #menu-text .txt{
+  width: fit-content;
   margin-bottom: 1.5vw;
 }
 #cursor{
@@ -718,23 +717,23 @@ nav {
   width: 100%;
   z-index: 2;
   display: flex;
-  align-items: start;
-  justify-content: center;
-  padding: 5vw;
+  align-items:end;
+  justify-content: start;
+  padding: 4vw 2vw;
 }
-#page3 #text-container .textc {
-  overflow: hidden;
-  height: 3vw;
-}
-#page3 #text-container h2 {
-  font-size: 3vw;
-  line-height: 1;
-  font-weight: 600;
+#page3 #text-container h4{
+  font-size: 2.5vw;
+  font-family: lightfont;
   color: #fff;
-  text-transform: capitalize;
-  transform: translateY(108%);
-  text-align: center;
-  font-family: mediumFont;
+}
+
+.canvas-text-wrap{
+  height: 3vw;
+  overflow: hidden;
+  margin-bottom: .8vw;
+}
+.canvas-text-wrap h4 span{
+  display: inline-block;
 }
 /* Page3 ends */
 
@@ -1327,9 +1326,7 @@ nav {
   overflow: hidden;
   margin-bottom: 0.8vw;
 }
-#foot-pt2 .wrap-ft:hover h4 {
-  transform: translateY(-100%);
-}
+
 #foot-pt2 h2 {
   font-weight: 600;
   line-height: 1;
@@ -1341,7 +1338,6 @@ nav {
   font-weight: 500;
   font-size: 1.2vw;
   line-height: 1;
-  transition: all ease 0.3s;
   cursor: pointer;
   font-family: mediumFont;
 }
@@ -1352,6 +1348,9 @@ nav {
   justify-content: space-between;
   margin-top: 3vw;
   padding-bottom: 1vw;
+}
+.text-effect span{
+  display: inline-block;
 }
 
 #foot-pt3 #social {
@@ -1436,9 +1435,6 @@ nav {
   #page2 p {
     font-size: 1.6vw;
     width: 60%;
-  }
-  #canvas-text {
-    padding-top: 3vw;
   }
   #page7 {
     padding: 2vw;
@@ -1595,9 +1591,72 @@ nav {
   .nav-right {
     font-size: 2vw;
   }
-  .nav-right-menu {
-    padding: 1vw;
+  .nav-right-elem{
+    gap: 4vw;
   }
+  .nav-right-menu {
+    z-index: 9;
+    cursor: pointer;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    padding: 2vw 2vw;
+  }
+  #containermu{
+    height:100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  .menu-line {
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    background-color: #fff;
+  }
+  #li1 {
+    top: 35%;
+    left: 0;
+  }
+  #li2 {
+    top: 65%;
+    right: 0;
+  }
+
+#sidepanel{
+  width: 50%;
+  padding: 10vw 3vw;
+}
+#sidepanel #logo{
+  padding: 0vw 3vw;
+  padding-top: 2vw;
+}
+.close-container{
+  width: 6vw;
+  height: 6vw;
+}
+
+#cli1 {
+  left: 10%;
+}
+#cli2 {
+  right: 10%;
+}
+#sidepanel #menu-text h4{
+  font-size: 5vw;
+}
+
+#sidepanel #menu-text .menu-wrap{
+  height: 5.3vw;
+  margin-bottom: 3vw;
+}
+
+#sidepanel #menu-logo i{
+  font-size: 4vw;
+  margin-left: 3vw;
+}
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -1614,6 +1673,15 @@ nav {
   .page1-footer {
     padding: 1vw 3vw;
     margin-bottom: 3vw;
+  }
+  .page1-footer-title{
+    width: 20vw;
+  }
+  .three-loder{
+    width: 20vw;
+  }
+  .page1-footer-title h1 span{
+    font-size: 1vw;
   }
   #page2 .resp-des {
     display: none;
@@ -1641,9 +1709,22 @@ nav {
   .over-card h6 {
     font-size: 0.8vw;
   }
-  #page3 #text-container {
-    padding-top: 15vw;
+  #page3 #text-container{
+    padding-bottom: 12vw;
   }
+  #page3 #text-container h4{
+    font-size: 3.5vw;
+    font-weight: 500;
+    font-family: lightfont;
+    color: #fff;
+  }
+  
+  .canvas-text-wrap{
+    height: 4vw;
+    overflow: hidden;
+    margin-bottom: .8vw;
+  }
+
   #page4 .heading h1 {
     font-size: 6vw;
     text-transform: capitalize;
@@ -1811,9 +1892,68 @@ nav {
   .nav-right i {
     font-size: 4vw;
   }
-  .nav-right-menu {
-    padding: 2vw;
-  }
+.nav-right-menu {
+  z-index: 9;
+  cursor: pointer;
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  padding: .5vw 2vw;
+}
+#containermu{
+  height:100%;
+  width: 100%;
+  position: relative;
+}
+
+.menu-line {
+  position: absolute;
+  width: 100%;
+  height: 8%;
+  background-color: #fff;
+}
+#li1 {
+  top: 35%;
+  left: 0;
+}
+#li2 {
+  top: 65%;
+  right: 0;
+}
+#sidepanel{
+  width: 100%;
+  padding: 20vw 3.5vw;
+}
+#sidepanel #logo{
+  padding: 0vw 3.5vw;
+  padding-top: 4vw;
+}
+.close-container{
+  width: 10vw;
+  height: 10vw;
+}
+
+#cli1 {
+  left: 10%;
+}
+#cli2 {
+  right: 10%;
+}
+#sidepanel #menu-text h4{
+  font-size: 7vw;
+}
+
+#sidepanel #menu-text .menu-wrap{
+  height: 7.3vw;
+  margin-bottom: 5vw;
+}
+
+#sidepanel #menu-logo i{
+  font-size: 7vw;
+  margin-left: 5vw;
+}
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -1853,10 +1993,6 @@ nav {
   }
 
   .page1-footer-right {
-    margin-top: 3vw;
-  }
-
-  .three-loder {
     display: none;
   }
   #page2 {
@@ -1925,20 +2061,22 @@ nav {
     padding: 10vw;
     transform: scale(0.5);
   }
-
-  #page3 #text-container {
-    margin-top: 20vw;
+  #page3 #text-container{
+    padding-bottom: 15vw;
   }
-  #page3 #text-container .textc {
-    height: 6.8vw;
-  }
-  #page3 #text-container h2 {
-    font-size: 6vw;
-    line-height: 1;
+  #page3 #text-container h4{
+    font-size: 5vw;
     font-weight: 500;
+    font-family: lightfont;
     color: #fff;
-    transform: translateY(110%);
   }
+  
+  .canvas-text-wrap{
+    height: 5.2vw;
+    overflow: hidden;
+    margin-bottom: .8vw;
+  }
+ 
   #page4Desktop{
     display: none;
   }
