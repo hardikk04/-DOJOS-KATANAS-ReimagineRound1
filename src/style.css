@@ -82,6 +82,11 @@ body::-webkit-scrollbar-thumb:active {
   background-color: rgba(0, 0, 0, 1); /* Adjust handle color on active state */
 }
 
+*::selection{
+  color: #d91921;
+  background-color: rgb(53, 53, 53);
+}
+
 /* For spans */
 .inline-block {
   display: inline-block;
@@ -722,13 +727,14 @@ nav {
   padding: 4vw 2vw;
 }
 #page3 #text-container h4{
-  font-size: 2.5vw;
+  font-size: 2.8vw;
   font-family: lightfont;
+  font-weight: 600;
   color: #fff;
 }
 
 .canvas-text-wrap{
-  height: 3vw;
+  height: 3.4vw;
   overflow: hidden;
   margin-bottom: .8vw;
 }
@@ -1876,6 +1882,9 @@ nav {
 /* Responsive 600px */
 
 @media (max-width: 600px) {
+  *{
+    user-select: none;
+  }
   nav {
     padding: 3vw 3.5vw;
   }
@@ -2042,7 +2051,7 @@ nav {
     font-weight: 400;
     opacity: 0.8;
   }
-  #cursor2 {
+  #cursor2 ,#cursor {
     display: none;
   }
   #swiper #swiper-btn {
@@ -2053,7 +2062,7 @@ nav {
     z-index: 9;
     height: 100%;
     width: 89%;
-    opacity: 0;
+    opacity: 1;
   }
   #swiper-btn .btns {
     font-weight: 600;
@@ -2061,17 +2070,17 @@ nav {
     transform: scale(0.5);
   }
   #page3 #text-container{
-    padding-bottom: 15vw;
+    padding-bottom: 20vw;
   }
   #page3 #text-container h4{
-    font-size: 5vw;
-    font-weight: 500;
+    font-size: 7vw;
+    font-weight: 800;
     font-family: lightfont;
     color: #fff;
   }
   
   .canvas-text-wrap{
-    height: 5.2vw;
+    height: 8.2vw;
     overflow: hidden;
     margin-bottom: .8vw;
   }
