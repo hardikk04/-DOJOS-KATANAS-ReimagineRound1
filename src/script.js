@@ -25,7 +25,6 @@ const lenisJs = () => {
 };
 lenisJs();
 
-
 // Restart always from top - 0
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
@@ -34,109 +33,104 @@ window.onbeforeunload = function () {
 // magneticEffect animation
 // can be used by giving class .magnet-effect to parent and .effect to child
 
-const magneticEffect = ()=>{
-  window.addEventListener("mousemove",function(dets){
-    gsap.to("#cursor",{
-      top:dets.y,
-      left:dets.x
-    })
-  })
-  
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-     e.addEventListener("mouseenter",function(){
-      gsap.to("#cursor",{
-        scale:1
-      })
-    })
-  })
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mouseleave",function(){
-      gsap.to("#cursor",{
-        scale:0
-      })
-    })
-  })
-  
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mousemove",function(dets){
-      var xStart = dets.x -  e.getBoundingClientRect().x
-      var xEnd = e.getBoundingClientRect().width
-      var valx = gsap.utils.mapRange(0,xEnd , -12,12,xStart)
-      var yStart = dets.y -  e.getBoundingClientRect().y
-      var yEnd = e.getBoundingClientRect().height
-      var valy = gsap.utils.mapRange(0,yEnd , -12,12,yStart)
-      gsap.to(e.querySelector(".effect"),{
-        x:valx,
-        y:valy,
-        duration:.5
-      })
-    })
-  })
-  document.querySelectorAll(".magnet-effect").forEach(function(e){
-    e.addEventListener("mouseleave",function(dets){
-      gsap.to(e.querySelector(".effect"),{
-        x:0,
-        y:0,
-        duration:.5,
-      })
-    })
-  })
-  
-  
-}
-magneticEffect()
+const magneticEffect = () => {
+  window.addEventListener("mousemove", function (dets) {
+    gsap.to("#cursor", {
+      top: dets.y,
+      left: dets.x,
+    });
+  });
+
+  document.querySelectorAll(".magnet-effect").forEach(function (e) {
+    e.addEventListener("mouseenter", function () {
+      gsap.to("#cursor", {
+        scale: 1,
+      });
+    });
+  });
+  document.querySelectorAll(".magnet-effect").forEach(function (e) {
+    e.addEventListener("mouseleave", function () {
+      gsap.to("#cursor", {
+        scale: 0,
+      });
+    });
+  });
+
+  document.querySelectorAll(".magnet-effect").forEach(function (e) {
+    e.addEventListener("mousemove", function (dets) {
+      var xStart = dets.x - e.getBoundingClientRect().x;
+      var xEnd = e.getBoundingClientRect().width;
+      var valx = gsap.utils.mapRange(0, xEnd, -12, 12, xStart);
+      var yStart = dets.y - e.getBoundingClientRect().y;
+      var yEnd = e.getBoundingClientRect().height;
+      var valy = gsap.utils.mapRange(0, yEnd, -12, 12, yStart);
+      gsap.to(e.querySelector(".effect"), {
+        x: valx,
+        y: valy,
+        duration: 0.5,
+      });
+    });
+  });
+  document.querySelectorAll(".magnet-effect").forEach(function (e) {
+    e.addEventListener("mouseleave", function (dets) {
+      gsap.to(e.querySelector(".effect"), {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+      });
+    });
+  });
+};
+magneticEffect();
 
 // textEffect animation
-// can be used by giving class .text-effect to parent 
+// can be used by giving class .text-effect to parent
 // and .first and .second classes to child's(both child should be h4)
-const textEffect = ()=>{
+const textEffect = () => {
+  document.querySelectorAll(".text-effect h4").forEach(function (h) {
+    var clutter = "";
+    h.textContent.split("").forEach(function (l) {
+      clutter += `<span>${l}</span>`;
+    });
+    h.innerHTML = clutter;
+  });
 
-  document.querySelectorAll(".text-effect h4").forEach(function(h){
-    var clutter = ""
-    h.textContent.split("").forEach(function(l){
-    clutter += `<span>${l}</span>`
-    })
-    h.innerHTML = clutter
-   })
-   
-   document.querySelectorAll(".text-effect").forEach(function(e){
-     e.addEventListener("mouseenter",function(){
-      gsap.to(e.querySelectorAll(".first span"),{
-       y:"-106%",
-       stagger:{
-         amount:0.2
-       },
-       duration:0.4
-      })
-      gsap.to(e.querySelectorAll(".second span"),{
-       y:"-100%",
-       stagger:{
-         amount:0.2
-       },
-       duration:.4
-      })
-     })
-   })
-   document.querySelectorAll(".text-effect").forEach(function(e){
-     e.addEventListener("mouseleave",function(){
-      gsap.to(e.querySelectorAll(".first span"),{
-       y:"0%",
-       stagger:{
-         amount:0.2
-       }
-      })
-      gsap.to(e.querySelectorAll(".second span"),{
-       y:"0%",
-       stagger:{
-         amount:0.2
-       }
-      })
-     })
-   })
-}
-textEffect()
-
-
+  document.querySelectorAll(".text-effect").forEach(function (e) {
+    e.addEventListener("mouseenter", function () {
+      gsap.to(e.querySelectorAll(".first span"), {
+        y: "-106%",
+        stagger: {
+          amount: 0.2,
+        },
+        duration: 0.4,
+      });
+      gsap.to(e.querySelectorAll(".second span"), {
+        y: "-100%",
+        stagger: {
+          amount: 0.2,
+        },
+        duration: 0.4,
+      });
+    });
+  });
+  document.querySelectorAll(".text-effect").forEach(function (e) {
+    e.addEventListener("mouseleave", function () {
+      gsap.to(e.querySelectorAll(".first span"), {
+        y: "0%",
+        stagger: {
+          amount: 0.2,
+        },
+      });
+      gsap.to(e.querySelectorAll(".second span"), {
+        y: "0%",
+        stagger: {
+          amount: 0.2,
+        },
+      });
+    });
+  });
+};
+textEffect();
 
 // Clutter Animation
 const clutterAnimation = (element) => {
@@ -152,67 +146,77 @@ const clutterAnimation = (element) => {
   htmlTag.innerHTML = clutter;
 };
 // Navigation Animation
-const navigation = ()=>{
-  var navigation = document.querySelector("#navigation")
-  var menutl = gsap.timeline({paused:true})
-menutl
-  .to("#containermu #li1",{
-    width:"0%",
-    duration:.6,
-    ease: "expo.out",
-  },"a")
-  .to("#containermu #li2",{
-    width:"0%",
-    duration:.6,
-    ease: "expo.out",
-  },"a")
-  .to(navigation,{
-    right:0,
-    delay:-.5,
-    duration:.8,
-  })
-  .to(navigation,{
-    backgroundColor:"rgba(0, 0, 0, 0.400)",
-    duration:0
-  })
-  .from(navigation.querySelectorAll(".menu-wrap"),{
-    x:10,
-    opacity:0,
-    duration:.2,
-    stagger:0.1
-  })
-  .from(navigation.querySelectorAll("#menu-logo i"),{
-    y:2,
-    opacity:0,
-  })
-  document.querySelector(".nav-right-menu").addEventListener("click",function(){
-    gsap.to("#cli1",{
-     height:"100%",
-     duration:.6,
-     ease: "expo.out",
-   })
-   gsap.to("#cli2",{
-     height:"100%",
-     duration:.6,
-     ease: "expo.out",
-   })
-   menutl.play()
- })
- document.querySelector("#close").addEventListener("click",function(){
-   gsap.to("#cli1",{
-     height:"0%",
-     duration:.6,
-     ease: "expo.out",
-   })
-   gsap.to("#cli2",{
-     height:"0%",
-     duration:.6,
-     ease: "expo.out",
-   })
-   menutl.reverse()
- })
-}
-navigation()
+const navigation = () => {
+  var navigation = document.querySelector("#navigation");
+  var menutl = gsap.timeline({ paused: true });
+  menutl
+    .to(
+      "#containermu #li1",
+      {
+        width: "0%",
+        duration: 0.6,
+        ease: "expo.out",
+      },
+      "a"
+    )
+    .to(
+      "#containermu #li2",
+      {
+        width: "0%",
+        duration: 0.6,
+        ease: "expo.out",
+      },
+      "a"
+    )
+    .to(navigation, {
+      right: 0,
+      delay: -0.5,
+      duration: 0.8,
+    })
+    .to(navigation, {
+      backgroundColor: "rgba(0, 0, 0, 0.400)",
+      duration: 0,
+    })
+    .from(navigation.querySelectorAll(".menu-wrap"), {
+      x: 10,
+      opacity: 0,
+      duration: 0.2,
+      stagger: 0.1,
+    })
+    .from(navigation.querySelectorAll("#menu-logo i"), {
+      y: 2,
+      opacity: 0,
+    });
+  document
+    .querySelector(".nav-right-menu")
+    .addEventListener("click", function () {
+      gsap.to("#cli1", {
+        height: "100%",
+        duration: 0.6,
+        ease: "expo.out",
+      });
+      gsap.to("#cli2", {
+        height: "100%",
+        duration: 0.6,
+        ease: "expo.out",
+      });
+      menutl.play();
+    });
+  document.querySelector("#close").addEventListener("click", function () {
+    gsap.to("#cli1", {
+      height: "0%",
+      duration: 0.6,
+      ease: "expo.out",
+    });
+    gsap.to("#cli2", {
+      height: "0%",
+      duration: 0.6,
+      ease: "expo.out",
+    });
+    menutl.reverse();
+  });
+};
+navigation();
 
 // Nav Animation
 
@@ -619,13 +623,13 @@ const canvas1 = () => {
     end: `300% top`,
   });
 
-  document.querySelectorAll(".canvas-text h4").forEach(function(h){
-    var clutterc = ""
-    h.textContent.split("").forEach(function(l){
-    clutterc += `<span>${l}</span>`
-    })
-    h.innerHTML = clutterc
-   })
+  document.querySelectorAll(".canvas-text h4").forEach(function (h) {
+    var clutterc = "";
+    h.textContent.split("").forEach(function (l) {
+      clutterc += `<span>${l}</span>`;
+    });
+    h.innerHTML = clutterc;
+  });
 
   var tlc = gsap.timeline({
     scrollTrigger: {
@@ -640,32 +644,32 @@ const canvas1 = () => {
   tlc
     .to(".canvas-text-wrap .h41 span", {
       transform: "translateY(-140%)",
-      stagger:{
-        amount:0.4
+      stagger: {
+        amount: 0.4,
       },
       duration: 0.6,
     })
     .to(".canvas-text-wrap .h42 span", {
       transform: "translateY(-100%)",
-      stagger:{
-        amount:0.4
+      stagger: {
+        amount: 0.4,
       },
       duration: 0.6,
     })
     .to(".canvas-text-wrap .h42 span", {
       transform: "translateY(-230%)",
-      stagger:{
-        amount:0.4
+      stagger: {
+        amount: 0.4,
       },
       duration: 0.6,
     })
     .to(".canvas-text-wrap .h43 span", {
       transform: "translateY(-200%)",
-      stagger:{
-        amount:0.4
+      stagger: {
+        amount: 0.4,
       },
       duration: 0.6,
-    })
+    });
 };
 canvas1();
 
@@ -990,7 +994,7 @@ const lineEffect = () => {
     .querySelector(".line")
     .addEventListener("mousemove", function (dets) {
       gsap.to(".line svg path", {
-        attr: { d: `M -400,50 Q 0,${dets.y*0.5} 500,50` },
+        attr: { d: `M -400,50 Q 0,${dets.y * 0.5} 500,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -1011,7 +1015,7 @@ const lineEffect = () => {
         dets.y -
         document.querySelector(".lineeffect").getBoundingClientRect().top;
       gsap.to(".lineeffect svg path", {
-        attr: { d: `M -500,50 Q 0,${valY*0.5} 600,50` },
+        attr: { d: `M -500,50 Q 0,${valY * 0.5} 600,50` },
         duration: 0.2,
         ease: "power3.out",
       });
@@ -1027,6 +1031,4 @@ const lineEffect = () => {
       });
     });
 };
-lineEffect(); 
-
-
+lineEffect();

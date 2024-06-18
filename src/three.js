@@ -2,6 +2,14 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { gsap } from "gsap";
+import loaderVertexShader from "/shaders/loader/vertex.glsl";
+import loaderFragmentShader from "/shaders/loader/fragment.glsl";
+
+(() => {
+  // Removing the scroll unitl site loaded
+  document.body.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
+})();
 
 /**
  * Scene
@@ -36,40 +44,101 @@ const updateMaterial = () => {
 /**
  * Loaders
  */
-
 const loadingManager = new THREE.LoadingManager(
   // Loaded
   () => {
+    // Enable scroll
+    document.body.style.overflow = "initial";
+    document.documentElement.style.overflow = "initial";
+
     const tl = gsap.timeline();
-    // removing the loader div
-    gsap.to(".main-loader", {
+    video.play();
+    tl.to(".main-loader-counter", {
       opacity: 0,
     });
 
+    tl.to(LoaderPlane.material.uniforms.uOffset, {
+      value: 1,
+      duration: 1,
+    });
+
+    tl.to("nav", {
+      opacity: 1,
+    });
+
+    tl.from(
+      redModel.position,
+      {
+        y: -8,
+        ease: "power1.out",
+        duration: 1.5,
+      },
+      "a"
+    );
+
+    tl.from(
+      redModel.rotation,
+      {
+        y: Math.PI * 2.2,
+        x: Math.PI * 1.5,
+        ease: "power1.out",
+        duration: 1.5,
+      },
+      "a"
+    );
+
+    // Page1 Headline Coca-Cola text
+    clutterAnimation(".page1-main>h1");
+    tl.from(
+      ".page1-main>h1>span",
+      {
+        y: 130,
+        opacity: 0,
+        ease: "power1.out",
+        stagger: {
+          amount: 1.5,
+          from: "x",
+        },
+      },
+      "a"
+    );
+
     // Playing the all animations which is sync with cans Animation
     clutterAnimation(".page1-footer-title>h1");
-    tl.from(".page1-footer-title>h1>span", {
-      opacity: 0,
-      y: 50,
-      textContent: getRandomText(4),
-      stagger: {
-        amount: randomTextAnimationSpeed,
-        from: "x",
+    tl.from(
+      ".page1-footer-title>h1>span",
+      {
+        opacity: 0,
+        y: 50,
+        textContent: getRandomText(4),
+        stagger: {
+          amount: randomTextAnimationSpeed,
+          from: "x",
+        },
+        onStart: () => {
+          updateMaterial();
+          cansAnimationLoop();
+        },
       },
-      onStart: () => {
-        updateMaterial();
-        cansAnimationLoop();
-      },
-    });
+      "a"
+    );
   },
   // Process
   (itemUrl, itemsLoaded, itemsTotal) => {
+    // Remove the black screen
+    gsap.to(".main-loader", {
+      backgroundColor: "transparent",
+    });
     const progressRatio = itemsLoaded / itemsTotal;
     const loaderCount = document.querySelector(".main-loader-counter > h1");
-    loaderCount.textContent = `${Math.round(progressRatio * 100)}%`;
+    gsap.to(loaderCount, {
+      textContent: `${Math.floor(progressRatio * 100)}%`,
+      snap: { textContent: 1 },
+    });
   }
 );
 const gltfLoader = new GLTFLoader(loadingManager);
+const textureLoader = new THREE.TextureLoader(loadingManager);
 
 /**
  * DRACO Loader
@@ -77,6 +146,30 @@ const gltfLoader = new GLTFLoader(loadingManager);
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/draco/");
 gltfLoader.setDRACOLoader(dracoLoader);
+
+/**
+ * Loader plane
+ */
+
+// Displacement texture load
+const displacementTexture = textureLoader.load("/imgs/d2.jpg");
+const video = document.querySelector(".main-loader>video");
+const videoTexture = new THREE.VideoTexture(video);
+
+const LoaderPlane = new THREE.Mesh(
+  new THREE.PlaneGeometry(2, 2),
+  new THREE.ShaderMaterial({
+    vertexShader: loaderVertexShader,
+    fragmentShader: loaderFragmentShader,
+    uniforms: {
+      uDisplacement: new THREE.Uniform(displacementTexture),
+      uCocaColaTexture: new THREE.Uniform(videoTexture),
+      uOffset: new THREE.Uniform(0),
+    },
+    transparent: true,
+  })
+);
+scene.add(LoaderPlane);
 
 /**
  * Importing the models
@@ -142,8 +235,7 @@ canvas.addEventListener("mousemove", (dets) => {
   }
 
   gsap.to(camera.position, {
-    x: -cursor.x * 0.5,
-    y: cursor.y * 0.2,
+    x: -cursor.x * 0.7,
     duration: 0.5,
     ease: "linear",
   });
@@ -563,7 +655,7 @@ const cansAnimationLoop = () => {
   });
   lineAnimation = gsap.to(threeLoaderLine, {
     width: "100%",
-    duration: 20,
+    duration: 10,
     repeat: -1,
     onRepeat: () => {
       updateCans(false);
@@ -652,7 +744,7 @@ window.addEventListener("resize", () => {
   camera.aspect = sizes.width / sizes.height;
   camera.updateProjectionMatrix();
   renderer.setSize(sizes.width, sizes.height);
-  renderer.setPixelRatio(Math.min(2,window.devicePixelRatio));
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 });
 
 /**
@@ -664,7 +756,7 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
+renderer.toneMappingExposure = 1.2;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 
