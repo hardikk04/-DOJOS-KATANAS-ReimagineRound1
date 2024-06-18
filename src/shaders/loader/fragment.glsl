@@ -7,8 +7,8 @@ varying vec2 vUv;
 void main()
 {
     vec4 displacementTexture = texture2D(uDisplacement,vUv);
-    float displacementForce = displacementTexture.r * uOffset * 0.4;
-    vec2 uvDisplaced = vec2(vUv.x, vUv.y - displacementForce);
+    float displacementForce = displacementTexture.r * uOffset * 0.1;
+    vec2 uvDisplaced = vec2(vUv.x - displacementForce, vUv.y - displacementForce);
     vec4 cocaColaTexture = texture2D(uCocaColaTexture,uvDisplaced);
 
 

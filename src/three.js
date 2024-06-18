@@ -52,14 +52,21 @@ const loadingManager = new THREE.LoadingManager(
     document.documentElement.style.overflow = "initial";
 
     const tl = gsap.timeline();
-    video.play();
     tl.to(".main-loader-counter", {
       opacity: 0,
+      delay: 0.5,
+    });
+
+    tl.to(LoaderPlane.scale, {
+      x: 4,
+      y: 4,
+      z: 4,
+      duration: 1.5,
     });
 
     tl.to(LoaderPlane.material.uniforms.uOffset, {
       value: 1,
-      duration: 1,
+      duration: 1.5,
     });
 
     tl.to("nav", {
@@ -152,8 +159,9 @@ gltfLoader.setDRACOLoader(dracoLoader);
  */
 
 // Displacement texture load
-const displacementTexture = textureLoader.load("/imgs/d2.jpg");
+const displacementTexture = textureLoader.load("/imgs/d2.avif");
 const video = document.querySelector(".main-loader>video");
+video.playbackRate = 1.2;
 const videoTexture = new THREE.VideoTexture(video);
 
 const LoaderPlane = new THREE.Mesh(
