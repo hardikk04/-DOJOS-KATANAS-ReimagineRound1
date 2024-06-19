@@ -106,39 +106,18 @@ body::-webkit-scrollbar-thumb:active {
   height: 100vh;
   width: 100%;
   z-index: 999;
-  background: radial-gradient(circle, transparent, #000000a7);
-  background-color: #d91921;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
   color: #fff;
-}
-
-.main-loader-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
   background-color: #000;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  transform-origin: center center;
 }
 
-.main-loader-title {
+.main-loader > video {
   position: relative;
-  overflow: hidden;
-}
-
-.main-loader-title > h1 {
-  font-family: semiBold;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-size: 2.5vw;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
 }
 
 .main-loader-counter {
@@ -149,8 +128,10 @@ body::-webkit-scrollbar-thumb:active {
 }
 
 .main-loader-counter > h1 {
+  position: relative;
   font-family: lightFont;
-  font-size: 5vw;
+  font-size: 8vw;
+  color: #d91921;
 }
 
 /* Loader animation  end*/
@@ -202,6 +183,7 @@ body::-webkit-scrollbar-thumb:active {
 
 nav {
   cursor: auto;
+  opacity: 0;
   position: fixed;
   padding: 0vw 2vw;
   padding-top: 0.5vw;
@@ -257,12 +239,12 @@ nav {
   width: 3.2vw;
   height: 3.2vw;
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
-  padding: .5vw .6vw;
+  padding: 0.5vw 0.6vw;
 }
-#containermu{
-  height:100%;
+#containermu {
+  height: 100%;
   width: 100%;
   position: relative;
 }
@@ -281,7 +263,7 @@ nav {
   top: 65%;
   right: 0;
 }
-#navigation{
+#navigation {
   position: fixed;
   z-index: 9;
   top: 0;
@@ -292,17 +274,17 @@ nav {
   align-items: center;
   justify-content: end;
 }
-#sidepanel{
+#sidepanel {
   width: 40%;
   height: 100%;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   position: relative;
   padding: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-#sidepanel #logo{
+#sidepanel #logo {
   position: absolute;
   padding: 0vw 2vw;
   padding-top: 1vw;
@@ -311,15 +293,15 @@ nav {
   left: 0;
   display: flex;
   align-items: center;
-  justify-content:end;
+  justify-content: end;
 }
-.close-container{
+.close-container {
   width: 3.2vw;
   height: 3.2vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .5vw .6vw;
+  padding: 0.5vw 0.6vw;
 }
 
 #close {
@@ -340,36 +322,36 @@ nav {
 #cli1 {
   left: 7%;
   transform-origin: top;
-  transform:rotate(-45deg);
+  transform: rotate(-45deg);
 }
 #cli2 {
   transform-origin: top;
   right: 7%;
-  transform:rotate(45deg);
+  transform: rotate(45deg);
 }
-#sidepanel #menu-text h4{
+#sidepanel #menu-text h4 {
   font-size: 3vw;
   font-weight: 500;
   cursor: pointer;
   line-height: 1;
 }
-#sidepanel #menu-text h4 span{
+#sidepanel #menu-text h4 span {
   font-family: mediumfont;
 }
-#sidepanel #menu-text .menu-wrap{
+#sidepanel #menu-text .menu-wrap {
   height: 3.3vw;
   width: fit-content;
   overflow: hidden;
   margin-bottom: 1.1vw;
 }
 
-#sidepanel #menu-logo i{
+#sidepanel #menu-logo i {
   position: relative;
   font-size: 2vw;
   margin-left: 1vw;
   cursor: pointer;
 }
-#sidepanel #menu-logo i::after{
+#sidepanel #menu-logo i::after {
   content: "";
   position: absolute;
   bottom: -10%;
@@ -379,14 +361,14 @@ nav {
   background-color: black;
   transition: all ease 0.3s;
 }
-#sidepanel #menu-logo i:hover::after{
+#sidepanel #menu-logo i:hover::after {
   width: 100%;
 }
-#menu-text .txt{
+#menu-text .txt {
   width: fit-content;
   margin-bottom: 1.5vw;
 }
-#cursor{
+#cursor {
   position: fixed;
   top: 0;
   left: 0;
@@ -395,7 +377,7 @@ nav {
   height: 3.2vw;
   width: 3.2vw;
   z-index: 999;
-  transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   pointer-events: none;
   mix-blend-mode: difference;
 }
@@ -722,7 +704,7 @@ nav {
   width: 100%;
   z-index: 2;
   display: flex;
-  align-items:end;
+  align-items: end;
   justify-content: start;
   padding: 4vw 2vw;
 }
@@ -736,9 +718,9 @@ nav {
 .canvas-text-wrap{
   height: 3.4vw;
   overflow: hidden;
-  margin-bottom: .8vw;
+  margin-bottom: 0.8vw;
 }
-.canvas-text-wrap h4 span{
+.canvas-text-wrap h4 span {
   display: inline-block;
 }
 /* Page3 ends */
@@ -925,8 +907,7 @@ nav {
   width: 100%;
 }
 
-#page5 #heading h3
-{
+#page5 #heading h3 {
   font-size: 3.5vw;
   line-height: 1.2;
   font-weight: 500;
@@ -1354,7 +1335,7 @@ nav {
   margin-top: 3vw;
   padding-bottom: 1vw;
 }
-.text-effect span{
+.text-effect span {
   display: inline-block;
 }
 
@@ -1596,7 +1577,7 @@ nav {
   .nav-right {
     font-size: 2vw;
   }
-  .nav-right-elem{
+  .nav-right-elem {
     gap: 4vw;
   }
   .nav-right-menu {
@@ -1605,16 +1586,16 @@ nav {
     width: 8vw;
     height: 8vw;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     padding: 2vw 2vw;
   }
-  #containermu{
-    height:100%;
+  #containermu {
+    height: 100%;
     width: 100%;
     position: relative;
   }
-  
+
   .menu-line {
     position: absolute;
     width: 100%;
@@ -1630,38 +1611,38 @@ nav {
     right: 0;
   }
 
-#sidepanel{
-  width: 50%;
-  padding: 10vw 3vw;
-}
-#sidepanel #logo{
-  padding: 0vw 3vw;
-  padding-top: 2vw;
-}
-.close-container{
-  width: 6vw;
-  height: 6vw;
-}
+  #sidepanel {
+    width: 50%;
+    padding: 10vw 3vw;
+  }
+  #sidepanel #logo {
+    padding: 0vw 3vw;
+    padding-top: 2vw;
+  }
+  .close-container {
+    width: 6vw;
+    height: 6vw;
+  }
 
-#cli1 {
-  left: 10%;
-}
-#cli2 {
-  right: 10%;
-}
-#sidepanel #menu-text h4{
-  font-size: 5vw;
-}
+  #cli1 {
+    left: 10%;
+  }
+  #cli2 {
+    right: 10%;
+  }
+  #sidepanel #menu-text h4 {
+    font-size: 5vw;
+  }
 
-#sidepanel #menu-text .menu-wrap{
-  height: 5.3vw;
-  margin-bottom: 3vw;
-}
+  #sidepanel #menu-text .menu-wrap {
+    height: 5.3vw;
+    margin-bottom: 3vw;
+  }
 
-#sidepanel #menu-logo i{
-  font-size: 4vw;
-  margin-left: 3vw;
-}
+  #sidepanel #menu-logo i {
+    font-size: 4vw;
+    margin-left: 3vw;
+  }
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -1679,13 +1660,13 @@ nav {
     padding: 1vw 3vw;
     margin-bottom: 3vw;
   }
-  .page1-footer-title{
+  .page1-footer-title {
     width: 20vw;
   }
-  .three-loder{
+  .three-loder {
     width: 20vw;
   }
-  .page1-footer-title h1 span{
+  .page1-footer-title h1 span {
     font-size: 1vw;
   }
   #page2 .resp-des {
@@ -1714,20 +1695,20 @@ nav {
   .over-card h6 {
     font-size: 0.8vw;
   }
-  #page3 #text-container{
+  #page3 #text-container {
     padding-bottom: 12vw;
   }
-  #page3 #text-container h4{
+  #page3 #text-container h4 {
     font-size: 3.5vw;
     font-weight: 500;
     font-family: lightfont;
     color: #fff;
   }
-  
-  .canvas-text-wrap{
+
+  .canvas-text-wrap {
     height: 4vw;
     overflow: hidden;
-    margin-bottom: .8vw;
+    margin-bottom: 0.8vw;
   }
 
   #page4 .heading h1 {
@@ -1900,68 +1881,68 @@ nav {
   .nav-right i {
     font-size: 4vw;
   }
-.nav-right-menu {
-  z-index: 9;
-  cursor: pointer;
-  width: 10vw;
-  height: 10vw;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  padding: .5vw 2vw;
-}
-#containermu{
-  height:100%;
-  width: 100%;
-  position: relative;
-}
+  .nav-right-menu {
+    z-index: 9;
+    cursor: pointer;
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5vw 2vw;
+  }
+  #containermu {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
 
-.menu-line {
-  position: absolute;
-  width: 100%;
-  height: 8%;
-  background-color: #fff;
-}
-#li1 {
-  top: 35%;
-  left: 0;
-}
-#li2 {
-  top: 65%;
-  right: 0;
-}
-#sidepanel{
-  width: 100%;
-  padding: 20vw 3.5vw;
-}
-#sidepanel #logo{
-  padding: 0vw 3.5vw;
-  padding-top: 4vw;
-}
-.close-container{
-  width: 10vw;
-  height: 10vw;
-}
+  .menu-line {
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    background-color: #fff;
+  }
+  #li1 {
+    top: 35%;
+    left: 0;
+  }
+  #li2 {
+    top: 65%;
+    right: 0;
+  }
+  #sidepanel {
+    width: 100%;
+    padding: 20vw 3.5vw;
+  }
+  #sidepanel #logo {
+    padding: 0vw 3.5vw;
+    padding-top: 4vw;
+  }
+  .close-container {
+    width: 10vw;
+    height: 10vw;
+  }
 
-#cli1 {
-  left: 10%;
-}
-#cli2 {
-  right: 10%;
-}
-#sidepanel #menu-text h4{
-  font-size: 7vw;
-}
+  #cli1 {
+    left: 10%;
+  }
+  #cli2 {
+    right: 10%;
+  }
+  #sidepanel #menu-text h4 {
+    font-size: 7vw;
+  }
 
-#sidepanel #menu-text .menu-wrap{
-  height: 7.3vw;
-  margin-bottom: 5vw;
-}
+  #sidepanel #menu-text .menu-wrap {
+    height: 7.3vw;
+    margin-bottom: 5vw;
+  }
 
-#sidepanel #menu-logo i{
-  font-size: 7vw;
-  margin-left: 5vw;
-}
+  #sidepanel #menu-logo i {
+    font-size: 7vw;
+    margin-left: 5vw;
+  }
   .page1-overlay {
     display: flex;
     flex-direction: column;
@@ -2082,20 +2063,20 @@ nav {
   .canvas-text-wrap{
     height: 8.2vw;
     overflow: hidden;
-    margin-bottom: .8vw;
+    margin-bottom: 0.8vw;
   }
- 
-  #page4Desktop{
+
+  #page4Desktop {
     display: none;
   }
-  #page4Mobile{
+  #page4Mobile {
     display: block;
   }
-  #page5{
-    min-height:80vh ;
+  #page5 {
+    min-height: 80vh;
     justify-content: space-between;
   }
-  #page5 #heading h3{
+  #page5 #heading h3 {
     font-size: 6.5vw;
     font-weight: 400;
     margin: 4vw 0;
