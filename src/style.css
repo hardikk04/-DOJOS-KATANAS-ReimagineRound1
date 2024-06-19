@@ -402,6 +402,7 @@ nav {
   color: #8c0000;
   font-weight: 400;
   font-family: cocaCola;
+  white-space: nowrap;
 }
 
 .page1-footer {
