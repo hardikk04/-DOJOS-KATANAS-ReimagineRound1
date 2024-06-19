@@ -377,6 +377,7 @@ nav {
   mix-blend-mode: difference;
 }
 .webgl {
+  pointer-events: none;
   position: absolute;
   overflow: hidden;
   height: 100%;
