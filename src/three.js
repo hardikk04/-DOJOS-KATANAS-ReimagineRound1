@@ -41,101 +41,110 @@ const updateMaterial = () => {
   });
 };
 
+const afterLoadedTheContent = () => {
+  const tl = gsap.timeline();
+  tl.to(".main-loader-counter", {
+    opacity: 0,
+    delay: 0.5,
+  });
+
+  tl.to(LoaderPlane.scale, {
+    x: 4,
+    y: 4,
+    z: 4,
+    duration: 1.5,
+  });
+
+  tl.to(LoaderPlane.material.uniforms.uOffset, {
+    value: 1,
+    duration: 1.5,
+  });
+
+  tl.to("nav", {
+    opacity: 1,
+  });
+
+  tl.from(
+    redModel.position,
+    {
+      y: -8,
+      ease: "power1.out",
+      duration: 1.5,
+    },
+    "a"
+  );
+
+  tl.from(
+    redModel.rotation,
+    {
+      y: Math.PI * 2.2,
+      x: Math.PI * 1.5,
+      ease: "power1.out",
+      duration: 1.5,
+      onComplete: () => {
+        // Enable scroll
+        document.body.style.overflow = "initial";
+        document.documentElement.style.overflow = "initial";
+      },
+    },
+    "a"
+  );
+
+  // Page1 Headline Coca-Cola text
+  clutterAnimation(".page1-main>h1");
+  tl.from(
+    ".page1-main>h1>span",
+    {
+      y: 130,
+      opacity: 0,
+      ease: "power1.out",
+      stagger: {
+        amount: 1.5,
+        from: "x",
+      },
+    },
+    "a"
+  );
+
+  // Playing the all animations which is sync with cans Animation
+  clutterAnimation(".page1-footer-title>h1");
+  tl.from(
+    ".page1-footer-title>h1>span",
+    {
+      opacity: 0,
+      y: 50,
+      textContent: getRandomText(4),
+      stagger: {
+        amount: randomTextAnimationSpeed,
+        from: "x",
+      },
+      onStart: () => {
+        updateMaterial();
+        cansAnimationLoop();
+      },
+    },
+    "a"
+  );
+};
+
 /**
  * Loaders
  */
+let checkLoadingStart = true;
 const loadingManager = new THREE.LoadingManager(
   // Loaded
   () => {
-    // Enable scroll
-    document.body.style.overflow = "initial";
-    document.documentElement.style.overflow = "initial";
-
-    const tl = gsap.timeline();
-    tl.to(".main-loader-counter", {
-      opacity: 0,
-      delay: 0.5,
-    });
-
-    tl.to(LoaderPlane.scale, {
-      x: 4,
-      y: 4,
-      z: 4,
-      duration: 1.5,
-    });
-
-    tl.to(LoaderPlane.material.uniforms.uOffset, {
-      value: 1,
-      duration: 1.5,
-    });
-
-    tl.to("nav", {
-      opacity: 1,
-    });
-
-    tl.from(
-      redModel.position,
-      {
-        y: -8,
-        ease: "power1.out",
-        duration: 1.5,
-      },
-      "a"
-    );
-
-    tl.from(
-      redModel.rotation,
-      {
-        y: Math.PI * 2.2,
-        x: Math.PI * 1.5,
-        ease: "power1.out",
-        duration: 1.5,
-      },
-      "a"
-    );
-
-    // Page1 Headline Coca-Cola text
-    clutterAnimation(".page1-main>h1");
-    tl.from(
-      ".page1-main>h1>span",
-      {
-        y: 130,
-        opacity: 0,
-        ease: "power1.out",
-        stagger: {
-          amount: 1.5,
-          from: "x",
-        },
-      },
-      "a"
-    );
-
-    // Playing the all animations which is sync with cans Animation
-    clutterAnimation(".page1-footer-title>h1");
-    tl.from(
-      ".page1-footer-title>h1>span",
-      {
-        opacity: 0,
-        y: 50,
-        textContent: getRandomText(4),
-        stagger: {
-          amount: randomTextAnimationSpeed,
-          from: "x",
-        },
-        onStart: () => {
-          updateMaterial();
-          cansAnimationLoop();
-        },
-      },
-      "a"
-    );
+    afterLoadedTheContent();
   },
   // Process
   (itemUrl, itemsLoaded, itemsTotal) => {
     // Remove the black screen
-    gsap.to(".main-loader", {
-      backgroundColor: "transparent",
-    });
+    if (checkLoadingStart) {
+      checkLoadingStart = false;
+      gsap.to(".main-loader", {
+        backgroundColor: "transparent",
+      });
+    }
     const progressRatio = itemsLoaded / itemsTotal;
     const loaderCount = document.querySelector(".main-loader-counter > h1");
     gsap.to(loaderCount, {
@@ -161,7 +170,6 @@ gltfLoader.setDRACOLoader(dracoLoader);
 // Displacement texture load
 const displacementTexture = textureLoader.load("/imgs/d2.avif");
 const video = document.querySelector(".main-loader>video");
-video.playbackRate = 1.2;
 const videoTexture = new THREE.VideoTexture(video);
 
 const LoaderPlane = new THREE.Mesh(
