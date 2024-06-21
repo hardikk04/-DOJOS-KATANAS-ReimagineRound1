@@ -474,6 +474,7 @@ const page2Animation = () => {
       ".swiper",
       {
         transform: "scale(1)",
+        delay:0.2
       },
       "a"
     )
@@ -481,6 +482,7 @@ const page2Animation = () => {
       "#swiper-btn",
       {
         scale: 0.3,
+        delay:0.2
       },
       "a"
     )
@@ -488,6 +490,7 @@ const page2Animation = () => {
       ".over-card",
       {
         opacity: 0,
+        delay:0.2
       },
       "a"
     )
@@ -496,6 +499,7 @@ const page2Animation = () => {
       {
         scale: 0,
         duration: 0,
+        delay:0.2
       },
       "a"
     );
