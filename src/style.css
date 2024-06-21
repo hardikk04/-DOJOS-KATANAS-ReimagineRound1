@@ -845,7 +845,8 @@ nav {
   display: none;
 }
 
-#page4Mobile h1 {
+#page4Mobile h1
+{
   font-size: 5vw;
   margin-top: 1vw;
   margin-bottom: 2vw;
