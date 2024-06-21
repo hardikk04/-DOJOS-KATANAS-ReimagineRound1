@@ -120,20 +120,6 @@ body::-webkit-scrollbar-thumb:active {
   opacity: 0;
 }
 
-.main-loader-counter {
-  position: absolute;
-  bottom: 2.5%;
-  right: 2.5%;
-  margin-top: 2vw;
-}
-
-.main-loader-counter > h1 {
-  position: relative;
-  font-family: lightFont;
-  font-size: 8vw;
-  color: #d91921;
-}
-
 /* Loader animation  end*/
 
 /* Page1 starts */
@@ -867,10 +853,12 @@ nav {
 
 #page4Mobile h1
 {
-  font-size: 5vw;
+  font-size: 6.5vw;
+  font-weight: 400;
+  font-family: Heading;
   margin-top: 1vw;
   margin-bottom: 2vw;
-  color: #D91921;
+  color: #d91921;
 }
 
 #page4Mobile .card {
