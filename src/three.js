@@ -8,8 +8,8 @@ import loaderFragmentShader from "/shaders/loader/fragment.glsl";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Removing the scroll unitl site loaded
 (() => {
-  // Removing the scroll unitl site loaded
   document.body.style.overflow = "hidden";
   document.documentElement.style.overflow = "hidden";
 })();
@@ -88,6 +88,9 @@ const afterLoadedTheContent = () => {
         // Enable scroll
         document.body.style.overflow = "initial";
         document.documentElement.style.overflow = "initial";
+
+        // Canvas Pointer Events
+        canvas.style.pointerEvents = "initial";
       },
     },
     "a"
