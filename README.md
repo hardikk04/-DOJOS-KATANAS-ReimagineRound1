@@ -77,7 +77,7 @@ For the front-end hackathon, we selected Coca-Cola as our canvas for reinvention
 **Footer**: Designed with user navigation and accessibility in mind, reflecting our team's meticulous planning and execution. Designed by Ayush to ensure seamless navigation and user-friendly accessibility.
 ## Credits and Special Thanks🙏
 
-Images: All images sourced from [Unsplash](https://www.example.com).
+Images: All images sourced from [Unsplash](unsplash.com).
 
 Videos: All videos sourced from [YouTube](https://www.youtube.com/).
 
