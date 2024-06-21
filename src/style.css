@@ -407,6 +407,7 @@ nav {
   color: #8c0000;
   font-weight: 400;
   font-family: cocaCola;
+  white-space: nowrap;
 }
 
 .page1-footer {
@@ -863,9 +864,17 @@ nav {
   display: none;
 }
 
+#page4Mobile h1
+{
+  font-size: 5vw;
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+  color: #D91921;
+}
+
 #page4Mobile .card {
   width: 100%;
-  height: 48vh;
+  height: 47vh;
 }
 
 #page4Mobile .card #image {
