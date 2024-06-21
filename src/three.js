@@ -46,16 +46,12 @@ const updateMaterial = () => {
 
 const afterLoadedTheContent = () => {
   const tl = gsap.timeline();
-  tl.to(".main-loader-counter", {
-    opacity: 0,
-    delay: 0.5,
-  });
 
   tl.to(LoaderPlane.scale, {
     x: 4,
     y: 4,
     z: 4,
-    duration: 1.5,
+    duration: 2,
   });
 
   tl.to(LoaderPlane.material.uniforms.uOffset, {
@@ -72,7 +68,7 @@ const afterLoadedTheContent = () => {
     {
       y: -8,
       ease: "power1.out",
-      duration: 1.5,
+      duration: 1,
     },
     "a"
   );
@@ -83,7 +79,7 @@ const afterLoadedTheContent = () => {
       y: Math.PI * 2.2,
       x: Math.PI * 1.5,
       ease: "power1.out",
-      duration: 1.5,
+      duration: 1,
       onComplete: () => {
         // Enable scroll
         document.body.style.overflow = "initial";
@@ -101,11 +97,10 @@ const afterLoadedTheContent = () => {
   tl.from(
     ".page1-main>h1>span",
     {
-      y: 130,
       opacity: 0,
       ease: "power1.out",
       stagger: {
-        amount: 1.5,
+        amount: 1,
         from: "x",
       },
     },
@@ -160,11 +155,6 @@ const loadingManager = new THREE.LoadingManager(
       });
     }
     const progressRatio = itemsLoaded / itemsTotal;
-    const loaderCount = document.querySelector(".main-loader-counter > h1");
-    gsap.to(loaderCount, {
-      textContent: `${Math.floor(progressRatio * 100)}%`,
-      snap: { textContent: 1 },
-    });
   }
 );
 const gltfLoader = new GLTFLoader(loadingManager);
