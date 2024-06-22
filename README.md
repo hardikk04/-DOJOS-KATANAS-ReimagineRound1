@@ -56,6 +56,8 @@ focuses on crafting visually compelling web designs, ensuring our project embodi
 For the front-end hackathon, we selected Coca-Cola as our canvas for reinvention. Recognizing its global prominence and the opportunity to modernize its digital footprint, we embarked on a journey to create a user-centric experience that seamlessly integrates modern design principles with innovative animations.
 ## Project Breakdown
 
+**Navigation Menu**: Provided a comprehensive menu in the navigation bar for easy interaction with the website.
+
 **Loader**: Visualized from scratch by our team, setting the tone for a dynamic user experience. Crafted by Hardik to set the stage for our immersive journey into Coca-Cola's world.
 
 **Homepage**:  Inspired by [sheryians](https://sheryians.com/) previous website aesthetics, adapted into our unique style. Featuring 3D models and interactive animations of Coca-Cola's iconic products, meticulously developed by Hardik.
@@ -75,6 +77,38 @@ For the front-end hackathon, we selected Coca-Cola as our canvas for reinvention
 **History and Careers**: Developed independently to provide insights into Coca-Cola's legacy and career opportunities. Also developed by Hardik, providing insights into Coca-Cola's rich heritage and career opportunities.
 
 **Footer**: Designed with user navigation and accessibility in mind, reflecting our team's meticulous planning and execution. Designed by Ayush to ensure seamless navigation and user-friendly accessibility.
+## Key Features💡
+
+**Responsive Design**: The website is fully responsive, providing an optimal viewing experience on desktops, tablets, and mobile devices.
+
+**User-Friendly Interface**: Intuitive navigation and a clean layout for enhanced user experience.
+
+**High-Quality Media**: Use of high-resolution images and videos to represent Coca-Cola's brand identity.
+
+**Cross-Browser Compatibility**: The website is compatible with major web browsers (Chrome, Firefox, Safari, Edge).
+##  Technologies Used
+
+**HTML5**: For structuring the content.
+
+**CSS3**: For styling and responsive design, including media queries.
+
+**JavaScript**: For interactive elements and enhanced user experience.
+
+**Three.js**: For creating 3D graphics and animations.
+
+**WebGL**: For rendering interactive 3D graphics within web browsers.
+
+**GLSL**: For writing shaders to control the graphics pipeline.
+
+**GSAP**: For creating high-performance animations.
+
+**Lenis.js**: For smooth scrolling and scroll animations.
+
+**Swiper.js**: For creating touch sliders and carousels.
+
+**Vite**: For building and bundling the project efficiently.
+
+**Vercel**: For deploying the website and ensuring fast, reliable hosting.
 ## Credits and Special Thanks🙏
 
 Images: All images sourced from [Unsplash](https://unsplash.com/).
@@ -88,8 +122,8 @@ Brand Video by: [Arthur Whitehead](https://www.youtube.com/@ArthurWhitehead).
 Organizers: First of all, thank you to Team [Sheryians](https://sheryians.com/) for providing us with the opportunity to showcase our skills.
 
 Libraries: Thanks to [GSAP](https://gsap.com/), [Three.js](https://threejs.org/), [Lenis.js](https://lenis.darkroom.engineering/), [Swiper](https://swiperjs.com/), [Vite](https://vitejs.dev/), [Vite-plugin-glsl](https://github.com/UstymUkhman/vite-plugin-glsl), [Vercel](https://vercel.com/), and [Remix Icon](https://remixicon.com/). These libraries and packages were instrumental in our project's success.
-Sensei:
 
+Sensei:
 Special thanks to [Harsh](https://www.instagram.com/iamharshvandanasharma/) Bhaiya, [Sarthak](https://www.instagram.com/sarthack.sharma/) Bhaiya, and Sensei [Bruno Simon](https://bruno-simon.com/). Their guidance and invaluable feedback significantly contributed to our journey and project development.
 
 Friends:
