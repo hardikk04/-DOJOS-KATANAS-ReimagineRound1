@@ -29,10 +29,8 @@ lenisJs();
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
-
 // magneticEffect animation
-// can be used by giving class .magnet-effect to parent and .effect to child
-
+// can be used by giving class .magnet-effect to parent 
 const magneticEffect = () => {
   window.addEventListener("mousemove", function (dets) {
     gsap.to("#cursor", {
@@ -40,11 +38,32 @@ const magneticEffect = () => {
       left: dets.x,
     });
   });
-
   document.querySelectorAll(".magnet-effect").forEach(function (e) {
     e.addEventListener("mouseenter", function () {
       gsap.to("#cursor", {
         scale: 1,
+      });
+    });
+    e.addEventListener("mousemove", function (dets) {
+      // for value of x
+      var xStart = e.getBoundingClientRect().x;
+      var xEnd = e.getBoundingClientRect().x + e.getBoundingClientRect().width;
+      var valx = gsap.utils.mapRange(xStart, xEnd, -12, 12, dets.x);
+      // for value of y
+      var yStart = e.getBoundingClientRect().y;
+      var yEnd = e.getBoundingClientRect().y + e.getBoundingClientRect().height;
+      var valy = gsap.utils.mapRange(yStart, yEnd, -12, 12, dets.y);
+      gsap.to(e.children[0], {
+        x: valx,
+        y: valy,
+        duration: 0.5,
+      });
+    });
+    e.addEventListener("mouseleave", function (dets) {
+      gsap.to(e.children[0], {
+        x: 0,
+        y: 0,
+        duration: 0.5,
       });
     });
   });
@@ -55,56 +74,34 @@ const magneticEffect = () => {
       });
     });
   });
-
-  document.querySelectorAll(".magnet-effect").forEach(function (e) {
-    e.addEventListener("mousemove", function (dets) {
-      var xStart = dets.x - e.getBoundingClientRect().x;
-      var xEnd = e.getBoundingClientRect().width;
-      var valx = gsap.utils.mapRange(0, xEnd, -12, 12, xStart);
-      var yStart = dets.y - e.getBoundingClientRect().y;
-      var yEnd = e.getBoundingClientRect().height;
-      var valy = gsap.utils.mapRange(0, yEnd, -12, 12, yStart);
-      gsap.to(e.querySelector(".effect"), {
-        x: valx,
-        y: valy,
-        duration: 0.5,
-      });
-    });
-  });
-  document.querySelectorAll(".magnet-effect").forEach(function (e) {
-    e.addEventListener("mouseleave", function (dets) {
-      gsap.to(e.querySelector(".effect"), {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-      });
-    });
-  });
+  
 };
 magneticEffect();
 
 // textEffect animation
-// can be used by giving class .text-effect to parent
-// and .first and .second classes to child's(both child should be h4)
+// can be used by giving class .text-effect to parent , which has two childern
 const textEffect = () => {
-  document.querySelectorAll(".text-effect h4").forEach(function (h) {
-    var clutter = "";
-    h.textContent.split("").forEach(function (l) {
-      clutter += `<span>${l}</span>`;
-    });
-    h.innerHTML = clutter;
-  });
-
+  // Splitting the text content into individual letters and wrapping each in a span with a class
+  document.querySelectorAll(".text-effect").forEach(function(e){
+    [...e.children].forEach(function(h){
+      var clutter = "";
+      h.textContent.split("").forEach(function (l) {
+        clutter += `<span>${l}</span>`;
+      });
+      h.innerHTML = clutter;
+    })
+  })
+  //animation for mousemove
   document.querySelectorAll(".text-effect").forEach(function (e) {
     e.addEventListener("mouseenter", function () {
-      gsap.to(e.querySelectorAll(".first span"), {
+      gsap.to(e.children[0].querySelectorAll("span"), {
         y: "-106%",
         stagger: {
           amount: 0.2,
         },
         duration: 0.4,
       });
-      gsap.to(e.querySelectorAll(".second span"), {
+      gsap.to(e.children[1].querySelectorAll("span"), {
         y: "-100%",
         stagger: {
           amount: 0.2,
@@ -113,15 +110,16 @@ const textEffect = () => {
       });
     });
   });
+  //animation for mouseleave
   document.querySelectorAll(".text-effect").forEach(function (e) {
     e.addEventListener("mouseleave", function () {
-      gsap.to(e.querySelectorAll(".first span"), {
+      gsap.to(e.children[0].querySelectorAll("span"), {
         y: "0%",
         stagger: {
           amount: 0.2,
         },
       });
-      gsap.to(e.querySelectorAll(".second span"), {
+      gsap.to(e.children[1].querySelectorAll("span"), {
         y: "0%",
         stagger: {
           amount: 0.2,
