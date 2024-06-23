@@ -848,7 +848,7 @@ const page6Animation = () => {
           opacity: 1,
           scale: 1,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -860,7 +860,7 @@ const page6Animation = () => {
           opacity: 1,
           scale: 1,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -872,7 +872,7 @@ const page6Animation = () => {
           opacity: 1,
           scale: 1,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -884,7 +884,7 @@ const page6Animation = () => {
           opacity: 1,
           scale: 1,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -896,7 +896,7 @@ const page6Animation = () => {
           opacity: 1,
           scale: 1,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -912,7 +912,7 @@ const page6Animation = () => {
           opacity: 0,
           scale: 0,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -925,7 +925,7 @@ const page6Animation = () => {
           opacity: 0,
           scale: 0,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -938,7 +938,7 @@ const page6Animation = () => {
           opacity: 0,
           scale: 0,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -951,7 +951,7 @@ const page6Animation = () => {
           opacity: 0,
           scale: 0,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
@@ -964,7 +964,7 @@ const page6Animation = () => {
           opacity: 0,
           scale: 0,
           stagger: {
-            amount: 0.6,
+            amount: 0.3,
             from: "center",
           },
         });
