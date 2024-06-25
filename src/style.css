@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: heading;
-  src: url(/fonts/headingFonts/Titania-Regular.ttf);
+  src: url(/fonts/headingFonts/Hanoble.otf);
 }
 
 @font-face {
@@ -974,7 +974,7 @@ nav {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8.5vw;
+  font-size: 7.5vw;
   white-space: nowrap;
   z-index: 9;
   color: #fff;
