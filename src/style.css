@@ -1,42 +1,22 @@
 /* Fonts Loader*/
 @font-face {
   font-family: cocaCola;
-  src: url(/fonts/cocacola1.ttf);
+  src: url(/fonts/cocacola1.woff2);
 }
 
 @font-face {
   font-family: heading;
-  src: url(/fonts/headingFonts/Hanoble.otf);
-}
-
-@font-face {
-  font-family: extraLightFont;
-  src: url(/fonts/paraFonts/extraLight.ttf);
-}
-
-@font-face {
-  font-family: heavyFont;
-  src: url(/fonts/paraFonts/heavy.ttf);
-}
-
-@font-face {
-  font-family: italicFont;
-  src: url(/fonts/paraFonts/italic.ttf);
+  src: url(/fonts/headingFonts/TWKLausanne-300.05f1f099.woff2);
 }
 
 @font-face {
   font-family: lightFont;
-  src: url(/fonts/paraFonts/light.ttf);
+  src: url(/fonts/paraFonts/light.woff2);
 }
 
 @font-face {
   font-family: mediumFont;
-  src: url(/fonts/paraFonts/medium.ttf);
-}
-
-@font-face {
-  font-family: semiBold;
-  src: url(/fonts/paraFonts/semiBold.ttf);
+  src: url(/fonts/paraFonts/medium.woff2);
 }
 
 /* Boiler Plate */
@@ -322,7 +302,7 @@ nav {
   line-height: 1;
 }
 #sidepanel #menu-text h4 span {
-  font-family: mediumfont;
+  font-family: mediumFont;
 }
 #sidepanel #menu-text .menu-wrap {
   height: 3.3vw;
@@ -432,7 +412,7 @@ nav {
   line-height: 0.8;
   white-space: nowrap;
   font-family: heading;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .page1-footer-left h3 {
@@ -511,7 +491,7 @@ nav {
   font-size: 4vw;
   text-transform: capitalize;
   color: #d91921;
-  font-weight: 400;
+  font-weight: 500;
   transform: translateX(-100%);
   font-family: heading;
 }
@@ -556,14 +536,14 @@ nav {
   object-fit: cover;
 }
 #page2 p {
-  font-size: 1.32vw;
+  font-size: 1.36vw;
   width: 52%;
   margin: 0 auto;
   font-weight: 500;
-  color: #656565;
+  color: #3c3c3c;
   text-transform: capitalize;
   margin: 1.5vw auto;
-  line-height: 1.3;
+  line-height: 1.4;
   font-family: lightFont;
 }
 
@@ -698,7 +678,7 @@ nav {
 }
 #page3 #text-container h4{
   font-size: 2.8vw;
-  font-family: lightfont;
+  font-family: lightFont;
   font-weight: 600;
   color: #fff;
 }
@@ -737,7 +717,7 @@ nav {
   font-size: 4vw;
   color: #d91921;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 400;
   font-family: heading;
 }
 
@@ -746,13 +726,14 @@ nav {
   height: 5vw;
   border-radius: 50%;
   color: #fff;
-  background-color: #d91921;
+  border: 2px solid #d91921;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #page4Desktop .heading .arrow i {
+  color: #d91921;
   font-size: 2vw;
 }
 
@@ -790,7 +771,7 @@ nav {
   position: relative;
   padding-left: 1vw;
   transition: all ease 0.7s;
-  font-family: lightfont;
+  font-family: lightFont;
   z-index: 0;
 }
 
@@ -799,8 +780,8 @@ nav {
 }
 
 #page4Desktop .section h3 {
-  font-size: 4vw;
-  font-weight: 600;
+  font-size: 3vw;
+  font-weight: 100;
   text-transform: capitalize;
   color: rgb(91, 91, 91);
   z-index: 99;
@@ -847,14 +828,14 @@ nav {
   gap: 3vw;
   background-color: #fff;
   padding: 1vw 2vw;
-  font-family: lightfont;
+  font-family: lightFont;
   display: none;
 }
 
 #page4Mobile h1
 {
   font-size: 6.5vw;
-  font-weight: 400;
+  font-weight: 500;
   font-family: heading;
   margin-top: 1vw;
   margin-bottom: 2vw;
@@ -908,7 +889,7 @@ nav {
 #page5 #heading h3 {
   font-size: 3.5vw;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   margin: 8vh 0;
 }
@@ -1010,7 +991,7 @@ nav {
   min-height: 100vh;
   width: 100%;
   background-color: #fff;
-  padding: 2vw 4vw;
+  padding: 2vw ;
   color: #d91921;
 }
 
@@ -1039,12 +1020,12 @@ nav {
 }
 
 .page7-part1-left > p {
-  font-size: 1.32vw;
+  font-size: 1.36vw;
   font-weight: 500;
-  color: #656565;
+  color: #3c3c3c;
   text-transform: capitalize;
   margin: 1.5vw 0;
-  line-height: 1.3;
+  line-height: 1.4;
   width: 90%;
   font-family: lightFont;
 }
@@ -1199,12 +1180,12 @@ nav {
 }
 
 .page7-part2-right-text p {
-  font-size: 1.32vw;
+  font-size: 1.36vw;
   font-weight: 500;
-  color: #656565;
+  color: #3c3c3c;
   text-transform: capitalize;
   margin: 1vw 0;
-  line-height: 1.3;
+  line-height: 1.4;
   width: 90%;
   font-family: lightFont;
 }
@@ -1235,8 +1216,7 @@ nav {
   width: 100%;
   background-color: #d91921;
   color: #fff;
-  padding: 0 3.5vw;
-  font-family: fantasy;
+  padding: 0 2vw;
 }
 #foot-pt1 {
   width: 100%;
@@ -1261,7 +1241,7 @@ nav {
 
 #foot-pt2 {
   display: flex;
-  gap: 7vw;
+  gap: 9vw;
   margin-top: 2vw;
 }
 .wrp {
@@ -1548,7 +1528,7 @@ nav {
   }
   #foot-pt2 .wrap-ft h4 {
     font-size: 1.8vw;
-    font-family: lightfont;
+    font-family: lightFont;
   }
   #foot-pt3 {
     margin-top: 10vw;
@@ -1699,7 +1679,7 @@ nav {
   #page3 #text-container h4 {
     font-size: 3.5vw;
     font-weight: 500;
-    font-family: lightfont;
+    font-family: lightFont;
     color: #fff;
   }
 
@@ -1719,7 +1699,7 @@ nav {
     height: 20vh;
   }
   #page4 .section h3 {
-    font-family: lightfont;
+    font-family: lightFont;
     font-size: 4vw;
   }
   #page6 .page6-imgs {
@@ -2054,7 +2034,7 @@ nav {
   #page3 #text-container h4{
     font-size: 7vw;
     font-weight: 800;
-    font-family: lightfont;
+    font-family: lightFont;
     color: #fff;
   }
   
@@ -2243,7 +2223,7 @@ nav {
   #foot-pt2 h4 {
     font-weight: 400;
     font-size: 4vw;
-    font-family: lightfont;
+    font-family: lightFont;
   }
 
   #foot-pt3 {
@@ -2263,7 +2243,7 @@ nav {
   #foot-pt3 #social h3 {
     font-weight: 400;
     font-size: 4vw;
-    font-family: lightfont;
+    font-family: lightFont;
   }
   #foot-pt3 .wrp {
     margin-top: 4vw;
