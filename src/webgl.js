@@ -18,9 +18,7 @@ if (!isMobileDevice()) {
     let scene, camera, renderer, planeMesh;
     let mousePosition = { x: 0.5, y: 0.5 };
     let targetMousePosition = { x: 0.5, y: 0.5 };
-    let mouseStopTimeout;
     let aberrationIntensity = 0;
-    let lastPosition = { x: 0.5, y: 0.5 };
     let prevPosition = { x: 0.5, y: 0.5 };
 
     function initializeScene(texture) {
@@ -39,7 +37,6 @@ if (!isMobileDevice()) {
         new THREE.PlaneGeometry(2, 2, 64, 64),
         new THREE.ShaderMaterial({
           uniforms: {
-            uTime: new THREE.Uniform(0),
             uFrequency: new THREE.Uniform(new THREE.Vector2(0, 0)),
             uMouse: new THREE.Uniform(new THREE.Vector2()),
             uPrevMouse: new THREE.Uniform(new THREE.Vector2()),
@@ -84,10 +81,6 @@ if (!isMobileDevice()) {
       requestAnimationFrame(animateScene);
 
       deltaTime = clock.getDelta();
-
-      if (mouseE) {
-        planeMesh.material.uniforms.uTime.value += deltaTime;
-      }
 
       mousePosition.x += (targetMousePosition.x - mousePosition.x) * easeFactor;
       mousePosition.y += (targetMousePosition.y - mousePosition.y) * easeFactor;

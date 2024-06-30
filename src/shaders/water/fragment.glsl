@@ -16,7 +16,7 @@ void main()
 
     vec2 pixelToMouseDirection = centerOfPixel - uMouse;
     float pixelDistanceToMouse = length(pixelToMouseDirection);
-    float strength = smoothstep(0.2,0.0,pixelDistanceToMouse);
+    float strength = smoothstep(0.3,0.0,pixelDistanceToMouse);
 
     vec2 uvOffset = strength * - mouseDirection * 0.25;
     vec2 uv = vUv - uvOffset;
