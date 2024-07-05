@@ -127,6 +127,8 @@ Loader Video by: [Chow's Show](https://www.youtube.com/watch?v=s3p5jIgIGSg).
 
 Brand Video by: [Arthur Whitehead](https://www.youtube.com/@ArthurWhitehead).
 
+Coca-Cola Model: Thanks to [Atharv Sonawale](https://www.linkedin.com/in/atharvsonawale/), our paid Blender artist, for the fantastic 3D model in our Coca-Cola project.
+
 Organizers: First of all, thank you to Team [Sheryians](https://sheryians.com/) for providing us with the opportunity to showcase our skills.
 
 Libraries: Thanks to [GSAP](https://gsap.com/), [Three.js](https://threejs.org/), [Lenis.js](https://lenis.darkroom.engineering/), [Swiper](https://swiperjs.com/), [Vite](https://vitejs.dev/), [Vite-plugin-glsl](https://github.com/UstymUkhman/vite-plugin-glsl), [Vercel](https://vercel.com/), and [Remix Icon](https://remixicon.com/). These libraries and packages were instrumental in our project's success.
